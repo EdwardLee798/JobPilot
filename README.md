@@ -22,7 +22,7 @@ Proposal Submission(24 Sept)
     
     topic1：app比价--打车、外卖、网购...
     topic2（待补充）：9.19 12:00前提供
-            李嘉华：企业内部信息检索（知识管理）agent，推搜广增强agent，客户支持自动化回复agent，
+            李嘉华：基于RAG做推搜广增强agent，客户支持自动化回复agent，
 
             
             何皓凡：
