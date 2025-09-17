@@ -14,7 +14,7 @@ Should have a basic understanding of (?)
 
        Agent框架(LangChain / LlamaIndex)
       
-       RAG
+       RAG(Retrieval-Augmented Generation, 检索增强生成)
       
        API
    
