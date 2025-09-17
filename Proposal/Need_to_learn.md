@@ -12,7 +12,7 @@ Should have a basic understanding of (大家有什么好的建议也可以放在
 
 2. 应用层框架
 
-       Agent框架(LangChain / LlamaIndex)
+       Agent、AI应用框架(LangChain / LlamaIndex/ SpringAI)
       
        RAG(Retrieval-Augmented Generation, 检索增强生成)
       
