@@ -1,5 +1,5 @@
 # LLM-Based-Agent
-Course Assignment for COMP7606 NLP
+Course Assignment for COMP7607A NLP
 
 9.24: Proposal Submission
     
