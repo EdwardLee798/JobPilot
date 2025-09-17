@@ -1,7 +1,7 @@
 # LLM-Based-Agent
 Course Assignment for COMP7607A NLP
 
-9.24: Proposal Submission
+Proposal Submission(24 Sept)
     
     Survey
 
@@ -20,4 +20,4 @@ Final Report
 
 
 
-11.26: Last Class
+Last Class(26 Nov)
