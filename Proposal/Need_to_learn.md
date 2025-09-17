@@ -1,4 +1,4 @@
-Should have a basic understanding of (?)
+Should have a basic understanding of (大家有什么好的建议也可以放在这里，教学链接、关键词、可能需要了解的领域...)
 
 1. LLM基础
    
