@@ -10,16 +10,16 @@ Should have a basic understanding of (?)
    
        Token/Tokenization（BPE, SentencePiece）
 
-3. 应用层框架
+2. 应用层框架
 
-    Agent框架(LangChain / LlamaIndex)
+       Agent框架(LangChain / LlamaIndex)
+      
+       RAG
+      
+       API
    
-    RAG
-   
-    API
-   
-    Prompt Engineering(Zero-shot / Few-shot / Chain-of-Thought)
+       Prompt Engineering(Zero-shot / Few-shot / Chain-of-Thought)
 
-5. sofeware development
+3. sofeware development
 
-6. 进阶(multi-agent...?)
+4. 进阶(multi-agent...?)
