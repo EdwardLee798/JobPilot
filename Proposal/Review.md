@@ -2,13 +2,13 @@ Should have a basic understanding of (?)
 
 1. LLM基础
    
-    Transformer/Self-Attention
+       Transformer/Self-Attention
    
-    Pre-training/Fine-tuning/Instruction-tuning
+       Pre-training/Fine-tuning/Instruction-tuning
    
-    Embedding
+       Embedding
    
-    Token/Tokenization（BPE, SentencePiece）
+       Token/Tokenization（BPE, SentencePiece）
 
 3. 应用层框架
 
