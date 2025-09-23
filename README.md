@@ -43,5 +43,4 @@
 ---
 
 ## 参考资料
-更多细节请见项目文档：  
-**[COMP7607A Group Project Proposal](./COMP7607A%20Group%20Project%20Proposal.pdf)**
+
