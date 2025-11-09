@@ -1,11 +1,8 @@
-# from langgraph.graph import StateGraph, START, END
-# from langgraph.graph.message import add_messages
 from langchain.chat_models import init_chat_model
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.runnables.config import RunnableConfig
 from langchain_core.tools import tool
-# from IPython.display import Image
 from pydantic import BaseModel, Field
 from typing import Optional
 from dotenv import load_dotenv
@@ -15,7 +12,10 @@ from pathlib import Path
 # from typing import Annotated
 # from typing_extensions import TypedDict
 
-load_dotenv(dotenv_path='.env', override=True)
+import os
+print(os.path.abspath('.env'))
+load_dotenv(dotenv_path=os.path.abspath('.env'), override=True)
+# print(os.getenv("DEEPSEEK_API_KEY"))
 username = "Student"
 
 # 1. define relevant schema and tools
@@ -164,7 +164,7 @@ def app_process_updater(job_title: str, company_name: str, status: str) -> str:
 
 # system prompt
 prompt = """
-你是一名经验丰富的职位网申管理师，擅长帮助用户高效完成以下任务：
+你是一名经验丰富的职位网申流程管理师，擅长帮助用户高效完成以下任务：
 
 1. **新增网申流程跟踪：**
    - 当用户新增一个需要跟踪的职位网申流程时，请先调用调用`is_app_new`工具判断用户需要记录的职位是新申请的还是后续更新的，若`is_app_new`返回 True 则调用`app_process_creater`工具，若`is_app_new`返回 False 则调用`app_process_updater`工具。
@@ -185,8 +185,6 @@ prompt = """
 - 所有回答均使用**简体中文**，清晰、礼貌、简洁。
 - 如果调用工具返回结构化JSON数据，你应提取其中的关键信息简要说明，并展示主要结果。
 - 若需要用户提供更多信息，请主动提出明确的问题。
-- 如果有生成的图片文件，请务必在回答中使用Markdown格式插入图片，如：![Categorical Features vs Churn](images/fig.png)
-- 不要仅输出图片路径文字。
 
 **风格：**
 - 专业、简洁、以数据驱动。
