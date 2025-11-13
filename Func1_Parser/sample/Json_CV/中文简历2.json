@@ -1,0 +1,124 @@
+{
+  "user_id": "",
+  "name": "周亦航",
+  "headline": "Data Analyst | Statistics & Analytics",
+  "contacts": {
+    "email": "",
+    "phone": "",
+    "wechat": "",
+    "github": ""
+  },
+  "summary": "中国人民大学统计学本科在读，GPA 3.78/4.0（专业前10%），具备扎实的统计建模与数据分析能力。拥有滴滴、辉瑞、百度、得物等多家企业实习经历，覆盖网约车、医疗、电商等多个行业，熟练掌握SQL、Python、R、SAS等工具及Tableau、PowerBI等可视化平台。擅长AB实验分析、回归建模、数据看板搭建与业务归因，具备从数据中挖掘价值并驱动决策的能力。",
+  "education": [
+    {
+      "school": "中国人民大学",
+      "degree": "Bachelor of Science",
+      "major": "统计学",
+      "start": "2021.09",
+      "end": "2025.06",
+      "note": "GPA: 3.78/4.0, 专业前10%"
+    }
+  ],
+  "experience": [
+    {
+      "type": "internship",
+      "name": "数据分析实习生",
+      "location": "滴滴, 网约车财务与经营管理部-下沉经管",
+      "title": "数据分析实习生",
+      "role": "Data Analyst",
+      "period": "2025.05~2025.08",
+      "description": "使用SQL提取业务和财务指标，制作数据看板与品类周报；分析补贴、区域与营销策略的AB实验效果，量化关键指标变化；构建基于CAC、LTV、ROI的补贴价值评估框架；诊断低价品类供需瓶颈并构建成交预测模型；进行区域深度归因分析，提出差异化增长策略；基于历史数据拟合呼叫量与首五单回归模型，为各区县制定分档目标。"
+    },
+    {
+      "type": "internship",
+      "name": "统计编程项目实习生",
+      "location": "辉瑞 SDSA",
+      "title": "统计编程项目实习生",
+      "role": "Statistical Programmer",
+      "period": "2025.02~2025.04",
+      "description": "根据Protocol/CRF/SAP完成SDTM/ADaM数据集构建与Mockshell分析；使用SAS和R进行方差分析、回归分析等统计分析；编写SAS宏程序提升分析效率，交付报告获得较好评价。"
+    },
+    {
+      "type": "internship",
+      "name": "数据分析实习生",
+      "location": "辉瑞 Patient Solution",
+      "title": "数据分析实习生",
+      "role": "Data Analyst",
+      "period": "2024.08~2024.12",
+      "description": "使用PowerBI监控患者状态，分析脱组、转诊行为及省份差异；基于KM生存曲线与COX比例风险模型构建脱组预测模型，支持临床干预决策。"
+    },
+    {
+      "type": "internship",
+      "name": "数据运营实习生",
+      "location": "百度, HCG医疗业务部",
+      "title": "数据运营实习生",
+      "role": "Data Operations Analyst",
+      "period": "2024.03~2024.06",
+      "description": "监控“百度健康”问诊平台核心指标，进行异常波动归因分析；使用Tableau优化运营监控看板，提升数据可读性；利用Python和R进行回归分析与机器学习建模，识别影响GMV的关键因素并提出优化建议。"
+    },
+    {
+      "type": "internship",
+      "name": "商家运营实习生",
+      "location": "得物",
+      "title": "商家运营实习生",
+      "role": "Business Operations Intern",
+      "period": "2023.07~2023.09",
+      "description": "监控商家运营核心指标，执行异动分析与用户需求洞察；在七夕大促期间基于用户行为数据分析提出优化策略，有效推动GMV显著提升。"
+    },
+    {
+      "type": "project",
+      "name": "电商数据可视化与商品趋势分析平台",
+      "location": "Personal Project",
+      "title": "Developer",
+      "role": "Full-stack Data Developer",
+      "period": "",
+      "description": "搭建端到端的数据提取、清洗与可视化分析流程；整合商品销量、价格及用户反馈数据，识别市场趋势与潜在增长点；平台支持运营团队自定义筛选维度，显著提升数据驱动决策效率。"
+    },
+    {
+      "type": "project",
+      "name": "用户行为路径分析与转化提升项目",
+      "location": "Personal Project",
+      "title": "Analyst",
+      "role": "Data Analyst",
+      "period": "",
+      "description": "基于漏斗模型分析‘浏览→点击→下单’用户行为路径，精准定位流失环节；通过聚类与特征分析识别高转化用户画像，提出针对性优化策略，最终实现目标区间转化率提升12%。"
+    },
+    {
+      "type": "project",
+      "name": "医疗患者状态监测与预警原型系统",
+      "location": "Personal Project",
+      "title": "Developer",
+      "role": "Data Scientist",
+      "period": "",
+      "description": "整合患者诊疗记录与状态数据，构建初步的风险分层模型；实现‘高风险患者脱组预警’功能，辅助医生提前干预，提升患者管理质量。"
+    }
+  ],
+  "skills": [
+    "SQL",
+    "Python",
+    "R",
+    "SAS",
+    "Tableau",
+    "PowerBI",
+    "Excel高级分析",
+    "统计建模",
+    "回归分析",
+    "实验评估",
+    "机器学习基础",
+    "可视化构建"
+  ],
+  "activities": [
+    {
+      "org": "中国人民大学 文艺与宣传联合会",
+      "role": "文艺部部长",
+      "period": "2022.09~2024.06",
+      "description": "负责统筹20余场大型校园活动的节目编排、舞台设计与人员协调；主导海报、舞台屏幕等视觉物料的设计与制作；建立活动反馈问卷机制，结合统计分析持续优化活动质量；任期内带领部门荣获校级‘最佳学生部门’称号。"
+    }
+  ],
+  "certifications": [
+    "全国大学生数据分析大赛｜二等奖（2024）",
+    "中国人民大学数学建模校赛｜一等奖（2023）",
+    "优秀学生干部（2023）",
+    "人民大学科技创新奖学金（2024）"
+  ]
+}

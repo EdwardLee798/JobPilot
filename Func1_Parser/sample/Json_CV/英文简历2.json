@@ -1,0 +1,135 @@
+{
+  "user_id": "",
+  "name": "XU Zengrui",
+  "headline": "Industrial Design & AI Systems Student",
+  "contacts": {
+    "email": "xuzengrui088@gmail.com",
+    "phone": "+86-18623919702",
+    "wechat": "",
+    "github": ""
+  },
+  "summary": "Undergraduate student at Xi'an Jiaotong University with dual focus on Industrial Design and Computer Science, combining technical depth in AI/ML with design innovation. Strong experience in deep learning projects including YOLO-based detection systems, multi-agent AI collaboration, emotion recognition, and recommendation modeling. Proficient in Python, PyTorch, TensorFlow, and full-stack development tools. Demonstrated research and competition capabilities through publications, awards in MCM and university-level innovation contests, and high performance in Kaggle and Tencent algorithm competitions.",
+  "education": [
+    {
+      "school": "Xi’an Jiaotong University",
+      "degree": "Bachelor",
+      "major": "Industrial Design (MILANO)",
+      "start": "2022.9",
+      "end": "2026.7",
+      "note": "Average Score: 87.62; Minor: Computer Science and Technology; Relevant Courses: Object-Oriented Programming (98), Data Structures and Algorithms (95), Computer Vision and Pattern Recognition (91), Introduction to Machine Learning (97), Advanced Mathematics-1(98), Advanced Mathematics-2(98), Linear Algebra (100), Probability and Mathematical Statistics (93)"
+    }
+  ],
+  "experience": [
+    {
+      "type": "research",
+      "name": "Summer Workshop: Deep Learning & Emotional Interaction Vehicle",
+      "location": "National University of Singapore, School of Computing (SOC)",
+      "title": "Research Participant",
+      "role": "AI developer",
+      "period": "2025.7~2025.7",
+      "description": "Developed a pedestrian detection and tracking system for an autonomous vehicle using the YOLOv8 + DeepSort model, enabling accurate real-time ID assignment and tracking of individuals in view. Built a facial emotion classifier for 8 classes based on YOLOv8, achieving mAP@0.5:0.95=0.497. Implemented vehicle state control logic through coding with states including Searching → Tracking → Emotion_Detect → Interaction."
+    },
+    {
+      "type": "project",
+      "name": "Industrial Production Management System Based on Multi-AI Agent Collaboration",
+      "location": "Xi’an Jiaotong University",
+      "title": "Project Developer",
+      "role": "AI systems developer",
+      "period": "2025.3~2025.7",
+      "description": "Fine-tuned the Qwen2.5-32B model on industrial corpora using parallel scheduling across four servers, enhancing domain knowledge understanding and task-response capability. Developed an industrial scheduling RAG module with hierarchical strategies including chapter-level chunking, summary compression, and title indexing, along with prompt re-ranking, improving retrieval QA accuracy by +18 percentage points and reducing hallucination rate by –12 percentage points. Integrated MiniCPM multimodal model to enable visual extraction and cross-modal RAG QA on industrial images such as scheduling charts and equipment diagrams. Built an MCP service combining production scheduling, knowledge QA, and image-text parsing; trained Function Call abilities for industrial tasks, achieving +3 percentage points on the BFCL benchmark."
+    },
+    {
+      "type": "research",
+      "name": "Decoding Olympic Glory: A Data-Driven Approach to Medal Predictions and Strategic Insights",
+      "location": "Xi’an Jiaotong University",
+      "title": "Researcher",
+      "role": "Data modeling and analysis",
+      "period": "2025.3~Present",
+      "description": "Extended 2025 MCM award-winning project into a more robust model and experimental framework for Olympic medal prediction. Introduced SHAP interpretability analysis to quantify feature impacts on predictions. Applied K-means clustering and correlation analysis to uncover strategic patterns in Olympic event selection by host countries, providing actionable insights for national sports planning."
+    },
+    {
+      "type": "project",
+      "name": "Target Detection System for Wireless Car Charging Logos Based on Improved YOLOv11",
+      "location": "Xi’an Jiaotong University",
+      "title": "Developer",
+      "role": "Computer vision engineer",
+      "period": "2025.3~2025.5",
+      "description": "Enhanced YOLOv11 architecture by integrating RepNCSPELAN4_high modules, MCA attention modules, and BiFPN modules, improving mAP@0.5 from 0.891 to 0.937 and mAP@0.5:0.95 from 0.468 to 0.517. Applied comprehensive data augmentation techniques including Gaussian blur, random noise, rotation, cropping, fog simulation, and color jittering to improve model robustness under limited training samples. Successfully deployed the optimized system on Raspberry Pi 5 for real-time logo recognition."
+    },
+    {
+      "type": "project",
+      "name": "Age Estimation Model Based on Se_ResNeXt50_32x4d",
+      "location": "Xi’an Jiaotong University, Computer Vision and Pattern Recognition Course",
+      "title": "Course Project Developer",
+      "role": "Machine learning developer",
+      "period": "2024.10~2024.12",
+      "description": "Replaced simple baseline model with Se_ResNeXt50_32x4d to enhance feature extraction via SE modules and residual connections. Achieved significant improvements: MAE reduced from 7.1 to 5.5 and training loss decreased from 3.3 to 2.0, demonstrating superior performance in age estimation tasks."
+    },
+    {
+      "type": "project",
+      "name": "Multi-Objective Learning Optimization for Fine Ranking under Dual-Column Recommendation",
+      "location": "Xi’an Jiaotong University",
+      "title": "Recommendation System Developer",
+      "role": "Deep learning engineer",
+      "period": "2024.9~2024.12",
+      "description": "Applied MMoE (Multi-gate Mixture-of-Experts) model for joint training, achieving strong baseline AUCs: 0.9218 (Click), 0.9120 (Like), 0.9201 (Favorite), 0.9218 (Comment). Refined expert structure into shared and task-specific experts and integrated TRM modules from DTRN to mitigate negative transfer, resulting in improved AUCs (+0.08% Click, +0.16% Like, +0.18% Favorite, +0.07% Comment). Incorporated ESMM-style objectives with shared feature tables to address label bias and sparsity, delivering additional gains (+0.20% Click, +0.17% Like, +0.21% Favorite, +0.13% Comment). Adopted Uncertainty Weight for multi-objective loss fusion, outperforming equal-weight fusion with further improvements (+0.04% Click, +0.06% Like, +0.02% Favorite, +0.08% Comment)."
+    },
+    {
+      "type": "project",
+      "name": "Abyss Hunter: Autonomous Underwater Vehicle Design Based on YOLO",
+      "location": "Xi’an Jiaotong University",
+      "title": "Team Member",
+      "role": "Image processing and detection",
+      "period": "2023.11~2024.3",
+      "description": "Performed data augmentation and dual-path enhancement on marine image datasets: one path using red compensation and gamma correction, the other using blue compensation and sharpening. Fused enhanced images using Laplacian and Gaussian pyramids to improve brightness, color fidelity, and detail clarity, leading to improved YOLOv8 detection performance. The project won First Prize in the Innovation Track of the 35th 'Tengfei Cup' Innovation & Entrepreneurship Competition at Xi’an Jiaotong University."
+    },
+    {
+      "type": "project",
+      "name": "Tencent Advertising Algorithm Competition",
+      "location": "Tencent Online Competition",
+      "title": "Algorithm Competitor",
+      "role": "Model optimization engineer",
+      "period": "2025.8~2025.9",
+      "description": "Replaced BCE Loss with InfoNCE Loss, gaining +0.015 improvement. Integrated temporal features such as interaction interval and time decay into the Embedding Layer, adding +0.003. Reconstructed the model’s attention module from Self-attention blocks to HSTU, contributing +0.004. Designed and implemented a three-tower feature fusion architecture based on an improved SENet with skip connection and attention pooling, replacing the original DNN dual-tower structure and achieving +0.007. Final score: 0.0708489, ranking 350 out of 1334 participants."
+    },
+    {
+      "type": "project",
+      "name": "Kaggle Competition-CMI: Detect Behavior with Sensor Data",
+      "location": "Kaggle Online Competition",
+      "title": "Competitor",
+      "role": "Machine learning modeler",
+      "period": "2025.8~2025.9",
+      "description": "Built a unified multi-model ensemble pipeline incorporating CNN, GRU, Bi-LSTM, and Transformer models to process diverse sensor data types including IMU, THM, and TOF. Designed a dual-branch prediction structure: one branch handling IMU-only data (50% of dataset), the other processing multi-modal inputs, which improved overall robustness and accuracy. Achieved a private leaderboard score of 0.825027, ranking 230 out of 2657 teams, earning a Bronze Medal."
+    },
+    {
+      "type": "research",
+      "name": "Mathematical Contest in Modeling (MCM), COMAP (USA)",
+      "location": "COMAP International Competition",
+      "title": "Team Member",
+      "role": "Modeling and coding",
+      "period": "2025.1~2025.1",
+      "description": "Responsible for modeling and coding tasks in team. Developed XG-Prophet hybrid model for Olympic medal prediction with low MAEs: Gold (1.09), Silver (0.95), Bronze (1.12), Total (2.24). Built GRU-ARIMA+XGBoost ensemble model for first-time winner prediction, achieving AUC of 0.917. Applied Difference-in-Differences and event study methodology to assess the 'Great Coach Effect'. Awarded Honorable Mention (H Prize)."
+    }
+  ],
+  "skills": [
+    "Python",
+    "Java",
+    "C++",
+    "C",
+    "JavaScript",
+    "Pytorch",
+    "TensorFlow",
+    "React",
+    "Spring Boot"
+  ],
+  "activities": [],
+  "certifications": [
+    "Honorable Mention (H Prize), Mathematical Contest in Modeling (MCM), COMAP (USA), 2025.1",
+    "First Prize, Innovation Track, 35th 'Tengfei Cup' Innovation & Entrepreneurship Competition, Xi’an Jiaotong University, 2024.3",
+    "Bronze Medal, Kaggle Competition-CMI: Detect Behavior with Sensor Data, 2025.9",
+    "Provincial First Prize, National Undergraduate Mathematics Competition, Shaanxi Region",
+    "Second-Class Scholarship, Xi’an Jiaotong University",
+    "IELTS: Overall 6.5 (W: 6.0, R: 7.5, L: 6.0, S: 5.5), 2025.4.26",
+    "CET-4: 613, 2023.6.17"
+  ]
+}
