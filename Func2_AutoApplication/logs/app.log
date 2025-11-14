@@ -13,73 +13,71 @@
 [39m
 [1m[92mSpring Boot:  (v3.5.7)[0m[39m
 [91m[1mCreate By Github@loks666.[0m[39m
-[2m2025-11-14 00:44:44.505[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.getjobs.GetJobsApplication[0;39m [2m-[0;39m Starting GetJobsApplication using Java 21.0.9 with PID 18427 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine)
-[2m2025-11-14 00:44:44.506[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.getjobs.GetJobsApplication[0;39m [2m-[0;39m The following 1 profile is active: "dev"
-[2m2025-11-14 00:44:44.829[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m 检查静态资源路径:
-[2m2025-11-14 00:44:44.829[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/dist)
-[2m2025-11-14 00:44:44.829[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/static)
-[2m2025-11-14 00:44:44.829[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   dist存在: false
-[2m2025-11-14 00:44:44.829[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   static存在: false
-[2m2025-11-14 00:44:44.830[0;39m [35m[main][0;39m [33mWARN [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m 未检测到前端开发服务，也未找到静态资源
-[2m2025-11-14 00:44:44.874[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m [2m-[0;39m Tomcat initialized with port 8888 (http)
-[2m2025-11-14 00:44:44.880[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.a.catalina.core.StandardService[0;39m [2m-[0;39m Starting service [Tomcat]
-[2m2025-11-14 00:44:44.880[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.a.catalina.core.StandardEngine[0;39m [2m-[0;39m Starting Servlet engine: [Apache Tomcat/10.1.48]
-[2m2025-11-14 00:44:44.895[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m [2m-[0;39m Initializing Spring embedded WebApplicationContext
-[2m2025-11-14 00:44:44.896[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m [2m-[0;39m Root WebApplicationContext: initialization completed in 373 ms
+[2m2025-11-14 15:31:16.861[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.getjobs.GetJobsApplication[0;39m [2m-[0;39m Starting GetJobsApplication using Java 21.0.9 with PID 50122 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication)
+[2m2025-11-14 15:31:16.862[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.getjobs.GetJobsApplication[0;39m [2m-[0;39m The following 1 profile is active: "dev"
+[2m2025-11-14 15:31:17.215[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m 检查静态资源路径:
+[2m2025-11-14 15:31:17.216[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/dist)
+[2m2025-11-14 15:31:17.216[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/static)
+[2m2025-11-14 15:31:17.216[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   dist存在: false
+[2m2025-11-14 15:31:17.216[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m   static存在: false
+[2m2025-11-14 15:31:17.216[0;39m [35m[main][0;39m [33mWARN [0;39m [36mc.g.a.c.StaticServerConfiguration[0;39m [2m-[0;39m 未检测到前端开发服务，也未找到静态资源
+[2m2025-11-14 15:31:17.264[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m [2m-[0;39m Tomcat initialized with port 8888 (http)
+[2m2025-11-14 15:31:17.271[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.a.catalina.core.StandardService[0;39m [2m-[0;39m Starting service [Tomcat]
+[2m2025-11-14 15:31:17.271[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.a.catalina.core.StandardEngine[0;39m [2m-[0;39m Starting Servlet engine: [Apache Tomcat/10.1.48]
+[2m2025-11-14 15:31:17.286[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m [2m-[0;39m Initializing Spring embedded WebApplicationContext
+[2m2025-11-14 15:31:17.286[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m [2m-[0;39m Root WebApplicationContext: initialization completed in 406 ms
  _ _   |_  _ _|_. ___ _ |    _ 
 | | |\/|_)(_| | |_\  |_)||_|_\ 
      /               |         
                         3.5.9 
-[2m2025-11-14 00:44:45.054[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.zaxxer.hikari.HikariDataSource[0;39m [2m-[0;39m HikariPool-1 - Starting...
-[2m2025-11-14 00:44:45.252[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [2m-[0;39m HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@3c19592c
-[2m2025-11-14 00:44:45.253[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.zaxxer.hikari.HikariDataSource[0;39m [2m-[0;39m HikariPool-1 - Start completed.
-[2m2025-11-14 00:44:45.259[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.service.LiepinService[0;39m [2m-[0;39m 确保 liepin_data 表已存在
-[2m2025-11-14 00:44:45.320[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.service.ZhilianService[0;39m [2m-[0;39m 确保 zhilian_data 表已存在
-[2m2025-11-14 00:44:45.337[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.service.Job51Service[0;39m [2m-[0;39m 确保 job51_data 表已存在
-[2m2025-11-14 00:44:45.402[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.config.AsyncConfig[0;39m [2m-[0;39m 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
-[2m2025-11-14 00:44:45.477[0;39m [35m[main][0;39m [33mWARN [0;39m [36mc.g.a.c.StaticResourceConfiguration[0;39m [2m-[0;39m 未找到静态资源目录 (dist 或 static)
-[2m2025-11-14 00:44:45.544[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m [2m-[0;39m Tomcat started on port 8888 (http) with context path '/'
-[2m2025-11-14 00:44:45.548[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.getjobs.GetJobsApplication[0;39m [2m-[0;39m Started GetJobsApplication in 1.211 seconds (process running for 1.319)
-[2m2025-11-14 00:44:45.550[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.config.StartupRunner[0;39m [2m-[0;39m 未检测到前端服务或静态资源
-[2m2025-11-14 00:44:45.550[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.config.StartupRunner[0;39m [2m-[0;39m 未找到可用的管理页面，跳过自动打开浏览器
-[2m2025-11-14 00:44:45.550[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ========================================
-[2m2025-11-14 00:44:45.550[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m   初始化浏览器自动化引擎
-[2m2025-11-14 00:44:45.550[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ========================================
-[2m2025-11-14 00:44:46.693[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ Playwright引擎已启动
-[2m2025-11-14 00:44:47.293[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ Chrome浏览器已启动 (调试端口: 7866)
-[2m2025-11-14 00:44:47.322[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ BrowserContext已创建（所有平台共享）
-[2m2025-11-14 00:44:47.322[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始创建所有平台的Page...
-[2m2025-11-14 00:44:47.685[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ Boss Page已创建
-[2m2025-11-14 00:44:47.749[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ 猎聘 Page已创建
-[2m2025-11-14 00:44:47.749[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始并发初始化所有平台...
-[2m2025-11-14 00:44:47.750[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始初始化Boss直聘平台...
-[2m2025-11-14 00:44:47.750[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始初始化猎聘平台...
-[2m2025-11-14 00:44:47.766[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 68 条
-[2m2025-11-14 00:44:47.766[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 已从数据库加载Boss Cookie并注入浏览器上下文，共 63 条
-[2m2025-11-14 00:44:48.600[0;39m [35m[scheduling-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 猎聘登录检测：未发现登录入口，兜底判定为已登录
-[2m2025-11-14 00:44:48.601[0;39m [35m[scheduling-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 猎聘平台登录成功
-[2m2025-11-14 00:44:48.633[0;39m [35m[scheduling-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 保存猎聘Cookie成功，共 68 条，remark=login success
-[2m2025-11-14 00:44:48.743[0;39m [35m[http-nio-8888-exec-1][0;39m [32mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m [2m-[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-[2m2025-11-14 00:44:48.743[0;39m [35m[http-nio-8888-exec-1][0;39m [32mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m [2m-[0;39m Initializing Servlet 'dispatcherServlet'
-[2m2025-11-14 00:44:48.744[0;39m [35m[http-nio-8888-exec-1][0;39m [32mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m [2m-[0;39m Completed initialization in 0 ms
-[2m2025-11-14 00:44:51.389[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m boss平台登录状态监控已启用
-[2m2025-11-14 00:44:53.764[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m boss平台登录成功
-[2m2025-11-14 00:44:53.773[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 保存Boss Cookie成功，共 74 条，remark=login success
-[2m2025-11-14 00:44:58.069[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 猎聘平台登录状态监控已启用
-[2m2025-11-14 00:44:58.070[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
-[2m2025-11-14 00:44:58.070[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ========================================
-[2m2025-11-14 00:44:58.071[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.ZhilianOptionInitializer[0;39m [2m-[0;39m 确保 zhilian_option 表已存在
-[2m2025-11-14 00:44:58.074[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
-[2m2025-11-14 00:44:58.075[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
-[2m2025-11-14 00:44:58.077[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
-[2m2025-11-14 00:44:58.078[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
-[2m2025-11-14 00:45:04.213[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.application.service.BossService[0;39m [2m-[0;39m 已从 boss_config 加载Boss配置，并完成括号列表解析
-[2m2025-11-14 00:45:04.219[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 黑名单加载完成: 公司(10) 招聘者(1) 职位(5)
-[2m2025-11-14 00:45:16.104[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 【Python】岗位已全部加载，总数:300
-[2m2025-11-14 00:45:33.408[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 聊天输入框未出现，跳过: Python（外派太平金科双休）
-[2m2025-11-14 00:45:38.989[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004538909227079PEOcEsVp)","type":"new_api_error"}}
-[2m2025-11-14 00:45:38.990[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004538909227079PEOcEsVp)","type":"new_api_error"}}
+[2m2025-11-14 15:31:17.457[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.zaxxer.hikari.HikariDataSource[0;39m [2m-[0;39m HikariPool-1 - Starting...
+[2m2025-11-14 15:31:17.775[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [2m-[0;39m HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@a54acec
+[2m2025-11-14 15:31:17.776[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.zaxxer.hikari.HikariDataSource[0;39m [2m-[0;39m HikariPool-1 - Start completed.
+[2m2025-11-14 15:31:17.782[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.service.LiepinService[0;39m [2m-[0;39m 确保 liepin_data 表已存在
+[2m2025-11-14 15:31:17.843[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.service.ZhilianService[0;39m [2m-[0;39m 确保 zhilian_data 表已存在
+[2m2025-11-14 15:31:17.860[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.service.Job51Service[0;39m [2m-[0;39m 确保 job51_data 表已存在
+[2m2025-11-14 15:31:17.930[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.config.AsyncConfig[0;39m [2m-[0;39m 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
+[2m2025-11-14 15:31:18.010[0;39m [35m[main][0;39m [33mWARN [0;39m [36mc.g.a.c.StaticResourceConfiguration[0;39m [2m-[0;39m 未找到静态资源目录 (dist 或 static)
+[2m2025-11-14 15:31:18.078[0;39m [35m[main][0;39m [32mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m [2m-[0;39m Tomcat started on port 8888 (http) with context path '/'
+[2m2025-11-14 15:31:18.082[0;39m [35m[main][0;39m [32mINFO [0;39m [36mcom.getjobs.GetJobsApplication[0;39m [2m-[0;39m Started GetJobsApplication in 1.402 seconds (process running for 1.518)
+[2m2025-11-14 15:31:18.083[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.ZhilianOptionInitializer[0;39m [2m-[0;39m 确保 zhilian_option 表已存在
+[2m2025-11-14 15:31:18.084[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.config.StartupRunner[0;39m [2m-[0;39m 未检测到前端服务或静态资源
+[2m2025-11-14 15:31:18.084[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.application.config.StartupRunner[0;39m [2m-[0;39m 未找到可用的管理页面，跳过自动打开浏览器
+[2m2025-11-14 15:31:18.084[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ========================================
+[2m2025-11-14 15:31:18.084[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m   初始化浏览器自动化引擎
+[2m2025-11-14 15:31:18.084[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ========================================
+[2m2025-11-14 15:31:19.287[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ Playwright引擎已启动
+[2m2025-11-14 15:31:19.944[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ Chrome浏览器已启动 (调试端口: 7866)
+[2m2025-11-14 15:31:19.975[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ BrowserContext已创建（所有平台共享）
+[2m2025-11-14 15:31:19.975[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始创建所有平台的Page...
+[2m2025-11-14 15:31:20.468[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ Boss Page已创建
+[2m2025-11-14 15:31:20.528[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ 猎聘 Page已创建
+[2m2025-11-14 15:31:20.528[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始并发初始化所有平台...
+[2m2025-11-14 15:31:20.529[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始初始化Boss直聘平台...
+[2m2025-11-14 15:31:20.529[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 开始初始化猎聘平台...
+[2m2025-11-14 15:31:20.545[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 已从数据库加载Boss Cookie并注入浏览器上下文，共 71 条
+[2m2025-11-14 15:31:20.546[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 71 条
+[2m2025-11-14 15:31:20.887[0;39m [35m[http-nio-8888-exec-1][0;39m [32mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m [2m-[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2m2025-11-14 15:31:20.888[0;39m [35m[http-nio-8888-exec-1][0;39m [32mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m [2m-[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2025-11-14 15:31:20.888[0;39m [35m[http-nio-8888-exec-1][0;39m [32mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m [2m-[0;39m Completed initialization in 0 ms
+[2m2025-11-14 15:31:26.143[0;39m [35m[scheduling-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 猎聘登录检测：未发现登录入口，兜底判定为已登录
+[2m2025-11-14 15:31:26.143[0;39m [35m[scheduling-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 猎聘平台登录成功
+[2m2025-11-14 15:31:26.167[0;39m [35m[scheduling-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 保存猎聘Cookie成功，共 66 条，remark=login success
+[2m2025-11-14 15:31:27.160[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m 猎聘平台登录状态监控已启用
+[2m2025-11-14 15:31:27.184[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m boss平台登录状态监控已启用
+[2m2025-11-14 15:31:27.184[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
+[2m2025-11-14 15:31:27.184[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.worker.manager.PlaywrightManager[0;39m [2m-[0;39m ========================================
+[2m2025-11-14 15:31:27.185[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
+[2m2025-11-14 15:31:27.186[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
+[2m2025-11-14 15:31:27.187[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
+[2m2025-11-14 15:31:27.187[0;39m [35m[main][0;39m [32mINFO [0;39m [36mc.g.a.init.CookieSeedInitializer[0;39m [2m-[0;39m 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
+[2m2025-11-14 15:31:46.917[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.application.service.BossService[0;39m [2m-[0;39m 已从 boss_config 加载Boss配置，并完成括号列表解析
+[2m2025-11-14 15:31:46.922[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 黑名单加载完成: 公司(10) 招聘者(1) 职位(5)
+[2m2025-11-14 15:32:12.809[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 【Python】岗位已全部加载，总数:300
+[2m2025-11-14 15:32:16.415[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 被过滤：招聘者黑名单命中 | 公司：某大型计算机软件公司 | 岗位：高级算法工程师（大模型多模态训练方向） | 招聘者：猎头顾问 | 关键词：猎头
+[2m2025-11-14 15:32:26.833[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532267367195754Em40O4h)","type":"new_api_error"}}
+[2m2025-11-14 15:32:26.833[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532267367195754Em40O4h)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -99,13 +97,18 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-[2m2025-11-14 00:45:38.993[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004538909227079PEOcEsVp)","type":"new_api_error"}}
-[2m2025-11-14 00:45:40.328[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
-[2m2025-11-14 00:45:40.328[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：软通动力 | 岗位：多模态算法工程师（Pytorch/Tensorflow） | 薪资：15-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-[2m2025-11-14 00:45:41.350[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：软通动力 | 岗位：多模态算法工程师（Pytorch/Tensorflow） | encryptId：431d29e546f9318a031539W6ElNY | encryptUserId：d9c0d5abda4f0bbc1HN809y6FFU~
-[2m2025-11-14 00:45:46.576[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004546410696179jsjV6hF4)","type":"new_api_error"}}
-[2m2025-11-14 00:45:46.577[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004546410696179jsjV6hF4)","type":"new_api_error"}}
+[2m2025-11-14 15:32:26.837[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532267367195754Em40O4h)","type":"new_api_error"}}
+[2m2025-11-14 15:32:28.189[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
+[2m2025-11-14 15:32:28.190[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：小理科技 | 岗位：Python高级工程师（海外） | 薪资：25-26K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+[2m2025-11-14 15:32:29.222[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：小理科技 | 岗位：Python高级工程师（海外） | encryptId：e64b6b6b2daa1aa4031-2tm9GVJR | encryptUserId：b285af5791d5c14f1HB629u5GVc~
+[2m2025-11-14 15:32:31.027[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 被过滤：招聘者黑名单命中 | 公司：某大型国有计算机软件公司 | 岗位：国企研发专家（Go/Java/Python）-广州深圳 | 招聘者：猎头顾问 | 关键词：猎头
+[2m2025-11-14 15:32:32.903[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 被过滤：公司黑名单命中 | 公司：法本 | 岗位：需求分析师 | 关键词：法本
+[2m2025-11-14 15:32:34.739[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 被过滤：招聘者黑名单命中 | 公司：某大型电子商务公司 | 岗位：深圳-AI工程【欧洲上市外企+电商方向】 | 招聘者：猎头顾问 | 关键词：猎头
+[2m2025-11-14 15:32:36.475[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 被过滤：招聘者黑名单命中 | 公司：某大型互联网服务平台公司 | 岗位：广告产品技术负责人(广州） | 招聘者：猎头顾问 | 关键词：猎头
+[2m2025-11-14 15:32:39.760[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 被过滤：招聘者黑名单命中 | 公司：某大型互联网综合服务平台上市公司 | 岗位：后台架构师 | 招聘者：猎头顾问 | 关键词：猎头
+[2m2025-11-14 15:32:51.698[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532516185174786ol2sD3R)","type":"new_api_error"}}
+[2m2025-11-14 15:32:51.698[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532516185174786ol2sD3R)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -125,13 +128,13 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-[2m2025-11-14 00:45:46.578[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004546410696179jsjV6hF4)","type":"new_api_error"}}
-[2m2025-11-14 00:45:47.919[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
-[2m2025-11-14 00:45:47.920[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：柯莱特集团 | 岗位：高级Python (外派福建省 宁德市) | 薪资：20-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-[2m2025-11-14 00:45:48.938[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：柯莱特集团 | 岗位：高级Python (外派福建省 宁德市) | encryptId：bc6c7f1afaa309eb0315292_F1BT | encryptUserId：46cd2695d61e113a1nV-39m5FVdU
-[2m2025-11-14 00:45:54.557[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004554446280533o6p9CBqa)","type":"new_api_error"}}
-[2m2025-11-14 00:45:54.558[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004554446280533o6p9CBqa)","type":"new_api_error"}}
+[2m2025-11-14 15:32:51.699[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532516185174786ol2sD3R)","type":"new_api_error"}}
+[2m2025-11-14 15:32:53.040[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
+[2m2025-11-14 15:32:53.040[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：视壮科技 | 岗位：移动机器人软件系统架构师 | 薪资：40-50K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+[2m2025-11-14 15:32:54.062[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：视壮科技 | 岗位：移动机器人软件系统架构师 | encryptId：1a09f9007dedc0bc03xz0tS8EFFZ | encryptUserId：4a4870a40b37b9ff1XJ73ty_E1Y~
+[2m2025-11-14 15:33:03.991[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114153303913460032msUacTwT)","type":"new_api_error"}}
+[2m2025-11-14 15:33:03.992[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114153303913460032msUacTwT)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -151,34 +154,28 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-[2m2025-11-14 00:45:54.559[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004554446280533o6p9CBqa)","type":"new_api_error"}}
-[2m2025-11-14 00:45:55.879[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
-[2m2025-11-14 00:45:55.880[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：易宝软件 | 岗位：大模型后端 | 薪资：12-24K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-[2m2025-11-14 00:45:56.904[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：易宝软件 | 岗位：大模型后端 | encryptId：0070ead3b9045000031539S6EFVQ | encryptUserId：61738199332ce2c61nZ729W5FVA~
-[2m2025-11-14 00:46:02.212[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004602157235363qgmFnYZG)","type":"new_api_error"}}
-[2m2025-11-14 00:46:02.213[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mc.g.application.service.AiService[0;39m [2m-[0;39m 调用AI服务异常
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004602157235363qgmFnYZG)","type":"new_api_error"}}
-	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
-	at com.getjobs.application.service.AiService$$SpringCGLIB$$0.sendRequest(<generated>)
-	at com.getjobs.worker.boss.Boss.generateAiMessage(Boss.java:1075)
-	at com.getjobs.worker.boss.Boss.resumeSubmission(Boss.java:690)
-	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:393)
-	at com.getjobs.worker.boss.Boss.execute(Boss.java:97)
-	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87)
-	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796)
-	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
-	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
-	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
-	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
-	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-[2m2025-11-14 00:46:02.213[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004602157235363qgmFnYZG)","type":"new_api_error"}}
-[2m2025-11-14 00:46:03.555[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
-[2m2025-11-14 00:46:03.556[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：极联股份 | 岗位：兼职Python开发工程师（远程项目制） | 薪资：12000-15000元/月 | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-[2m2025-11-14 00:46:04.572[0;39m [35m[ForkJoinPool.commonPool-worker-2][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：极联股份 | 岗位：兼职Python开发工程师（远程项目制） | encryptId：c28298cccfb13fb103N-3tm0GVdZ | encryptUserId：dd9ee8638a8ba4810XN43NS4FVpU
-[2m2025-11-14 00:46:10.701[0;39m [35m[http-nio-8888-exec-6][0;39m [32mINFO [0;39m [36mc.g.worker.service.BossJobService[0;39m [2m-[0;39m 收到停止Boss投递任务的请求
+[2m2025-11-14 15:33:03.992[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114153303913460032msUacTwT)","type":"new_api_error"}}
+[2m2025-11-14 15:33:05.340[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 资源文件 resume.jpg 不存在，跳过发送图片简历
+[2m2025-11-14 15:33:05.341[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递完成 | 公司：柯莱特集团 | 岗位：高级Python（外派福建宁德+线上面试） | 薪资：20-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+[2m2025-11-14 15:33:06.358[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 投递成功 | 公司：柯莱特集团 | 岗位：高级Python（外派福建宁德+线上面试） | encryptId：e71d259d8678b293031-29m_EFdW | encryptUserId：79c53800a93356c00XR-2924E1Q~
+[2m2025-11-14 15:33:12.940[0;39m [35m[http-nio-8888-exec-4][0;39m [32mINFO [0;39m [36mc.g.worker.service.BossJobService[0;39m [2m-[0;39m 收到停止Boss投递任务的请求
+[2m2025-11-14 15:33:13.487[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.boss.Boss[0;39m [2m-[0;39m 停止指令已触发，结束查找聊天按钮 | 公司：平安科技 | 岗位：AI智能体架构师
+[2m2025-11-14 15:33:15.005[0;39m [35m[http-nio-8888-exec-6][0;39m [32mINFO [0;39m [36mc.g.a.controller.LiepinController[0;39m [2m-[0;39m 通过API启动猎聘任务成功
+[2m2025-11-14 15:33:15.009[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.a.controller.LiepinController[0;39m [2m-[0;39m [liepin] 配置加载成功
+[2m2025-11-14 15:33:15.009[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.a.controller.LiepinController[0;39m [2m-[0;39m [liepin] 开始投递任务...
+[2m2025-11-14 15:33:17.571[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mcom.getjobs.worker.liepin.Liepin[0;39m [2m-[0;39m [拦截][响应] https://api-c.liepin.com/api/com.liepin.searchfront4c.pc-search-job
+[2m2025-11-14 15:33:49.216[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [32mINFO [0;39m [36mc.g.a.controller.LiepinController[0;39m [2m-[0;39m [liepin] 正在投递【Python】第【1】页...
+[2m2025-11-14 15:33:52.911[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [33mWARN [0;39m [36mcom.getjobs.worker.liepin.Liepin[0;39m [2m-[0;39m 关闭聊天窗口失败，但投递可能已成功: Error {
+  message='Timeout 3000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 3000ms exceeded.
+    at ProgressController.run (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/progress.js:75:26)
+    at Frame.waitForSelector (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/frames.js:629:23)
+    at FrameDispatcher.waitForSelector (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/frameDispatcher.js:105:103)
+    at FrameDispatcher._handleCommand (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:96:40)
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:366:39)
+}
+Call log:
+-   - waiting for locator(".__im_basic__header-wrap") to be visible
+
+[2m2025-11-14 15:33:56.220[0;39m [35m[ForkJoinPool.commonPool-worker-1][0;39m [31mERROR[0;39m [36mcom.getjobs.worker.liepin.Liepin[0;39m [2m-[0;39m 点击按钮失败: Object doesn't exist: response@6927f99026df3e78ce7ffde38fafc153

@@ -1,630 +1,125 @@
-2025-11-14T00:08:21.017+08:00  INFO 8047 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Starting GetJobsApplication using Java 21.0.9 with PID 8047 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine)
-2025-11-14T00:08:21.019+08:00  INFO 8047 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : The following 1 profile is active: "dev"
-2025-11-14T00:08:21.348+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 检查静态资源路径:
-2025-11-14T00:08:21.348+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/dist)
-2025-11-14T00:08:21.349+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/static)
-2025-11-14T00:08:21.349+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist存在: false
-2025-11-14T00:08:21.349+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static存在: false
-2025-11-14T00:08:21.349+08:00  WARN 8047 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 未检测到前端开发服务，也未找到静态资源
-2025-11-14T00:08:21.396+08:00  INFO 8047 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
-2025-11-14T00:08:21.402+08:00  INFO 8047 --- [get_jobs] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-14T00:08:21.402+08:00  INFO 8047 --- [get_jobs] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-14T00:08:21.418+08:00  INFO 8047 --- [get_jobs] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-14T00:08:21.418+08:00  INFO 8047 --- [get_jobs] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 383 ms
-2025-11-14T00:08:21.583+08:00  INFO 8047 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-14T00:08:21.846+08:00  INFO 8047 --- [get_jobs] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@61e86192
-2025-11-14T00:08:21.848+08:00  INFO 8047 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-14T00:08:21.858+08:00  INFO 8047 --- [get_jobs] [main] c.g.application.service.LiepinService    : 确保 liepin_data 表已存在
-2025-11-14T00:08:21.923+08:00  INFO 8047 --- [get_jobs] [main] c.g.application.service.ZhilianService   : 确保 zhilian_data 表已存在
-2025-11-14T00:08:21.940+08:00  INFO 8047 --- [get_jobs] [main] c.g.application.service.Job51Service     : 确保 job51_data 表已存在
-2025-11-14T00:08:22.005+08:00  INFO 8047 --- [get_jobs] [main] c.g.application.config.AsyncConfig       : 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
-2025-11-14T00:08:22.078+08:00  WARN 8047 --- [get_jobs] [main] c.g.a.c.StaticResourceConfiguration      : 未找到静态资源目录 (dist 或 static)
-2025-11-14T00:08:22.144+08:00  INFO 8047 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
-2025-11-14T00:08:22.148+08:00  INFO 8047 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Started GetJobsApplication in 1.303 seconds (process running for 1.418)
-2025-11-14T00:08:22.149+08:00  INFO 8047 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未检测到前端服务或静态资源
-2025-11-14T00:08:22.149+08:00  INFO 8047 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未找到可用的管理页面，跳过自动打开浏览器
-2025-11-14T00:08:22.149+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:08:22.149+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     :   初始化浏览器自动化引擎
-2025-11-14T00:08:22.149+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:08:23.312+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Playwright引擎已启动
-2025-11-14T00:08:23.459+08:00  INFO 8047 --- [get_jobs] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-14T00:08:23.460+08:00  INFO 8047 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-11-14T00:08:23.460+08:00  INFO 8047 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-11-14T00:08:24.075+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Chrome浏览器已启动 (调试端口: 7866)
-2025-11-14T00:08:24.104+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ BrowserContext已创建（所有平台共享）
-2025-11-14T00:08:24.104+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始创建所有平台的Page...
-2025-11-14T00:08:24.627+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Boss Page已创建
-2025-11-14T00:08:24.690+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 猎聘 Page已创建
-2025-11-14T00:08:24.690+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始并发初始化所有平台...
-2025-11-14T00:08:24.691+08:00  INFO 8047 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 开始初始化Boss直聘平台...
-2025-11-14T00:08:24.691+08:00  INFO 8047 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 开始初始化猎聘平台...
-2025-11-14T00:08:24.712+08:00  INFO 8047 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 已从数据库加载Boss Cookie并注入浏览器上下文，共 70 条
-2025-11-14T00:08:24.713+08:00  INFO 8047 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 68 条
-2025-11-14T00:08:25.622+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:08:25.622+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
-2025-11-14T00:08:25.635+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 66 条，remark=login success
-2025-11-14T00:08:28.521+08:00  INFO 8047 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录状态监控已启用
-2025-11-14T00:08:28.675+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
-2025-11-14T00:08:28.692+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 69 条，remark=login success
-2025-11-14T00:08:29.682+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : boss平台登录成功
-2025-11-14T00:08:29.730+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存Boss Cookie成功，共 71 条，remark=login success
-2025-11-14T00:08:31.779+08:00  INFO 8047 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : boss平台登录状态监控已启用
-2025-11-14T00:08:31.779+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
-2025-11-14T00:08:31.779+08:00  INFO 8047 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:08:31.780+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.init.ZhilianOptionInitializer      : 确保 zhilian_option 表已存在
-2025-11-14T00:08:31.781+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
-2025-11-14T00:08:31.781+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
-2025-11-14T00:08:31.782+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
-2025-11-14T00:08:31.783+08:00  INFO 8047 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
-2025-11-14T00:12:19.315+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:19.320+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:19.322+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:22.349+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:25.380+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:28.426+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:31.467+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:34.501+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:37.579+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:40.597+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:43.618+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:46.636+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:49.648+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:52.665+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:55.684+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:12:58.701+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:01.719+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:04.737+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:07.751+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:10.767+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:13.780+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:16.793+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:19.805+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:22.821+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:25.832+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:28.845+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:31.856+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:34.871+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:37.892+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:40.908+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:43.927+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:46.947+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:49.968+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:52.989+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:56.007+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:13:59.020+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:02.039+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:05.051+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:08.067+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:11.087+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:14.114+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:17.130+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:20.150+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:23.165+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:26.182+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:29.199+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:32.218+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:35.232+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:38.252+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:41.269+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:44.284+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:47.298+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:50.316+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:53.332+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:56.353+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:14:59.371+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:02.388+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:05.406+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:08.418+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:11.431+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:14.448+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:17.464+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:20.476+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:23.493+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:26.507+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:29.523+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:32.541+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:35.559+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:38.575+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:41.589+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:44.606+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:47.623+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:50.638+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:53.653+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:56.676+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:15:59.696+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:02.714+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:05.730+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:08.745+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:11.760+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:14.774+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:17.788+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:20.803+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:23.817+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:26.840+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:29.859+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:32.877+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:35.893+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:38.910+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:41.925+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:44.942+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:47.962+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:50.975+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:53.985+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:16:57.004+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:00.022+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:03.041+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:06.056+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:09.073+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:12.087+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:15.097+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:18.113+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:21.130+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:24.146+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:27.161+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:30.175+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:33.192+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:36.212+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:39.230+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:42.247+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:45.265+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:48.281+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:51.296+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:54.311+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:17:57.328+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:00.348+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:03.366+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:06.381+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:09.399+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:12.414+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:15.429+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:18.449+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:21.467+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:24.483+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:27.496+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:30.511+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:33.526+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:36.544+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:39.559+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:42.576+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:45.591+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:48.606+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:51.624+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:54.642+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:18:57.660+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:00.675+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:03.692+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:06.709+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:09.723+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:12.738+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:15.754+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:18.770+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:21.786+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:24.804+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:27.819+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:30.837+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:33.860+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:36.880+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:39.899+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:42.920+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:45.943+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:48.963+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:51.977+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:54.996+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:19:58.014+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:01.033+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:04.056+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:07.078+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:10.101+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:13.118+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:16.141+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:19.163+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:22.178+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:25.197+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:28.217+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:31.236+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:34.252+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:37.266+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:40.283+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:43.299+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:46.314+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:49.328+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:52.337+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:55.355+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:20:58.369+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:01.386+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:04.399+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:07.413+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:10.431+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:13.449+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:16.465+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:19.483+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:22.498+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:25.520+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:28.538+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:31.557+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:34.570+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:37.584+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:40.602+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:43.617+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:46.635+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:49.650+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:52.667+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:55.683+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:21:58.701+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:01.715+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:04.731+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:07.741+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:10.757+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:13.775+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:16.802+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:19.819+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:22.834+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:25.850+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:28.863+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:31.880+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:34.899+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:37.917+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:40.935+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:43.952+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:46.966+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:49.982+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:53.000+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:56.019+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:22:59.037+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:02.051+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:05.066+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:08.082+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:11.095+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:14.111+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:17.131+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:20.142+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:23.158+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:26.175+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:29.190+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:32.211+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:35.237+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:38.252+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:41.271+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:44.288+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:47.305+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:50.321+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:53.338+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:56.355+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:23:59.373+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:02.388+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:05.402+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:08.418+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:11.434+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:14.452+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:17.468+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:20.482+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:23.498+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:26.510+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:29.527+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:32.542+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:35.562+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:38.576+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:41.592+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:44.608+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:47.625+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:50.641+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:53.659+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:56.681+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:24:59.697+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:02.713+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:05.733+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:08.754+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:11.772+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:14.788+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:17.806+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:20.827+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:23.836+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:26.851+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:29.868+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:32.886+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:35.904+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:38.918+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:41.931+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:44.946+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:47.958+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:50.975+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:53.989+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:25:57.009+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:00.028+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:03.047+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:06.065+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:09.081+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:12.099+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:15.115+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:18.132+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:21.146+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:24.160+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:27.180+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:30.197+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:33.211+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:36.233+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:39.256+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:42.276+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:45.294+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:48.312+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:51.331+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:54.354+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:26:57.377+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:00.396+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:03.411+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:06.432+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:09.451+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:12.474+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:15.496+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:18.517+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:21.531+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:24.551+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:27.573+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:30.593+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:33.628+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:36.647+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:39.670+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:42.689+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:45.706+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:48.727+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:51.748+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:54.766+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:27:57.788+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:00.800+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:03.822+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:06.844+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:09.861+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:12.877+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:15.890+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:18.901+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:21.916+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:24.930+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:27.948+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:30.964+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:33.986+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:37.010+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:40.022+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:43.036+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:46.051+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:49.068+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:52.089+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:55.106+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:28:58.124+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:01.138+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:04.154+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:07.170+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:10.183+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:13.200+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:16.216+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:19.233+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:22.252+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:25.272+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:28.293+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:31.302+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:34.311+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:37.326+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:40.344+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:43.365+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:46.380+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:49.393+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:52.411+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:55.427+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:29:58.443+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:01.462+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:04.486+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:07.506+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:10.520+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:13.531+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:16.545+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:19.562+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:22.578+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:25.588+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:28.605+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:31.622+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:34.642+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:37.658+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:40.667+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:43.678+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:46.694+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:49.708+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:52.719+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:55.730+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:30:58.747+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:01.767+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:04.784+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:07.800+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:10.818+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:13.834+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:16.853+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:19.869+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:22.883+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:25.902+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:28.917+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:31.934+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:34.950+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:37.965+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:40.979+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:43.992+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:47.007+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:50.025+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:53.035+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:56.052+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:31:59.071+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:02.088+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:05.102+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:08.118+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:11.133+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:14.150+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:17.166+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:20.184+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:23.200+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:26.213+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:29.229+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:32.244+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:35.264+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:38.279+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:41.294+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:44.311+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:47.329+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:50.348+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:53.365+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:56.385+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:32:59.401+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:02.418+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:05.435+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:08.453+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:11.468+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:14.486+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:17.658+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:20.677+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:23.699+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:26.715+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:29.750+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:32.767+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:35.784+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:39.362+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:42.376+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:45.398+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:48.414+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:51.429+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:54.446+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:33:57.462+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:00.475+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:03.487+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:06.499+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:09.509+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:12.521+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:33.757+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:36.768+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:39.778+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:42.789+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:45.803+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:48.819+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:51.836+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:54.854+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:34:57.866+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:00.883+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:03.901+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:06.915+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:13.283+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:13.286+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:16.302+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:19.316+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:22.332+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:25.352+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:28.387+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:31.402+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:34.421+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:37.438+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:40.452+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:43.471+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:46.484+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:49.497+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:52.516+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:55.531+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:35:58.545+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:01.558+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:04.569+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:07.585+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:10.605+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:13.615+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:16.627+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:19.647+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:22.662+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:25.676+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:28.693+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:31.704+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:34.717+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:37.730+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:36:40.745+08:00  INFO 8047 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:39:15.072+08:00  INFO 16349 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Starting GetJobsApplication using Java 21.0.9 with PID 16349 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine)
-2025-11-14T00:39:15.073+08:00  INFO 16349 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : The following 1 profile is active: "dev"
-2025-11-14T00:39:15.403+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 检查静态资源路径:
-2025-11-14T00:39:15.403+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/dist)
-2025-11-14T00:39:15.404+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/static)
-2025-11-14T00:39:15.404+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist存在: false
-2025-11-14T00:39:15.404+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static存在: false
-2025-11-14T00:39:15.404+08:00  WARN 16349 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 未检测到前端开发服务，也未找到静态资源
-2025-11-14T00:39:15.450+08:00  INFO 16349 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
-2025-11-14T00:39:15.455+08:00  INFO 16349 --- [get_jobs] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-14T00:39:15.456+08:00  INFO 16349 --- [get_jobs] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-14T00:39:15.470+08:00  INFO 16349 --- [get_jobs] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-14T00:39:15.470+08:00  INFO 16349 --- [get_jobs] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 379 ms
-2025-11-14T00:39:15.635+08:00  INFO 16349 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-14T00:39:15.957+08:00  INFO 16349 --- [get_jobs] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@23310248
-2025-11-14T00:39:15.958+08:00  INFO 16349 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-14T00:39:15.968+08:00  INFO 16349 --- [get_jobs] [main] c.g.application.service.LiepinService    : 确保 liepin_data 表已存在
-2025-11-14T00:39:16.034+08:00  INFO 16349 --- [get_jobs] [main] c.g.application.service.ZhilianService   : 确保 zhilian_data 表已存在
-2025-11-14T00:39:16.051+08:00  INFO 16349 --- [get_jobs] [main] c.g.application.service.Job51Service     : 确保 job51_data 表已存在
-2025-11-14T00:39:16.114+08:00  INFO 16349 --- [get_jobs] [main] c.g.application.config.AsyncConfig       : 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
-2025-11-14T00:39:16.186+08:00  WARN 16349 --- [get_jobs] [main] c.g.a.c.StaticResourceConfiguration      : 未找到静态资源目录 (dist 或 static)
-2025-11-14T00:39:16.252+08:00  INFO 16349 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
-2025-11-14T00:39:16.256+08:00  INFO 16349 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Started GetJobsApplication in 1.355 seconds (process running for 1.469)
-2025-11-14T00:39:16.257+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.init.ZhilianOptionInitializer      : 确保 zhilian_option 表已存在
-2025-11-14T00:39:16.258+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
-2025-11-14T00:39:16.259+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
-2025-11-14T00:39:16.260+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
-2025-11-14T00:39:16.260+08:00  INFO 16349 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
-2025-11-14T00:39:16.261+08:00  INFO 16349 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未检测到前端服务或静态资源
-2025-11-14T00:39:16.261+08:00  INFO 16349 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未找到可用的管理页面，跳过自动打开浏览器
-2025-11-14T00:39:16.261+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:39:16.261+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     :   初始化浏览器自动化引擎
-2025-11-14T00:39:16.261+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:39:17.445+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Playwright引擎已启动
-2025-11-14T00:39:18.002+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Chrome浏览器已启动 (调试端口: 7866)
-2025-11-14T00:39:18.020+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ BrowserContext已创建（所有平台共享）
-2025-11-14T00:39:18.020+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始创建所有平台的Page...
-2025-11-14T00:39:18.285+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Boss Page已创建
-2025-11-14T00:39:18.403+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 猎聘 Page已创建
-2025-11-14T00:39:18.404+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始并发初始化所有平台...
-2025-11-14T00:39:18.405+08:00  INFO 16349 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 开始初始化Boss直聘平台...
-2025-11-14T00:39:18.405+08:00  INFO 16349 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 开始初始化猎聘平台...
-2025-11-14T00:39:18.421+08:00  INFO 16349 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 69 条
-2025-11-14T00:39:18.422+08:00  INFO 16349 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 已从数据库加载Boss Cookie并注入浏览器上下文，共 71 条
-2025-11-14T00:39:19.222+08:00  INFO 16349 --- [get_jobs] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-14T00:39:19.223+08:00  INFO 16349 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-11-14T00:39:19.223+08:00  INFO 16349 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-11-14T00:39:19.289+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:39:19.289+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
-2025-11-14T00:39:19.312+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 62 条，remark=login success
-2025-11-14T00:39:21.067+08:00  INFO 16349 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录状态监控已启用
-2025-11-14T00:39:24.666+08:00  INFO 16349 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : boss平台登录状态监控已启用
-2025-11-14T00:39:24.666+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
-2025-11-14T00:39:24.666+08:00  INFO 16349 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:39:46.766+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : boss平台登录成功
-2025-11-14T00:39:46.774+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存Boss Cookie成功，共 63 条，remark=login success
-2025-11-14T00:39:55.844+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:39:55.845+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
-2025-11-14T00:39:55.852+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 68 条，remark=login success
-2025-11-14T00:39:55.854+08:00  INFO 16349 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:44:27.579+08:00  INFO 16349 --- [get_jobs] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-11-14T00:44:27.585+08:00  INFO 16349 --- [get_jobs] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-11-14T00:44:27.590+08:00  INFO 16349 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 开始关闭Playwright管理器...
-2025-11-14T00:44:27.596+08:00  INFO 16349 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Boss直聘页面已关闭
-2025-11-14T00:44:27.597+08:00  INFO 16349 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 猎聘页面已关闭
-2025-11-14T00:44:27.598+08:00 ERROR 16349 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 关闭Playwright管理器时发生错误
+2025-11-14T14:22:39.899+08:00  INFO 32862 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Starting GetJobsApplication using Java 21.0.9 with PID 32862 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication)
+2025-11-14T14:22:39.900+08:00  INFO 32862 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : The following 1 profile is active: "dev"
+2025-11-14T14:22:40.238+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 检查静态资源路径:
+2025-11-14T14:22:40.238+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/dist)
+2025-11-14T14:22:40.238+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/static)
+2025-11-14T14:22:40.238+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist存在: false
+2025-11-14T14:22:40.238+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static存在: false
+2025-11-14T14:22:40.238+08:00  WARN 32862 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 未检测到前端开发服务，也未找到静态资源
+2025-11-14T14:22:40.284+08:00  INFO 32862 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-11-14T14:22:40.290+08:00  INFO 32862 --- [get_jobs] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-14T14:22:40.290+08:00  INFO 32862 --- [get_jobs] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-14T14:22:40.305+08:00  INFO 32862 --- [get_jobs] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-14T14:22:40.305+08:00  INFO 32862 --- [get_jobs] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 389 ms
+2025-11-14T14:22:40.472+08:00  INFO 32862 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-14T14:22:40.669+08:00  INFO 32862 --- [get_jobs] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@50fdf44f
+2025-11-14T14:22:40.670+08:00  INFO 32862 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-14T14:22:40.675+08:00  INFO 32862 --- [get_jobs] [main] c.g.application.service.LiepinService    : 确保 liepin_data 表已存在
+2025-11-14T14:22:40.734+08:00  INFO 32862 --- [get_jobs] [main] c.g.application.service.ZhilianService   : 确保 zhilian_data 表已存在
+2025-11-14T14:22:40.751+08:00  INFO 32862 --- [get_jobs] [main] c.g.application.service.Job51Service     : 确保 job51_data 表已存在
+2025-11-14T14:22:40.814+08:00  INFO 32862 --- [get_jobs] [main] c.g.application.config.AsyncConfig       : 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
+2025-11-14T14:22:40.888+08:00  WARN 32862 --- [get_jobs] [main] c.g.a.c.StaticResourceConfiguration      : 未找到静态资源目录 (dist 或 static)
+2025-11-14T14:22:40.962+08:00  INFO 32862 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-11-14T14:22:40.966+08:00  INFO 32862 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Started GetJobsApplication in 1.239 seconds (process running for 1.352)
+2025-11-14T14:22:40.967+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.init.ZhilianOptionInitializer      : 确保 zhilian_option 表已存在
+2025-11-14T14:22:40.969+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
+2025-11-14T14:22:40.970+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
+2025-11-14T14:22:40.970+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
+2025-11-14T14:22:40.971+08:00  INFO 32862 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
+2025-11-14T14:22:40.972+08:00  INFO 32862 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未检测到前端服务或静态资源
+2025-11-14T14:22:40.972+08:00  INFO 32862 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未找到可用的管理页面，跳过自动打开浏览器
+2025-11-14T14:22:40.972+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T14:22:40.972+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     :   初始化浏览器自动化引擎
+2025-11-14T14:22:40.972+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T14:22:42.174+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Playwright引擎已启动
+2025-11-14T14:22:43.016+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Chrome浏览器已启动 (调试端口: 7866)
+2025-11-14T14:22:43.057+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ BrowserContext已创建（所有平台共享）
+2025-11-14T14:22:43.057+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始创建所有平台的Page...
+2025-11-14T14:22:43.493+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Boss Page已创建
+2025-11-14T14:22:43.554+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 猎聘 Page已创建
+2025-11-14T14:22:43.554+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始并发初始化所有平台...
+2025-11-14T14:22:43.555+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 开始初始化Boss直聘平台...
+2025-11-14T14:22:43.556+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 开始初始化猎聘平台...
+2025-11-14T14:22:43.575+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 68 条
+2025-11-14T14:22:43.576+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 已从数据库加载Boss Cookie并注入浏览器上下文，共 74 条
+2025-11-14T14:22:44.692+08:00  INFO 32862 --- [get_jobs] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-14T14:22:44.692+08:00  INFO 32862 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-14T14:22:44.693+08:00  INFO 32862 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-14T14:22:46.585+08:00  INFO 32862 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
+2025-11-14T14:22:46.585+08:00  INFO 32862 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
+2025-11-14T14:22:46.610+08:00  INFO 32862 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 66 条，remark=login success
+2025-11-14T14:22:50.447+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录状态监控已启用
+2025-11-14T14:23:03.074+08:00  INFO 32862 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : boss平台登录成功
+2025-11-14T14:23:03.090+08:00  INFO 32862 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存Boss Cookie成功，共 71 条，remark=login success
+2025-11-14T14:23:09.177+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.application.service.BossService      : 已从 boss_config 加载Boss配置，并完成括号列表解析
+2025-11-14T14:23:09.182+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 黑名单加载完成: 公司(10) 招聘者(1) 职位(5)
+2025-11-14T14:23:09.221+08:00 ERROR 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.worker.service.BossJobService  : Boss投递任务执行失败
+
+com.microsoft.playwright.PlaywrightException: Object doesn't exist: request@38d40915b76e71fe3942542fcaeef66e
+	at com.microsoft.playwright.impl.Connection.getExistingObject(Connection.java:192) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.BrowserContextImpl.handleEvent(BrowserContextImpl.java:803) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:292) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:211) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:130) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:130) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:118) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.FrameImpl.navigateImpl(FrameImpl.java:463) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.PageImpl.lambda$navigate$47(PageImpl.java:943) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:97) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.PageImpl.navigate(PageImpl.java:943) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.PageImpl.navigate(PageImpl.java:42) ~[playwright-1.51.0.jar:1.51.0]
+	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:221) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.execute(Boss.java:97) ~[main/:na]
+	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74) ~[main/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2025-11-14T14:23:23.918+08:00  INFO 32862 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : boss平台登录状态监控已启用
+2025-11-14T14:23:23.920+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
+2025-11-14T14:23:23.921+08:00  INFO 32862 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T14:23:34.912+08:00  INFO 32862 --- [get_jobs] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-14T14:23:34.916+08:00  INFO 32862 --- [get_jobs] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-14T14:23:34.920+08:00  INFO 32862 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 开始关闭Playwright管理器...
+2025-11-14T14:23:34.922+08:00  INFO 32862 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Boss直聘页面已关闭
+2025-11-14T14:23:34.922+08:00  INFO 32862 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 猎聘页面已关闭
+2025-11-14T14:23:34.930+08:00 ERROR 32862 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 关闭Playwright管理器时发生错误
 
 com.microsoft.playwright.impl.TargetClosedError: Error {
   message='Target page, context or browser has been closed
+Browser logs:
+
+<launching> /Users/zijiancai/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DeferRendererTasksAfterInput,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-use-zoom-for-dsf=false --no-sandbox --remote-debugging-port=7866 --start-maximized --user-data-dir=/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright_chromiumdev_profile-fRIE7f --remote-debugging-pipe --no-startup-window
+<launched> pid=32887
+[pid=32887][err] 
+[pid=32887][err] DevTools listening on ws://127.0.0.1:7866/devtools/browser/fe1dbbf6-72d8-4e33-9173-899ad434e79e
+[pid=32887] <gracefully close start>
+[pid=32887][err] [32887:259:1114/142334.912803:ERROR:network_service_instance_impl.cc(612)] Network service crashed, restarting service.
+[pid=32887][err] [32887:259:1114/142334.920588:ERROR:gpu_process_host.cc(953)] GPU process exited unexpectedly: exit_code=15
   name='TargetClosedError
   stack='TargetClosedError: Target page, context or browser has been closed
-    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-4374666262952371567/package/lib/server/dispatchers/dispatcher.js:283:44)
-    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-4374666262952371567/package/lib/cli/driver.js:52:57)
-    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-4374666262952371567/package/lib/server/utils/pipeTransport.js:77:34)
-    at process.processImmediate (node:internal/timers:491:21)
+Browser logs:
+
+<launching> /Users/zijiancai/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DeferRendererTasksAfterInput,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-use-zoom-for-dsf=false --no-sandbox --remote-debugging-port=7866 --start-maximized --user-data-dir=/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright_chromiumdev_profile-fRIE7f --remote-debugging-pipe --no-startup-window
+<launched> pid=32887
+[pid=32887][err] 
+[pid=32887][err] DevTools listening on ws://127.0.0.1:7866/devtools/browser/fe1dbbf6-72d8-4e33-9173-899ad434e79e
+[pid=32887] <gracefully close start>
+[pid=32887][err] [32887:259:1114/142334.912803:ERROR:network_service_instance_impl.cc(612)] Network service crashed, restarting service.
+[pid=32887][err] [32887:259:1114/142334.920588:ERROR:gpu_process_host.cc(953)] GPU process exited unexpectedly: exit_code=15
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-10787623348229391171/package/lib/server/dispatchers/dispatcher.js:377:15)
 }
 	at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:54) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:132) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:130) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:118) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.APIRequestContextImpl.disposeImpl(APIRequestContextImpl.java:63) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.APIRequestContextImpl.lambda$dispose$0(APIRequestContextImpl.java:54) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:97) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:35) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.APIRequestContextImpl.dispose(APIRequestContextImpl.java:54) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.BrowserContextImpl.closeImpl(BrowserContextImpl.java:294) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.BrowserContextImpl.closeImpl(BrowserContextImpl.java:317) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.BrowserContextImpl.lambda$close$1(BrowserContextImpl.java:279) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47) ~[playwright-1.51.0.jar:1.51.0]
@@ -654,84 +149,134 @@ com.microsoft.playwright.impl.TargetClosedError: Error {
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 Caused by: com.microsoft.playwright.impl.TargetClosedError: Error {
   message='Target page, context or browser has been closed
+Browser logs:
+
+<launching> /Users/zijiancai/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DeferRendererTasksAfterInput,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-use-zoom-for-dsf=false --no-sandbox --remote-debugging-port=7866 --start-maximized --user-data-dir=/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright_chromiumdev_profile-fRIE7f --remote-debugging-pipe --no-startup-window
+<launched> pid=32887
+[pid=32887][err] 
+[pid=32887][err] DevTools listening on ws://127.0.0.1:7866/devtools/browser/fe1dbbf6-72d8-4e33-9173-899ad434e79e
+[pid=32887] <gracefully close start>
+[pid=32887][err] [32887:259:1114/142334.912803:ERROR:network_service_instance_impl.cc(612)] Network service crashed, restarting service.
+[pid=32887][err] [32887:259:1114/142334.920588:ERROR:gpu_process_host.cc(953)] GPU process exited unexpectedly: exit_code=15
   name='TargetClosedError
   stack='TargetClosedError: Target page, context or browser has been closed
-    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-4374666262952371567/package/lib/server/dispatchers/dispatcher.js:283:44)
-    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-4374666262952371567/package/lib/cli/driver.js:52:57)
-    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-4374666262952371567/package/lib/server/utils/pipeTransport.js:77:34)
-    at process.processImmediate (node:internal/timers:491:21)
+Browser logs:
+
+<launching> /Users/zijiancai/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DeferRendererTasksAfterInput,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-use-zoom-for-dsf=false --no-sandbox --remote-debugging-port=7866 --start-maximized --user-data-dir=/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright_chromiumdev_profile-fRIE7f --remote-debugging-pipe --no-startup-window
+<launched> pid=32887
+[pid=32887][err] 
+[pid=32887][err] DevTools listening on ws://127.0.0.1:7866/devtools/browser/fe1dbbf6-72d8-4e33-9173-899ad434e79e
+[pid=32887] <gracefully close start>
+[pid=32887][err] [32887:259:1114/142334.912803:ERROR:network_service_instance_impl.cc(612)] Network service crashed, restarting service.
+[pid=32887][err] [32887:259:1114/142334.920588:ERROR:gpu_process_host.cc(953)] GPU process exited unexpectedly: exit_code=15
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-10787623348229391171/package/lib/server/dispatchers/dispatcher.js:377:15)
 }
 	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:256) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:211) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:130) ~[playwright-1.51.0.jar:1.51.0]
-	... 37 common frames omitted
+	... 30 common frames omitted
 
-2025-11-14T00:44:27.603+08:00  INFO 16349 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-11-14T00:44:27.606+08:00  INFO 16349 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-11-14T00:44:44.505+08:00  INFO 18427 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Starting GetJobsApplication using Java 21.0.9 with PID 18427 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine)
-2025-11-14T00:44:44.506+08:00  INFO 18427 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : The following 1 profile is active: "dev"
-2025-11-14T00:44:44.829+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 检查静态资源路径:
-2025-11-14T00:44:44.829+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/dist)
-2025-11-14T00:44:44.829+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/test/combine/src/main/resources/static)
-2025-11-14T00:44:44.829+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist存在: false
-2025-11-14T00:44:44.829+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static存在: false
-2025-11-14T00:44:44.830+08:00  WARN 18427 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 未检测到前端开发服务，也未找到静态资源
-2025-11-14T00:44:44.874+08:00  INFO 18427 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
-2025-11-14T00:44:44.880+08:00  INFO 18427 --- [get_jobs] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-11-14T00:44:44.880+08:00  INFO 18427 --- [get_jobs] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-14T00:44:44.895+08:00  INFO 18427 --- [get_jobs] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-11-14T00:44:44.896+08:00  INFO 18427 --- [get_jobs] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 373 ms
-2025-11-14T00:44:45.054+08:00  INFO 18427 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-14T00:44:45.252+08:00  INFO 18427 --- [get_jobs] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@3c19592c
-2025-11-14T00:44:45.253+08:00  INFO 18427 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-14T00:44:45.259+08:00  INFO 18427 --- [get_jobs] [main] c.g.application.service.LiepinService    : 确保 liepin_data 表已存在
-2025-11-14T00:44:45.320+08:00  INFO 18427 --- [get_jobs] [main] c.g.application.service.ZhilianService   : 确保 zhilian_data 表已存在
-2025-11-14T00:44:45.337+08:00  INFO 18427 --- [get_jobs] [main] c.g.application.service.Job51Service     : 确保 job51_data 表已存在
-2025-11-14T00:44:45.402+08:00  INFO 18427 --- [get_jobs] [main] c.g.application.config.AsyncConfig       : 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
-2025-11-14T00:44:45.477+08:00  WARN 18427 --- [get_jobs] [main] c.g.a.c.StaticResourceConfiguration      : 未找到静态资源目录 (dist 或 static)
-2025-11-14T00:44:45.544+08:00  INFO 18427 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
-2025-11-14T00:44:45.548+08:00  INFO 18427 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Started GetJobsApplication in 1.211 seconds (process running for 1.319)
-2025-11-14T00:44:45.550+08:00  INFO 18427 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未检测到前端服务或静态资源
-2025-11-14T00:44:45.550+08:00  INFO 18427 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未找到可用的管理页面，跳过自动打开浏览器
-2025-11-14T00:44:45.550+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:44:45.550+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     :   初始化浏览器自动化引擎
-2025-11-14T00:44:45.550+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:44:46.693+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Playwright引擎已启动
-2025-11-14T00:44:47.293+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Chrome浏览器已启动 (调试端口: 7866)
-2025-11-14T00:44:47.322+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ BrowserContext已创建（所有平台共享）
-2025-11-14T00:44:47.322+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始创建所有平台的Page...
-2025-11-14T00:44:47.685+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Boss Page已创建
-2025-11-14T00:44:47.749+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 猎聘 Page已创建
-2025-11-14T00:44:47.749+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始并发初始化所有平台...
-2025-11-14T00:44:47.750+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 开始初始化Boss直聘平台...
-2025-11-14T00:44:47.750+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 开始初始化猎聘平台...
-2025-11-14T00:44:47.766+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 68 条
-2025-11-14T00:44:47.766+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 已从数据库加载Boss Cookie并注入浏览器上下文，共 63 条
-2025-11-14T00:44:48.600+08:00  INFO 18427 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
-2025-11-14T00:44:48.601+08:00  INFO 18427 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
-2025-11-14T00:44:48.633+08:00  INFO 18427 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 68 条，remark=login success
-2025-11-14T00:44:48.743+08:00  INFO 18427 --- [get_jobs] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-14T00:44:48.743+08:00  INFO 18427 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-11-14T00:44:48.744+08:00  INFO 18427 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-11-14T00:44:51.389+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : boss平台登录状态监控已启用
-2025-11-14T00:44:53.764+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : boss平台登录成功
-2025-11-14T00:44:53.773+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 保存Boss Cookie成功，共 74 条，remark=login success
-2025-11-14T00:44:58.069+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录状态监控已启用
-2025-11-14T00:44:58.070+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
-2025-11-14T00:44:58.070+08:00  INFO 18427 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
-2025-11-14T00:44:58.071+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.init.ZhilianOptionInitializer      : 确保 zhilian_option 表已存在
-2025-11-14T00:44:58.074+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
-2025-11-14T00:44:58.075+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
-2025-11-14T00:44:58.077+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
-2025-11-14T00:44:58.078+08:00  INFO 18427 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
-2025-11-14T00:45:04.213+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.application.service.BossService      : 已从 boss_config 加载Boss配置，并完成括号列表解析
-2025-11-14T00:45:04.219+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 黑名单加载完成: 公司(10) 招聘者(1) 职位(5)
-2025-11-14T00:45:16.104+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 【Python】岗位已全部加载，总数:300
-2025-11-14T00:45:33.408+08:00  WARN 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 聊天输入框未出现，跳过: Python（外派太平金科双休）
-2025-11-14T00:45:38.989+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004538909227079PEOcEsVp)","type":"new_api_error"}}
-2025-11-14T00:45:38.990+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+2025-11-14T14:23:34.933+08:00  INFO 32862 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-14T14:23:34.935+08:00  INFO 32862 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-14T14:25:23.839+08:00  INFO 33934 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Starting GetJobsApplication using Java 21.0.9 with PID 33934 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication)
+2025-11-14T14:25:23.840+08:00  INFO 33934 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : The following 1 profile is active: "dev"
+2025-11-14T14:25:24.169+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 检查静态资源路径:
+2025-11-14T14:25:24.169+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/dist)
+2025-11-14T14:25:24.169+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/static)
+2025-11-14T14:25:24.170+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist存在: false
+2025-11-14T14:25:24.170+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static存在: false
+2025-11-14T14:25:24.170+08:00  WARN 33934 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 未检测到前端开发服务，也未找到静态资源
+2025-11-14T14:25:24.215+08:00  INFO 33934 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-11-14T14:25:24.221+08:00  INFO 33934 --- [get_jobs] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-14T14:25:24.221+08:00  INFO 33934 --- [get_jobs] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-14T14:25:24.236+08:00  INFO 33934 --- [get_jobs] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-14T14:25:24.236+08:00  INFO 33934 --- [get_jobs] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 378 ms
+2025-11-14T14:25:24.394+08:00  INFO 33934 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-14T14:25:24.590+08:00  INFO 33934 --- [get_jobs] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@3c19592c
+2025-11-14T14:25:24.591+08:00  INFO 33934 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-14T14:25:24.598+08:00  INFO 33934 --- [get_jobs] [main] c.g.application.service.LiepinService    : 确保 liepin_data 表已存在
+2025-11-14T14:25:24.663+08:00  INFO 33934 --- [get_jobs] [main] c.g.application.service.ZhilianService   : 确保 zhilian_data 表已存在
+2025-11-14T14:25:24.683+08:00  INFO 33934 --- [get_jobs] [main] c.g.application.service.Job51Service     : 确保 job51_data 表已存在
+2025-11-14T14:25:24.748+08:00  INFO 33934 --- [get_jobs] [main] c.g.application.config.AsyncConfig       : 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
+2025-11-14T14:25:24.823+08:00  WARN 33934 --- [get_jobs] [main] c.g.a.c.StaticResourceConfiguration      : 未找到静态资源目录 (dist 或 static)
+2025-11-14T14:25:24.891+08:00  INFO 33934 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-11-14T14:25:24.895+08:00  INFO 33934 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Started GetJobsApplication in 1.22 seconds (process running for 1.334)
+2025-11-14T14:25:24.896+08:00  INFO 33934 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未检测到前端服务或静态资源
+2025-11-14T14:25:24.896+08:00  INFO 33934 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未找到可用的管理页面，跳过自动打开浏览器
+2025-11-14T14:25:24.896+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T14:25:24.896+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     :   初始化浏览器自动化引擎
+2025-11-14T14:25:24.896+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T14:25:26.097+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Playwright引擎已启动
+2025-11-14T14:25:26.717+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Chrome浏览器已启动 (调试端口: 7866)
+2025-11-14T14:25:26.749+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ BrowserContext已创建（所有平台共享）
+2025-11-14T14:25:26.749+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始创建所有平台的Page...
+2025-11-14T14:25:27.134+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Boss Page已创建
+2025-11-14T14:25:27.198+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 猎聘 Page已创建
+2025-11-14T14:25:27.199+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始并发初始化所有平台...
+2025-11-14T14:25:27.200+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 开始初始化Boss直聘平台...
+2025-11-14T14:25:27.200+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 开始初始化猎聘平台...
+2025-11-14T14:25:27.215+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 已从数据库加载Boss Cookie并注入浏览器上下文，共 71 条
+2025-11-14T14:25:27.216+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 66 条
+2025-11-14T14:25:28.085+08:00  INFO 33934 --- [get_jobs] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-14T14:25:28.085+08:00  INFO 33934 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-14T14:25:28.085+08:00  INFO 33934 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-14T14:25:30.733+08:00  INFO 33934 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
+2025-11-14T14:25:30.734+08:00  INFO 33934 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
+2025-11-14T14:25:30.752+08:00  INFO 33934 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 71 条，remark=login success
+2025-11-14T14:25:33.335+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : boss平台登录状态监控已启用
+2025-11-14T14:25:41.727+08:00  INFO 33934 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : boss平台登录成功
+2025-11-14T14:25:41.756+08:00  INFO 33934 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存Boss Cookie成功，共 71 条，remark=login success
+2025-11-14T14:25:48.083+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录状态监控已启用
+2025-11-14T14:25:48.085+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
+2025-11-14T14:25:48.085+08:00  INFO 33934 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T14:25:48.087+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.init.ZhilianOptionInitializer      : 确保 zhilian_option 表已存在
+2025-11-14T14:25:48.091+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
+2025-11-14T14:25:48.093+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
+2025-11-14T14:25:48.095+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
+2025-11-14T14:25:48.096+08:00  INFO 33934 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
+2025-11-14T14:25:51.383+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.application.service.BossService      : 已从 boss_config 加载Boss配置，并完成括号列表解析
+2025-11-14T14:25:51.388+08:00  INFO 33934 --- [get_jobs] [http-nio-8888-exec-7] c.g.a.controller.LiepinController        : 通过API启动猎聘任务成功
+2025-11-14T14:25:51.393+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 黑名单加载完成: 公司(10) 招聘者(1) 职位(5)
+2025-11-14T14:25:51.393+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 配置加载成功
+2025-11-14T14:25:51.393+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 开始投递任务...
+2025-11-14T14:25:51.465+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.service.LiepinJobService      : 猎聘投递任务执行失败
 
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004538909227079PEOcEsVp)","type":"new_api_error"}}
+com.microsoft.playwright.PlaywrightException: Object doesn't exist: request@4f7f81e81b47d4ec16ef0fc9514f6ada
+	at com.microsoft.playwright.impl.Connection.getExistingObject(Connection.java:192) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.BrowserContextImpl.handleEvent(BrowserContextImpl.java:803) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:292) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:211) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:130) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:130) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:118) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.FrameImpl.navigateImpl(FrameImpl.java:463) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.PageImpl.lambda$navigate$47(PageImpl.java:943) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:97) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.PageImpl.navigate(PageImpl.java:943) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.PageImpl.navigate(PageImpl.java:42) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.Page.navigate(Page.java:5491) ~[playwright-1.51.0.jar:1.51.0]
+	at com.getjobs.worker.liepin.Liepin.submit(Liepin.java:232) ~[main/:na]
+	at com.getjobs.worker.liepin.Liepin.execute(Liepin.java:126) ~[main/:na]
+	at com.getjobs.worker.service.LiepinJobService.executeDelivery(LiepinJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.LiepinController.lambda$startLiepinJob$1(LiepinController.java:93) ~[main/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2025-11-14T14:25:51.474+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 投递失败: Object doesn't exist: request@4f7f81e81b47d4ec16ef0fc9514f6ada
+2025-11-14T14:25:51.871+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
+2025-11-14T14:25:54.388+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.liepin.Liepin         : [拦截][响应] https://api-c.liepin.com/api/com.liepin.searchfront4c.pc-search-job
+2025-11-14T14:26:09.128+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 【Python】岗位已全部加载，总数:300
+2025-11-14T14:26:12.733+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型计算机软件公司 | 岗位：高级算法工程师（大模型多模态训练方向） | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T14:26:20.657+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141426205362801886tH6oqNy)","type":"new_api_error"}}
+2025-11-14T14:26:20.657+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141426205362801886tH6oqNy)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
@@ -752,14 +297,16 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
 
-2025-11-14T00:45:38.993+08:00  WARN 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004538909227079PEOcEsVp)","type":"new_api_error"}}
-2025-11-14T00:45:40.328+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
-2025-11-14T00:45:40.328+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：软通动力 | 岗位：多模态算法工程师（Pytorch/Tensorflow） | 薪资：15-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-2025-11-14T00:45:41.350+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：软通动力 | 岗位：多模态算法工程师（Pytorch/Tensorflow） | encryptId：431d29e546f9318a031539W6ElNY | encryptUserId：d9c0d5abda4f0bbc1HN809y6FFU~
-2025-11-14T00:45:46.576+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004546410696179jsjV6hF4)","type":"new_api_error"}}
-2025-11-14T00:45:46.577+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+2025-11-14T14:26:20.658+08:00  WARN 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141426205362801886tH6oqNy)","type":"new_api_error"}}
+2025-11-14T14:26:21.977+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T14:26:21.977+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：柯莱特集团 | 岗位：高级Python -项目3个月-free1050元/天 | 薪资：20-23K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T14:26:23.006+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：柯莱特集团 | 岗位：高级Python -项目3个月-free1050元/天 | encryptId：5471b7b5473460a703173tm4EFtQ | encryptUserId：26dfddfeef2dae9c0nd409W1GVRV
+2025-11-14T14:26:24.383+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型国有计算机软件公司 | 岗位：国企研发专家（Go/Java/Python）-广州深圳 | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T14:26:25.706+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 被过滤：公司黑名单命中 | 公司：法本 | 岗位：需求分析师 | 关键词：法本
+2025-11-14T14:26:33.366+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142633276032874ivvoAB0d)","type":"new_api_error"}}
+2025-11-14T14:26:33.368+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
 
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004546410696179jsjV6hF4)","type":"new_api_error"}}
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142633276032874ivvoAB0d)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
@@ -780,14 +327,14 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
 
-2025-11-14T00:45:46.578+08:00  WARN 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004546410696179jsjV6hF4)","type":"new_api_error"}}
-2025-11-14T00:45:47.919+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
-2025-11-14T00:45:47.920+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：柯莱特集团 | 岗位：高级Python (外派福建省 宁德市) | 薪资：20-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-2025-11-14T00:45:48.938+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：柯莱特集团 | 岗位：高级Python (外派福建省 宁德市) | encryptId：bc6c7f1afaa309eb0315292_F1BT | encryptUserId：46cd2695d61e113a1nV-39m5FVdU
-2025-11-14T00:45:54.557+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004554446280533o6p9CBqa)","type":"new_api_error"}}
-2025-11-14T00:45:54.558+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+2025-11-14T14:26:33.369+08:00  WARN 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142633276032874ivvoAB0d)","type":"new_api_error"}}
+2025-11-14T14:26:34.713+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T14:26:34.713+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：深晟科技 | 岗位：Python | 薪资：13-15K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T14:26:35.738+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：深晟科技 | 岗位：Python | encryptId：c9dc087d537e701e031-2t21EldT | encryptUserId：200c285dfb62f5090nZ83ti7F1BV
+2025-11-14T14:26:42.154+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142642686666135WM9uguo)","type":"new_api_error"}}
+2025-11-14T14:26:42.154+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
 
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004554446280533o6p9CBqa)","type":"new_api_error"}}
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142642686666135WM9uguo)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
@@ -808,14 +355,14 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
 
-2025-11-14T00:45:54.559+08:00  WARN 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004554446280533o6p9CBqa)","type":"new_api_error"}}
-2025-11-14T00:45:55.879+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
-2025-11-14T00:45:55.880+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：易宝软件 | 岗位：大模型后端 | 薪资：12-24K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-2025-11-14T00:45:56.904+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：易宝软件 | 岗位：大模型后端 | encryptId：0070ead3b9045000031539S6EFVQ | encryptUserId：61738199332ce2c61nZ729W5FVA~
-2025-11-14T00:46:02.212+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004602157235363qgmFnYZG)","type":"new_api_error"}}
-2025-11-14T00:46:02.213+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+2025-11-14T14:26:42.155+08:00  WARN 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142642686666135WM9uguo)","type":"new_api_error"}}
+2025-11-14T14:26:43.477+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T14:26:43.477+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：三代人科技 | 岗位：AI应用开发工程师（Python） | 薪资：18-28K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T14:26:44.488+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：三代人科技 | 岗位：AI应用开发工程师（Python） | encryptId：bda2bc722374d31b03x92N21ElpS | encryptUserId：fd0a62ed808b875b0Xd50t2-FFY~
+2025-11-14T14:26:54.354+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142654258387643SVsrNZPu)","type":"new_api_error"}}
+2025-11-14T14:26:54.355+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
 
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004602157235363qgmFnYZG)","type":"new_api_error"}}
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142654258387643SVsrNZPu)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
@@ -836,18 +383,14 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
 
-2025-11-14T00:46:02.213+08:00  WARN 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004602157235363qgmFnYZG)","type":"new_api_error"}}
-2025-11-14T00:46:03.555+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
-2025-11-14T00:46:03.556+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：极联股份 | 岗位：兼职Python开发工程师（远程项目制） | 薪资：12000-15000元/月 | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
-2025-11-14T00:46:04.572+08:00  INFO 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：极联股份 | 岗位：兼职Python开发工程师（远程项目制） | encryptId：c28298cccfb13fb103N-3tm0GVdZ | encryptUserId：dd9ee8638a8ba4810XN43NS4FVpU
-2025-11-14T00:46:10.701+08:00  INFO 18427 --- [get_jobs] [http-nio-8888-exec-6] c.getjobs.worker.service.BossJobService  : 收到停止Boss投递任务的请求
-2025-11-14T00:46:11.200+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-11-14T00:46:11.202+08:00  INFO 18427 --- [get_jobs] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-11-14T00:46:11.205+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 开始关闭Playwright管理器...
-2025-11-14T00:46:11.355+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004611307867893z5cqfZcW)","type":"new_api_error"}}
-2025-11-14T00:46:11.355+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+2025-11-14T14:26:54.356+08:00  WARN 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142654258387643SVsrNZPu)","type":"new_api_error"}}
+2025-11-14T14:26:55.700+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T14:26:55.700+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：天阳科技 | 岗位：大模型工程师 | 薪资：20-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T14:26:56.726+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：天阳科技 | 岗位：大模型工程师 | encryptId：ac21f758abcc011003173Nm4EVVX | encryptUserId：6b5a92c32610c9811X142du_F1Q~
+2025-11-14T14:27:08.128+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142708455446486vwictwv)","type":"new_api_error"}}
+2025-11-14T14:27:08.129+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
 
-java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004611307867893z5cqfZcW)","type":"new_api_error"}}
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142708455446486vwictwv)","type":"new_api_error"}}
 	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
@@ -868,36 +411,264 @@ java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
 
-2025-11-14T00:46:11.356+08:00  WARN 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114004611307867893z5cqfZcW)","type":"new_api_error"}}
-2025-11-14T00:46:11.368+08:00 ERROR 18427 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.worker.service.BossJobService  : Boss投递任务执行失败
+2025-11-14T14:27:08.130+08:00  WARN 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142708455446486vwictwv)","type":"new_api_error"}}
+2025-11-14T14:27:09.474+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T14:27:09.474+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：软通动力 | 岗位：大数据开发（深圳/外派印尼+待遇优厚） | 薪资：15-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T14:27:10.500+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：软通动力 | 岗位：大数据开发（深圳/外派印尼+待遇优厚） | encryptId：59776e167b4900dc03170t69GFFQ | encryptUserId：4afde725d7725a150HF53dq0EVo~
+2025-11-14T14:27:19.007+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142718904033215USzxIcoc)","type":"new_api_error"}}
+2025-11-14T14:27:19.008+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.getjobs.application.service.AiService  : 调用AI服务异常
+
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142718904033215USzxIcoc)","type":"new_api_error"}}
+	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.12.jar:6.2.12]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724) ~[spring-aop-6.2.12.jar:6.2.12]
+	at com.getjobs.application.service.AiService$$SpringCGLIB$$0.sendRequest(<generated>) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.generateAiMessage(Boss.java:1075) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.resumeSubmission(Boss.java:690) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:393) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.execute(Boss.java:97) ~[main/:na]
+	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74) ~[main/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2025-11-14T14:27:19.009+08:00  WARN 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114142718904033215USzxIcoc)","type":"new_api_error"}}
+2025-11-14T14:27:20.326+08:00 ERROR 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T14:27:20.326+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：索未来科技集团 | 岗位：高级Python后端开发工程师 (AI应用方向) | 薪资：10-15K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T14:27:21.343+08:00  INFO 33934 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：索未来科技集团 | 岗位：高级Python后端开发工程师 (AI应用方向) | encryptId：971c695ac29ade6403xz2N60E1ZY | encryptUserId：84732ade3cd8c82a0HR-3t20FlFQ
+2025-11-14T14:27:21.609+08:00  INFO 33934 --- [get_jobs] [http-nio-8888-exec-9] c.getjobs.worker.service.BossJobService  : 收到停止Boss投递任务的请求
+2025-11-14T14:27:22.043+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-14T14:27:22.047+08:00  INFO 33934 --- [get_jobs] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-14T14:27:22.050+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 开始关闭Playwright管理器...
+2025-11-14T14:27:22.268+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Boss直聘页面已关闭
+2025-11-14T14:27:22.268+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 猎聘页面已关闭
+2025-11-14T14:27:22.286+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 共享BrowserContext已关闭
+2025-11-14T14:27:22.305+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 浏览器已关闭
+2025-11-14T14:27:22.309+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Playwright实例已关闭
+2025-11-14T14:27:22.309+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Playwright管理器关闭完成！
+2025-11-14T14:27:22.310+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-14T14:27:22.311+08:00  INFO 33934 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-14T15:31:16.861+08:00  INFO 50122 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Starting GetJobsApplication using Java 21.0.9 with PID 50122 (/Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/build/classes/java/main started by zijiancai in /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication)
+2025-11-14T15:31:16.862+08:00  INFO 50122 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : The following 1 profile is active: "dev"
+2025-11-14T15:31:17.215+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 检查静态资源路径:
+2025-11-14T15:31:17.216+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist路径: src/main/resources/dist (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/dist)
+2025-11-14T15:31:17.216+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static路径: src/main/resources/static (绝对路径: /Users/zijiancai/Desktop/hkucsfiles/comp7607/LLM-Based-Agent/Func2_AutoApplication/src/main/resources/static)
+2025-11-14T15:31:17.216+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   dist存在: false
+2025-11-14T15:31:17.216+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   :   static存在: false
+2025-11-14T15:31:17.216+08:00  WARN 50122 --- [get_jobs] [main] c.g.a.config.StaticServerConfiguration   : 未检测到前端开发服务，也未找到静态资源
+2025-11-14T15:31:17.264+08:00  INFO 50122 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2025-11-14T15:31:17.271+08:00  INFO 50122 --- [get_jobs] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-14T15:31:17.271+08:00  INFO 50122 --- [get_jobs] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-14T15:31:17.286+08:00  INFO 50122 --- [get_jobs] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-14T15:31:17.286+08:00  INFO 50122 --- [get_jobs] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 406 ms
+2025-11-14T15:31:17.457+08:00  INFO 50122 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-14T15:31:17.775+08:00  INFO 50122 --- [get_jobs] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@a54acec
+2025-11-14T15:31:17.776+08:00  INFO 50122 --- [get_jobs] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-14T15:31:17.782+08:00  INFO 50122 --- [get_jobs] [main] c.g.application.service.LiepinService    : 确保 liepin_data 表已存在
+2025-11-14T15:31:17.843+08:00  INFO 50122 --- [get_jobs] [main] c.g.application.service.ZhilianService   : 确保 zhilian_data 表已存在
+2025-11-14T15:31:17.860+08:00  INFO 50122 --- [get_jobs] [main] c.g.application.service.Job51Service     : 确保 job51_data 表已存在
+2025-11-14T15:31:17.930+08:00  INFO 50122 --- [get_jobs] [main] c.g.application.config.AsyncConfig       : 异步任务执行器配置完成 - 核心线程数: 2, 最大线程数: 5, 队列容量: 100
+2025-11-14T15:31:18.010+08:00  WARN 50122 --- [get_jobs] [main] c.g.a.c.StaticResourceConfiguration      : 未找到静态资源目录 (dist 或 static)
+2025-11-14T15:31:18.078+08:00  INFO 50122 --- [get_jobs] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2025-11-14T15:31:18.082+08:00  INFO 50122 --- [get_jobs] [main] com.getjobs.GetJobsApplication           : Started GetJobsApplication in 1.402 seconds (process running for 1.518)
+2025-11-14T15:31:18.083+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.init.ZhilianOptionInitializer      : 确保 zhilian_option 表已存在
+2025-11-14T15:31:18.084+08:00  INFO 50122 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未检测到前端服务或静态资源
+2025-11-14T15:31:18.084+08:00  INFO 50122 --- [get_jobs] [main] c.g.application.config.StartupRunner     : 未找到可用的管理页面，跳过自动打开浏览器
+2025-11-14T15:31:18.084+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T15:31:18.084+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     :   初始化浏览器自动化引擎
+2025-11-14T15:31:18.084+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T15:31:19.287+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Playwright引擎已启动
+2025-11-14T15:31:19.944+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Chrome浏览器已启动 (调试端口: 7866)
+2025-11-14T15:31:19.975+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ BrowserContext已创建（所有平台共享）
+2025-11-14T15:31:19.975+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始创建所有平台的Page...
+2025-11-14T15:31:20.468+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ Boss Page已创建
+2025-11-14T15:31:20.528+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 猎聘 Page已创建
+2025-11-14T15:31:20.528+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : 开始并发初始化所有平台...
+2025-11-14T15:31:20.529+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 开始初始化Boss直聘平台...
+2025-11-14T15:31:20.529+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 开始初始化猎聘平台...
+2025-11-14T15:31:20.545+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : 已从数据库加载Boss Cookie并注入浏览器上下文，共 71 条
+2025-11-14T15:31:20.546+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 已从数据库加载猎聘 Cookie并注入浏览器上下文，共 71 条
+2025-11-14T15:31:20.887+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-14T15:31:20.888+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-14T15:31:20.888+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-14T15:31:26.143+08:00  INFO 50122 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘登录检测：未发现登录入口，兜底判定为已登录
+2025-11-14T15:31:26.143+08:00  INFO 50122 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录成功
+2025-11-14T15:31:26.167+08:00  INFO 50122 --- [get_jobs] [scheduling-1] c.g.worker.manager.PlaywrightManager     : 保存猎聘Cookie成功，共 66 条，remark=login success
+2025-11-14T15:31:27.160+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-2] c.g.worker.manager.PlaywrightManager     : 猎聘平台登录状态监控已启用
+2025-11-14T15:31:27.184+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.manager.PlaywrightManager     : boss平台登录状态监控已启用
+2025-11-14T15:31:27.184+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ✓ 浏览器自动化引擎初始化完成（所有平台已并发启动）
+2025-11-14T15:31:27.184+08:00  INFO 50122 --- [get_jobs] [main] c.g.worker.manager.PlaywrightManager     : ========================================
+2025-11-14T15:31:27.185+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 boss 已存在 Cookie 记录 (id=1), 跳过种子创建
+2025-11-14T15:31:27.186+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 liepin 已存在 Cookie 记录 (id=3), 跳过种子创建
+2025-11-14T15:31:27.187+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 51job 已存在 Cookie 记录 (id=4), 跳过种子创建
+2025-11-14T15:31:27.187+08:00  INFO 50122 --- [get_jobs] [main] c.g.a.init.CookieSeedInitializer         : 平台 zhilian 已存在 Cookie 记录 (id=2), 跳过种子创建
+2025-11-14T15:31:46.917+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.application.service.BossService      : 已从 boss_config 加载Boss配置，并完成括号列表解析
+2025-11-14T15:31:46.922+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 黑名单加载完成: 公司(10) 招聘者(1) 职位(5)
+2025-11-14T15:32:12.809+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 【Python】岗位已全部加载，总数:300
+2025-11-14T15:32:16.415+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型计算机软件公司 | 岗位：高级算法工程师（大模型多模态训练方向） | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T15:32:26.833+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532267367195754Em40O4h)","type":"new_api_error"}}
+2025-11-14T15:32:26.833+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.getjobs.application.service.AiService  : 调用AI服务异常
+
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532267367195754Em40O4h)","type":"new_api_error"}}
+	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.12.jar:6.2.12]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724) ~[spring-aop-6.2.12.jar:6.2.12]
+	at com.getjobs.application.service.AiService$$SpringCGLIB$$0.sendRequest(<generated>) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.generateAiMessage(Boss.java:1075) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.resumeSubmission(Boss.java:690) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:393) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.execute(Boss.java:97) ~[main/:na]
+	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74) ~[main/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2025-11-14T15:32:26.837+08:00  WARN 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532267367195754Em40O4h)","type":"new_api_error"}}
+2025-11-14T15:32:28.189+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T15:32:28.190+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：小理科技 | 岗位：Python高级工程师（海外） | 薪资：25-26K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T15:32:29.222+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：小理科技 | 岗位：Python高级工程师（海外） | encryptId：e64b6b6b2daa1aa4031-2tm9GVJR | encryptUserId：b285af5791d5c14f1HB629u5GVc~
+2025-11-14T15:32:31.027+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型国有计算机软件公司 | 岗位：国企研发专家（Go/Java/Python）-广州深圳 | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T15:32:32.903+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 被过滤：公司黑名单命中 | 公司：法本 | 岗位：需求分析师 | 关键词：法本
+2025-11-14T15:32:34.739+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型电子商务公司 | 岗位：深圳-AI工程【欧洲上市外企+电商方向】 | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T15:32:36.475+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型互联网服务平台公司 | 岗位：广告产品技术负责人(广州） | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T15:32:39.760+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 被过滤：招聘者黑名单命中 | 公司：某大型互联网综合服务平台上市公司 | 岗位：后台架构师 | 招聘者：猎头顾问 | 关键词：猎头
+2025-11-14T15:32:51.698+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532516185174786ol2sD3R)","type":"new_api_error"}}
+2025-11-14T15:32:51.698+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.getjobs.application.service.AiService  : 调用AI服务异常
+
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532516185174786ol2sD3R)","type":"new_api_error"}}
+	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.12.jar:6.2.12]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724) ~[spring-aop-6.2.12.jar:6.2.12]
+	at com.getjobs.application.service.AiService$$SpringCGLIB$$0.sendRequest(<generated>) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.generateAiMessage(Boss.java:1075) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.resumeSubmission(Boss.java:690) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:393) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.execute(Boss.java:97) ~[main/:na]
+	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74) ~[main/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2025-11-14T15:32:51.699+08:00  WARN 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B202511141532516185174786ol2sD3R)","type":"new_api_error"}}
+2025-11-14T15:32:53.040+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T15:32:53.040+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：视壮科技 | 岗位：移动机器人软件系统架构师 | 薪资：40-50K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T15:32:54.062+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：视壮科技 | 岗位：移动机器人软件系统架构师 | encryptId：1a09f9007dedc0bc03xz0tS8EFFZ | encryptUserId：4a4870a40b37b9ff1XJ73ty_E1Y~
+2025-11-14T15:33:03.991+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.getjobs.application.service.AiService  : AI请求失败: status=401, endpoint=https://api.ruyun.fun/v1/chat/completions, body={"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114153303913460032msUacTwT)","type":"new_api_error"}}
+2025-11-14T15:33:03.992+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.getjobs.application.service.AiService  : 调用AI服务异常
+
+java.lang.RuntimeException: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114153303913460032msUacTwT)","type":"new_api_error"}}
+	at com.getjobs.application.service.AiService.sendRequest(AiService.java:141) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.12.jar:6.2.12]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724) ~[spring-aop-6.2.12.jar:6.2.12]
+	at com.getjobs.application.service.AiService$$SpringCGLIB$$0.sendRequest(<generated>) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.generateAiMessage(Boss.java:1075) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.resumeSubmission(Boss.java:690) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:393) ~[main/:na]
+	at com.getjobs.worker.boss.Boss.execute(Boss.java:97) ~[main/:na]
+	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74) ~[main/:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) ~[na:na]
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) ~[na:na]
+
+2025-11-14T15:33:03.992+08:00  WARN 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : AI请求失败，使用原有打招呼语: AI请求失败，状态码: 401, 详情: {"error":{"code":"invalid_request","message":"令牌不合法 (request id: B20251114153303913460032msUacTwT)","type":"new_api_error"}}
+2025-11-14T15:33:05.340+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 资源文件 resume.jpg 不存在，跳过发送图片简历
+2025-11-14T15:33:05.341+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 投递完成 | 公司：柯莱特集团 | 岗位：高级Python（外派福建宁德+线上面试） | 薪资：20-25K | 招呼语：您好，我是李承泽，有相关工作经验，熟悉Python, SQL, R，期待与您进一步沟通，谢谢！ | 图片简历：未发送
+2025-11-14T15:33:06.358+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 投递成功 | 公司：柯莱特集团 | 岗位：高级Python（外派福建宁德+线上面试） | encryptId：e71d259d8678b293031-29m_EFdW | encryptUserId：79c53800a93356c00XR-2924E1Q~
+2025-11-14T15:33:12.940+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-4] c.getjobs.worker.service.BossJobService  : 收到停止Boss投递任务的请求
+2025-11-14T15:33:13.487+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.boss.Boss             : 停止指令已触发，结束查找聊天按钮 | 公司：平安科技 | 岗位：AI智能体架构师
+2025-11-14T15:33:15.005+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-6] c.g.a.controller.LiepinController        : 通过API启动猎聘任务成功
+2025-11-14T15:33:15.009+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 配置加载成功
+2025-11-14T15:33:15.009+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 开始投递任务...
+2025-11-14T15:33:17.571+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.liepin.Liepin         : [拦截][响应] https://api-c.liepin.com/api/com.liepin.searchfront4c.pc-search-job
+2025-11-14T15:33:49.216+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 正在投递【Python】第【1】页...
+2025-11-14T15:33:52.911+08:00  WARN 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.liepin.Liepin         : 关闭聊天窗口失败，但投递可能已成功: Error {
+  message='Timeout 3000ms exceeded.
+  name='TimeoutError
+  stack='TimeoutError: Timeout 3000ms exceeded.
+    at ProgressController.run (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/progress.js:75:26)
+    at Frame.waitForSelector (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/frames.js:629:23)
+    at FrameDispatcher.waitForSelector (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/frameDispatcher.js:105:103)
+    at FrameDispatcher._handleCommand (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:96:40)
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:366:39)
+}
+Call log:
+-   - waiting for locator(".__im_basic__header-wrap") to be visible
+
+2025-11-14T15:33:56.220+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.liepin.Liepin         : 点击按钮失败: Object doesn't exist: response@6927f99026df3e78ce7ffde38fafc153
+2025-11-14T15:34:19.647+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-10] c.g.worker.service.LiepinJobService      : 收到停止猎聘任务请求
+2025-11-14T15:34:19.647+08:00  INFO 50122 --- [get_jobs] [http-nio-8888-exec-10] c.g.a.controller.LiepinController        : 通过API停止猎聘任务
+2025-11-14T15:34:20.063+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-14T15:34:20.066+08:00  INFO 50122 --- [get_jobs] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-14T15:34:20.069+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 开始关闭Playwright管理器...
+2025-11-14T15:34:20.147+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] com.getjobs.worker.liepin.Liepin         : 点击按钮失败: Error {
+  message='Target crashed 
+  name='Error
+  stack='Error: Target crashed 
+    at /private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/chromium/crConnection.js:135:16
+    at new Promise (<anonymous>)
+    at CRSession.send (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/chromium/crConnection.js:131:12)
+    at CRExecutionContext.evaluateWithArguments (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/chromium/crExecutionContext.js:68:28)
+    at FrameExecutionContext.evaluateWithArguments (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/javascript.js:60:60)
+    at async evaluateExpression (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/javascript.js:228:12)
+    at async /private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/frames.js:965:22
+    at async Frame.retryWithProgressAndTimeouts (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/frames.js:935:24)
+    at async /private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/frames.js:1023:29
+    at async ProgressController.run (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/progress.js:79:22)
+}
+Call log:
+-   - waiting for locator("div[class*='job-card-pc-container']").nth(6).locator("button.ant-btn.ant-btn-primary.ant-btn-round").first()
+
+2025-11-14T15:34:20.147+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 收到停止指令，结束卡片遍历
+2025-11-14T15:34:20.147+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 已投递第【1】页所有的岗位...
+2025-11-14T15:34:20.160+08:00 ERROR 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.worker.service.LiepinJobService      : 猎聘投递任务执行失败
 
 com.microsoft.playwright.impl.TargetClosedError: Error {
   message='Target page, context or browser has been closed
   name='TargetClosedError
   stack='TargetClosedError: Target page, context or browser has been closed
-    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-306078276974355913/package/lib/server/dispatchers/dispatcher.js:283:44)
-    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-306078276974355913/package/lib/cli/driver.js:52:57)
-    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-306078276974355913/package/lib/server/utils/pipeTransport.js:77:34)
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:283:44)
+    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/cli/driver.js:52:57)
+    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/utils/pipeTransport.js:77:34)
     at process.processImmediate (node:internal/timers:491:21)
 }
 	at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:54) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:132) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:130) ~[playwright-1.51.0.jar:1.51.0]
 	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:118) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.FrameImpl.clickImpl(FrameImpl.java:252) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.FrameImpl.lambda$click$8(FrameImpl.java:243) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:97) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:35) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.FrameImpl.click(FrameImpl.java:243) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.impl.LocatorImpl.click(LocatorImpl.java:174) ~[playwright-1.51.0.jar:1.51.0]
-	at com.microsoft.playwright.Locator.click(Locator.java:2508) ~[playwright-1.51.0.jar:1.51.0]
-	at com.getjobs.worker.boss.Boss.resumeSubmission(Boss.java:697) ~[main/:na]
-	at com.getjobs.worker.boss.Boss.postJobByCity(Boss.java:393) ~[main/:na]
-	at com.getjobs.worker.boss.Boss.execute(Boss.java:97) ~[main/:na]
-	at com.getjobs.worker.service.BossJobService.executeDelivery(BossJobService.java:87) ~[main/:na]
-	at com.getjobs.application.controller.BossController.lambda$executeBoss$3(BossController.java:74) ~[main/:na]
+	at com.microsoft.playwright.impl.FrameImpl.queryCount(FrameImpl.java:1116) ~[playwright-1.51.0.jar:1.51.0]
+	at com.microsoft.playwright.impl.LocatorImpl.count(LocatorImpl.java:179) ~[playwright-1.51.0.jar:1.51.0]
+	at com.getjobs.worker.liepin.Liepin.submit(Liepin.java:277) ~[main/:na]
+	at com.getjobs.worker.liepin.Liepin.execute(Liepin.java:126) ~[main/:na]
+	at com.getjobs.worker.service.LiepinJobService.executeDelivery(LiepinJobService.java:87) ~[main/:na]
+	at com.getjobs.application.controller.LiepinController.lambda$startLiepinJob$1(LiepinController.java:93) ~[main/:na]
 	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) ~[na:na]
 	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) ~[na:na]
 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) ~[na:na]
@@ -909,9 +680,9 @@ Caused by: com.microsoft.playwright.impl.TargetClosedError: Error {
   message='Target page, context or browser has been closed
   name='TargetClosedError
   stack='TargetClosedError: Target page, context or browser has been closed
-    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-306078276974355913/package/lib/server/dispatchers/dispatcher.js:283:44)
-    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-306078276974355913/package/lib/cli/driver.js:52:57)
-    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-306078276974355913/package/lib/server/utils/pipeTransport.js:77:34)
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:283:44)
+    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/cli/driver.js:52:57)
+    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/utils/pipeTransport.js:77:34)
     at process.processImmediate (node:internal/timers:491:21)
 }
 	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:256) ~[playwright-1.51.0.jar:1.51.0]
@@ -942,11 +713,20 @@ Caused by: com.microsoft.playwright.impl.TargetClosedError: Error {
 	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-3.5.7.jar:3.5.7]
 	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
-2025-11-14T00:46:11.414+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Boss直聘页面已关闭
-2025-11-14T00:46:11.415+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 猎聘页面已关闭
-2025-11-14T00:46:11.428+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 共享BrowserContext已关闭
-2025-11-14T00:46:11.445+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 浏览器已关闭
-2025-11-14T00:46:11.449+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Playwright实例已关闭
-2025-11-14T00:46:11.449+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Playwright管理器关闭完成！
-2025-11-14T00:46:11.450+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-11-14T00:46:11.451+08:00  INFO 18427 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-14T15:34:20.161+08:00  INFO 50122 --- [get_jobs] [ForkJoinPool.commonPool-worker-1] c.g.a.controller.LiepinController        : [liepin] 投递失败: Error {
+  message='Target page, context or browser has been closed
+  name='TargetClosedError
+  stack='TargetClosedError: Target page, context or browser has been closed
+    at DispatcherConnection.dispatch (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/dispatchers/dispatcher.js:283:44)
+    at transport.onmessage (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/cli/driver.js:52:57)
+    at Immediate._onImmediate (/private/var/folders/5n/9197yzsd2pxg8q51x5gr7xfc0000gn/T/playwright-java-12614719621653358291/package/lib/server/utils/pipeTransport.js:77:34)
+    at process.processImmediate (node:internal/timers:491:21)
+}
+2025-11-14T15:34:20.288+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Boss直聘页面已关闭
+2025-11-14T15:34:20.290+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 猎聘页面已关闭
+2025-11-14T15:34:20.308+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 共享BrowserContext已关闭
+2025-11-14T15:34:20.335+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : 浏览器已关闭
+2025-11-14T15:34:20.339+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Playwright实例已关闭
+2025-11-14T15:34:20.339+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] c.g.worker.manager.PlaywrightManager     : Playwright管理器关闭完成！
+2025-11-14T15:34:20.340+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-14T15:34:20.341+08:00  INFO 50122 --- [get_jobs] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

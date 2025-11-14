@@ -1,0 +1,55 @@
+# ============================================================================
+# Automated Job Application System - .gitignore
+# ============================================================================
+
+# ===== Build & Dependencies =====
+build/
+target/
+.gradle/
+bin/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# ===== IDE Files =====
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+
+# ===== Logs =====
+logs/
+*.log
+nohup.out
+
+# ===== Sensitive Configuration =====
+# Only ignore .env (contains API keys)
+.env
+
+# ===== Runtime Files =====
+.app.pid
+*.pid
+
+# ===== System Files =====
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# ===== Temporary Files =====
+tmp/
+temp/
+*.tmp
+
+# ===== Python Cache =====
+__pycache__/
+*.py[cod]
+*$py.class
+.Python

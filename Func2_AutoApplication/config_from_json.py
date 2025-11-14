@@ -133,8 +133,6 @@ def update_boss_config(db_path, resume_data):
 def update_liepin_config(db_path, resume_data):
     """Update Liepin configuration in database"""
     keywords = extract_keywords(resume_data)
-    experience_years = extract_work_experience_years(resume_data)
-    greeting = generate_greeting(resume_data, keywords)
 
     # Convert keywords to comma-separated string for Liepin
     keywords_str = ','.join(keywords[:5])
@@ -146,14 +144,14 @@ def update_liepin_config(db_path, resume_data):
         # Check if liepin_config table exists and has data
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='liepin_config'")
         if cursor.fetchone():
+            # Liepin config table only has: keywords, city, salary_code
+            # Don't update experience or say_hi as those columns don't exist
             cursor.execute("""
                 UPDATE liepin_config SET
                     keywords = ?,
-                    experience = ?,
-                    say_hi = ?,
                     updated_at = CURRENT_TIMESTAMP
                 WHERE id = 1
-            """, (keywords_str, experience_years, greeting))
+            """, (keywords_str,))
 
             conn.commit()
             print(f"✅ Liepin configuration updated successfully!")
