@@ -1,0 +1,95 @@
+{
+  "jd": {
+    "text": "职位描述\n1、负责负责客服业务大模型基建相关研发，深入业务，理解抽象，为用户提供智能化、高效的服务解决方案；\n2、对不同周期和紧急程度的产品需求进行合理拆解实现；\n3、进行相关产品的技术文档编写，方案设计；\n4、学习研究业界先进技术，保持技术进步。\n职位要求\n1、本科及以上学历，计算机相关专业背景；\n2、熟悉Java/Golang/PHP/Python/C++等至少一门语言，Golang、Python、Java经验者优先；\n3、熟悉常用的互联网技术，包括但不限于Linux系统及原理、MySQL、NoSQL、RPC、MQ、缓存技术、微服务架构等；\n4、具有良好的编码和文档习惯，注重代码风格，熟悉基础设计模式和原则，能持续的关注和优化自己做的项目；\n5、加分：有客服系统或商业化SaaS平台相关开发经验。",
+    "embedding_model": "text-embedding-v3"
+  },
+  "resume_source_files": [
+    "/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/英文简历1.json"
+  ],
+  "section": "experience",
+  "blocks_count": 6,
+  "blocks": [
+    {
+      "block_id": "exp-1",
+      "title": "Backend Development Intern Intern 2025.05~2025.07 Neusoft Education Technology Group, Healthcare R&D Department",
+      "lang": "en",
+      "score": 0.552096
+    },
+    {
+      "block_id": "exp-2",
+      "title": "Path Explosion Mitigation in Software Model Checking via Large Block Encoding (LBE) Research Assistant 2024.03~Present Northeastern University, Software Engineering Lab",
+      "lang": "en",
+      "score": 0.437187
+    },
+    {
+      "block_id": "exp-3",
+      "title": "Rail Ticketing System Developer 2024.01~2024.04 Northeastern University, Software Engineering Program",
+      "lang": "en",
+      "score": 0.518515
+    },
+    {
+      "block_id": "exp-4",
+      "title": "Smart Home Desk Lamp Based on STM32 Firmware Developer 2023.10~2023.12 Northeastern University, Embedded Systems Course",
+      "lang": "en",
+      "score": 0.372735
+    },
+    {
+      "block_id": "exp-5",
+      "title": "Multiplayer Online Minesweeper Game Developer 2023.07~2023.09 Personal Project",
+      "lang": "en",
+      "score": 0.480862
+    },
+    {
+      "block_id": "exp-6",
+      "title": "Weibo Short URL System Backend Developer 2024.05~2024.07 Northeastern University, Distributed Systems Project",
+      "lang": "en",
+      "score": 0.519995
+    }
+  ],
+  "sorted_block_ids": [
+    "exp-1",
+    "exp-6",
+    "exp-3",
+    "exp-5",
+    "exp-2",
+    "exp-4"
+  ],
+  "sorted_blocks": [
+    {
+      "block_id": "exp-1",
+      "title": "Backend Development Intern Intern 2025.05~2025.07 Neusoft Education Technology Group, Healthcare R&D Department",
+      "lang": "en",
+      "score": 0.552096
+    },
+    {
+      "block_id": "exp-6",
+      "title": "Weibo Short URL System Backend Developer 2024.05~2024.07 Northeastern University, Distributed Systems Project",
+      "lang": "en",
+      "score": 0.519995
+    },
+    {
+      "block_id": "exp-3",
+      "title": "Rail Ticketing System Developer 2024.01~2024.04 Northeastern University, Software Engineering Program",
+      "lang": "en",
+      "score": 0.518515
+    },
+    {
+      "block_id": "exp-5",
+      "title": "Multiplayer Online Minesweeper Game Developer 2023.07~2023.09 Personal Project",
+      "lang": "en",
+      "score": 0.480862
+    },
+    {
+      "block_id": "exp-2",
+      "title": "Path Explosion Mitigation in Software Model Checking via Large Block Encoding (LBE) Research Assistant 2024.03~Present Northeastern University, Software Engineering Lab",
+      "lang": "en",
+      "score": 0.437187
+    },
+    {
+      "block_id": "exp-4",
+      "title": "Smart Home Desk Lamp Based on STM32 Firmware Developer 2023.10~2023.12 Northeastern University, Embedded Systems Course",
+      "lang": "en",
+      "score": 0.372735
+    }
+  ]
+}

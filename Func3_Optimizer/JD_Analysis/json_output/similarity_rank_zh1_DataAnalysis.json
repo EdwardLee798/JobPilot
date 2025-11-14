@@ -1,0 +1,95 @@
+{
+  "jd": {
+    "text": "职位描述\n1、负责字节跳动旗下抖音相关业务的策略分析，数据驱动洞察平台问题、支持业务决策；\n2、基于业务理解和发展需求，不断完善全局衡量体系，实现多业务平衡和高效发展；\n3、理解数据背后的业务本质，迭代看问题思路和视角，挖掘不同业务场景下数据洞察，发现潜在机会；\n4、持续了解和分析政策变化、行业趋势和用户需求，挖掘增长机会点和产品创新能力；\n5、跨产品跨职能，与各产品团队、推荐算法团队等联动推动重要专项数据->方案->落地->优化迭代。\n职位要求\n1、本科及以上学历，5年及以上互联网数据分析经验；\n2、有良好的数据分析和商业分析能力，有推荐、算法相关技术背景或经验加分，能够熟练使用Excel/SQL/Python加分；\n3、善于深度思考问题，具备优秀的逻辑思维及分析能力，对新事物有高度好奇心和洞察力，沟通协作和表达能力强；\n4、对互联网用户产品领域心怀热爱、渴望探索，特别是视频以及泛娱乐领域；\n5、有创业精神，能够处理快速的变化和不完美的现状，有一定抗压能力。",
+    "embedding_model": "text-embedding-v3"
+  },
+  "resume_source_files": [
+    "/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/中文简历1.json"
+  ],
+  "section": "experience",
+  "blocks_count": 6,
+  "blocks": [
+    {
+      "block_id": "exp-1",
+      "title": "数据基建与选品指标体系搭建 数据科学实习生 2025.06~2025.09 阿里巴巴国际数字商业集团, 数字零售技术部",
+      "lang": "zh",
+      "score": 0.621084
+    },
+    {
+      "block_id": "exp-2",
+      "title": "活动监控与GMV预测建模 数据分析实习生 2025.02~2025.06 字节跳动中国电商, 市场营销部",
+      "lang": "zh",
+      "score": 0.702431
+    },
+    {
+      "block_id": "exp-3",
+      "title": "术中血压管理与PO-AKI相关性研究 Research Assistant 2024.08~2025.01 四川大学华西医学院, 医疗AI研究项目",
+      "lang": "zh",
+      "score": 0.446365
+    },
+    {
+      "block_id": "exp-4",
+      "title": "跨境电商智能选品决策平台 Developer 2024.03~Present Personal Project",
+      "lang": "zh",
+      "score": 0.521159
+    },
+    {
+      "block_id": "exp-5",
+      "title": "多模态社媒内容理解系统 2.0 Developer 2025.01~Present Personal Project",
+      "lang": "zh",
+      "score": 0.493587
+    },
+    {
+      "block_id": "exp-6",
+      "title": "PO-AKI 医疗风险可解释性分析系统 Developer 2024.10~Present Personal Research Extension",
+      "lang": "zh",
+      "score": 0.441891
+    }
+  ],
+  "sorted_block_ids": [
+    "exp-2",
+    "exp-1",
+    "exp-4",
+    "exp-5",
+    "exp-3",
+    "exp-6"
+  ],
+  "sorted_blocks": [
+    {
+      "block_id": "exp-2",
+      "title": "活动监控与GMV预测建模 数据分析实习生 2025.02~2025.06 字节跳动中国电商, 市场营销部",
+      "lang": "zh",
+      "score": 0.702431
+    },
+    {
+      "block_id": "exp-1",
+      "title": "数据基建与选品指标体系搭建 数据科学实习生 2025.06~2025.09 阿里巴巴国际数字商业集团, 数字零售技术部",
+      "lang": "zh",
+      "score": 0.621084
+    },
+    {
+      "block_id": "exp-4",
+      "title": "跨境电商智能选品决策平台 Developer 2024.03~Present Personal Project",
+      "lang": "zh",
+      "score": 0.521159
+    },
+    {
+      "block_id": "exp-5",
+      "title": "多模态社媒内容理解系统 2.0 Developer 2025.01~Present Personal Project",
+      "lang": "zh",
+      "score": 0.493587
+    },
+    {
+      "block_id": "exp-3",
+      "title": "术中血压管理与PO-AKI相关性研究 Research Assistant 2024.08~2025.01 四川大学华西医学院, 医疗AI研究项目",
+      "lang": "zh",
+      "score": 0.446365
+    },
+    {
+      "block_id": "exp-6",
+      "title": "PO-AKI 医疗风险可解释性分析系统 Developer 2024.10~Present Personal Research Extension",
+      "lang": "zh",
+      "score": 0.441891
+    }
+  ]
+}
