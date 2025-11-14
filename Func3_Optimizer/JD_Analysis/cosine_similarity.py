@@ -10,6 +10,14 @@ resume_exp_cosine_rank.py
 依赖：
     pip install -U openai numpy
 
+环境变量（DashScope OpenAI兼容端点）：
+    # 国际
+    export DASHSCOPE_API_KEY=your_key
+    export DASHSCOPE_BASE_URL="https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+    # 国内
+    # export DASHSCOPE_API_KEY=your_key
+    # export DASHSCOPE_BASE_URL="https://dashscope.aliyuncs.com/compatible-mode/v1"
+
 使用方式：
     直接修改本文件顶部的 RESUME_JSON_PATHS 与 JD_TEXT，然后运行：
     python resume_exp_cosine_rank.py
@@ -66,7 +74,6 @@ def load_json(path: str) -> Dict[str, Any]:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
 # ---------- 文本拼接 ----------
 def _join(*parts) -> str:
     return " ".join([p for p in parts if p]).strip()
@@ -82,7 +89,7 @@ def _stringify(obj) -> str:
         return " ".join([_stringify(v) for v in obj.values() if _stringify(v)])
     return str(obj)
 
-# ---------- 仅抽取 experience 列表 ----------
+# ---------- 取 experience / activities ----------
 def get_experience_list_and_key(resume: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], str]:
     if isinstance(resume.get("experience"), list):
         return resume["experience"], "experience"
@@ -90,16 +97,46 @@ def get_experience_list_and_key(resume: Dict[str, Any]) -> Tuple[List[Dict[str, 
         return resume["experiences"], "experiences"
     return [], "experience"
 
-def build_exp_title_text(item: Dict[str, Any]) -> Tuple[str, str]:
-    name = item.get("name") or item.get("company") or ""
-    title = item.get("title") or item.get("role") or ""
-    period = item.get("period") or _join(item.get("start",""), item.get("end",""))
-    location = item.get("location") or ""
-    desc = item.get("description") or item.get("details") or item.get("summary") or ""
-    head = _join(name, title, period, location)
-    body = _stringify(desc)
-    full = _join(head, body)
-    return head if head else "Experience", full
+def get_activities_list_and_key(resume: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], str]:
+    # 兼容 activities / activity
+    if isinstance(resume.get("activities"), list):
+        return resume["activities"], "activities"
+    if isinstance(resume.get("activity"), list):
+        return resume["activity"], "activity"
+    return [], "activities"
+
+def build_block_title_text(item: Dict[str, Any], section: str) -> Tuple[str, str, str]:
+    """
+    返回 (name_for_display, title_line, full_text)
+    - name_for_display：sorted_blocks 用的 name
+    - title_line：用于 embedding 的标题行
+    - full_text：标题 + 正文合并，作为 embedding 输入
+    """
+    if section == "experience":
+        # name / company / title / role / period / location / description
+        name = item.get("name") or item.get("company") or item.get("title") or item.get("role") or ""
+        role_title = item.get("title") or item.get("role") or ""
+        period = item.get("period") or _join(item.get("start",""), item.get("end",""))
+        location = item.get("location") or ""
+        desc = item.get("description") or item.get("details") or item.get("summary") or ""
+        head = _join(name, role_title, period, location)
+        body = _stringify(desc)
+        full = _join(head, body)
+        display_name = name or role_title or head or "Experience"
+        return display_name, (head if head else "Experience"), _join("experience", full)
+    else:
+        # activities: org / name / role / title / period / description
+        name = item.get("name") or item.get("title") or item.get("role") or item.get("org") or ""
+        org = item.get("org") or ""
+        role_title = item.get("title") or item.get("role") or ""
+        period = item.get("period") or _join(item.get("start",""), item.get("end",""))
+        location = item.get("location") or ""
+        desc = item.get("description") or item.get("details") or item.get("summary") or ""
+        head = _join(name, org, role_title, period, location)
+        body = _stringify(desc)
+        full = _join(head, body)
+        display_name = name or org or head or "Activity"
+        return display_name, (head if head else "Activity"), _join("activities", full)
 
 # ---------- 向量与余弦 ----------
 def embed_texts(client: OpenAI, texts: List[str], model: str) -> np.ndarray:
@@ -116,6 +153,67 @@ def cosine_scores(q: np.ndarray, M: np.ndarray) -> np.ndarray:
     return (M @ q.T).reshape(-1)
 
 # ---------- 主流程 ----------
+def run_for_file(client: OpenAI, jd_vec: np.ndarray, resume_path: str) -> Dict[str, Any]:
+    try:
+        resume = load_json(resume_path)
+    except Exception as e:
+        print(f"[WARN] 读取失败：{resume_path} -> {e}")
+        return {"file": resume_path, "sorted_blocks": [], "reordered_resume": {}}
+
+    exp_list, exp_key = get_experience_list_and_key(resume)
+    act_list, act_key = get_activities_list_and_key(resume)
+
+    # 若都不存在，返回空结果
+    if not exp_list and not act_list:
+        return {"file": resume_path, "sorted_blocks": [], "reordered_resume": resume}
+
+    blocks_meta = []  # [(section, orig_idx, block_id, name, title, text)]
+    # experience
+    for i, item in enumerate(exp_list):
+        name, title, full = build_block_title_text(item, "experience")
+        blocks_meta.append(("experience", i, f"exp-{i+1}", name, title, title + "\n" + full))
+    # activities
+    for i, item in enumerate(act_list):
+        name, title, full = build_block_title_text(item, "activities")
+        blocks_meta.append(("activities", i, f"act-{i+1}", name, title, title + "\n" + full))
+
+    # 计算 embedding & 相似度
+    texts = [bm[5] for bm in blocks_meta]
+    blk_vecs = embed_texts(client, texts, model=EMBED_MODEL)
+    sims = cosine_scores(jd_vec, blk_vecs).tolist()
+
+    # 统一降序
+    order_all = sorted(range(len(blocks_meta)), key=lambda k: (-sims[k], k))
+    sorted_blocks = [{
+        "block_id": blocks_meta[k][2],
+        #"section": blocks_meta[k][0],
+        "name": blocks_meta[k][3],
+        "score": round(float(sims[k]), 6)
+    } for k in order_all]
+
+    # 分别按分数重排 experience / activities
+    # experience
+    exp_pairs = [(i, sims[idx]) for idx, (sec, i, _, _, _, _) in enumerate(blocks_meta) if sec == "experience"]
+    exp_pairs.sort(key=lambda t: (-t[1], t[0]))  # 降序，稳定
+    reordered_exp = [exp_list[i] for (i, _) in exp_pairs] if exp_list else None
+
+    # activities
+    act_pairs = [(i, sims[idx]) for idx, (sec, i, _, _, _, _) in enumerate(blocks_meta) if sec == "activities"]
+    act_pairs.sort(key=lambda t: (-t[1], t[0]))
+    reordered_act = [act_list[i] for (i, _) in act_pairs] if act_list else None
+
+    # 生成重排后的简历
+    reordered_resume = dict(resume)  # 浅拷贝
+    if exp_list:
+        reordered_resume[exp_key] = reordered_exp
+    if act_list:
+        reordered_resume[act_key] = reordered_act
+
+    return {
+        "sorted_blocks": sorted_blocks,
+        "reordered_resume": reordered_resume
+    }
+
 def run(jd_text: str, resume_paths: List[str]) -> Dict[str, Any]:
     client = _get_client()
     jd_vec = embed_texts(client, [jd_text], model=EMBED_MODEL)[0]
@@ -124,51 +222,9 @@ def run(jd_text: str, resume_paths: List[str]) -> Dict[str, Any]:
     for path in resume_paths:
         if not path or not os.path.isfile(path):
             continue
-        try:
-            resume = load_json(path)
-        except Exception as e:
-            print(f"[WARN] 读取失败：{path} -> {e}")
-            continue
-
-        exp_list, key_name = get_experience_list_and_key(resume)
-        if not exp_list:
-            # 没有 experience 也输出空结果
-            results.append({
-                #"file": path,
-                "sorted_blocks": [],
-                "reordered_resume": resume
-            })
-            continue
-
-        titles, texts = [], []
-        for item in exp_list:
-            t, full = build_exp_title_text(item)
-            titles.append(t)
-            texts.append(t + "\n" + full)
-
-        blk_vecs = embed_texts(client, texts, model=EMBED_MODEL)
-        sims = cosine_scores(jd_vec, blk_vecs)
-
-        # 组装 (idx, score) 并按分数降序（分数并列保持原顺序）
-        indexed_scores = [(i, float(sims[i])) for i in range(len(exp_list))]
-        indexed_scores.sort(key=lambda x: (-x[1], x[0]))
-
-        # 1) 只输出 sorted_blocks: "exp-i score=..."
-        sorted_blocks_strings = [f"exp-{i+1} score={indexed_scores[k][1]:.6f}"
-                                 for k, (i, _) in enumerate(indexed_scores)]
-
-        # 2) 生成 experience 降序后的完整简历 JSON
-        reordered = dict(resume)  # 浅拷贝
-        reordered[key_name] = [exp_list[i] for (i, _) in indexed_scores]
-
-        results.append({
-            #"file": path,
-            "sorted_blocks": sorted_blocks_strings,
-            "reordered_resume": reordered
-        })
-
-    # 仅保留所需两项输出
+        results.append(run_for_file(client, jd_vec, path))
     return {"results": results}
+
 
 if __name__ == "__main__":
     out = run(JD_TEXT, RESUME_JSON_PATHS)
