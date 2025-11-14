@@ -2,12 +2,46 @@
   "results": [
     {
       "sorted_blocks": [
-        "exp-1 score=0.618031",
-        "exp-2 score=0.590757",
-        "exp-6 score=0.542624",
-        "exp-3 score=0.539647",
-        "exp-4 score=0.517667",
-        "exp-5 score=0.498715"
+        {
+          "block_id": "exp-1",
+          "name": "数据基建与选品指标体系搭建",
+          "score": 0.618342
+        },
+        {
+          "block_id": "exp-2",
+          "name": "活动监控与GMV预测建模",
+          "score": 0.593141
+        },
+        {
+          "block_id": "exp-3",
+          "name": "术中血压管理与PO-AKI相关性研究",
+          "score": 0.547108
+        },
+        {
+          "block_id": "exp-6",
+          "name": "PO-AKI 医疗风险可解释性分析系统",
+          "score": 0.543079
+        },
+        {
+          "block_id": "exp-4",
+          "name": "跨境电商智能选品决策平台",
+          "score": 0.521877
+        },
+        {
+          "block_id": "act-1",
+          "name": "副会长",
+          "score": 0.507538
+        },
+        {
+          "block_id": "act-2",
+          "name": "技术负责人",
+          "score": 0.50198
+        },
+        {
+          "block_id": "exp-5",
+          "name": "多模态社媒内容理解系统 2.0",
+          "score": 0.491927
+        }
       ],
       "reordered_resume": {
         "user_id": "",
@@ -50,15 +84,6 @@
             "description": "基于用户购买行为链路构建活动复盘与业绩监控指标体系，搭建日常及618大促期间的监控仪表盘，累计PV达5000+。完成抖音电商大盘GMV分布与商家经营复盘，拆解北极星指标增长贡献，制定9种增长策略并推动落地。使用Python清洗与处理数据，为1800+二级类目分别建立Prophet时间序列模型，预测618 GMV与内容PV增长，MAPE控制在20%-80%区间，结合可视化输出分阶段类目推荐。参与优惠券对人均GMV影响的AB实验，从商品与用户维度下钻分析，针对弱显著结果撰写复盘报告，提出迭代建议。"
           },
           {
-            "type": "project",
-            "name": "PO-AKI 医疗风险可解释性分析系统",
-            "location": "Personal Research Extension",
-            "title": "Developer",
-            "role": "Healthcare AI Developer",
-            "period": "2024.10~Present",
-            "description": "开发患者动态生命体征曲线的异常检测模块，结合LOF与Dynamic Time Warping算法识别异常模式。使用K-Means对术中状态聚类，发现3类高风险患者模式，供临床参考。基于Python Dash搭建交互式可视化原型系统，支持风险趋势、特征变化与术中事件的联动展示，提升医生理解与决策效率。"
-          },
-          {
             "type": "research",
             "name": "术中血压管理与PO-AKI相关性研究",
             "location": "四川大学华西医学院, 医疗AI研究项目",
@@ -66,6 +91,15 @@
             "role": "Research Assistant",
             "period": "2024.08~2025.01",
             "description": "使用SQL与Python处理亿级生命体征数据，完成数据清洗与管理。采用IV值与Lasso回归进行特征降维，筛选出42个关键输入特征。优化缺失值处理策略，通过调整分箱方式计算WOE值，提升模型可解释性。开发基于逻辑回归的术后急性肾损伤（PO-AKI）风险预测模型，独立完成标签定义、人群纳排、特征工程、风险分层、模型训练与评估全流程，最终模型AUC达到84%。"
+          },
+          {
+            "type": "project",
+            "name": "PO-AKI 医疗风险可解释性分析系统",
+            "location": "Personal Research Extension",
+            "title": "Developer",
+            "role": "Healthcare AI Developer",
+            "period": "2024.10~Present",
+            "description": "开发患者动态生命体征曲线的异常检测模块，结合LOF与Dynamic Time Warping算法识别异常模式。使用K-Means对术中状态聚类，发现3类高风险患者模式，供临床参考。基于Python Dash搭建交互式可视化原型系统，支持风险趋势、特征变化与术中事件的联动展示，提升医生理解与决策效率。"
           },
           {
             "type": "project",
