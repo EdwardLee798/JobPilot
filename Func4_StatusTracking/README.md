@@ -1,9 +1,14 @@
-### Run
+### Run Conversation
 ```sh
 conda create --name comp7607 python=3.10 -y
 conda activate comp7607
 pip install -r requirements.txt
-python ./test.py
+python ./status_tracking/test.py
+```
+
+### Run Front End
+```sh
+python ./serve.py --port 8000
 ```
 
 ### Examples

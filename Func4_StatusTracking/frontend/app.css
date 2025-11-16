@@ -1,0 +1,48 @@
+/* App (timeline) styles */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; margin: 20px; background:#f6f8fb; }
+header { margin-bottom: 16px }
+.card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 16px }
+h1 { margin: 0 0 8px 0; font-size: 20px }
+h2 { margin: 32px 0 16px; font-size: 18px; color: #111; }
+h3 { margin: 0 0 24px 0; font-size: 16px }
+#status { color: #666; margin-top: 6px }
+.muted { color: #888; font-size: 13px }
+.small { font-size: 13px }
+.layout { display: flex; gap: 32px; max-width: 1200px; margin: 0 auto; }
+#container { flex: 1; min-width: 0; }
+
+/* Timeline styles */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { 
+  content: ''; position: absolute; left: 7px; top: 12px; bottom: 12px;
+  width: 2px; background: #e0e0e0;
+}
+.timeline-item {
+  position: relative;
+  padding: 12px 0;
+  display: flex;
+  align-items: flex-start;
+}
+.timeline-dot {
+  position: absolute;
+  left: -32px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2563eb;
+  margin-top: 0px;
+  margin-left: -1.5px;
+}
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+.timeline-date {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 4px;
+}
+.timeline-status {
+  color: #111;
+}

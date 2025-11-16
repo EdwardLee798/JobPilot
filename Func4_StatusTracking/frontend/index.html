@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Application Process Flow Demo</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="calendar.css">
+  </head>
+  <body>
+    <header>
+      <h1>Application Process Flow (Live)</h1>
+      <div id="status" class="muted">Connecting…</div>
+    </header>
+
+    <div class="layout">
+      <main id="container">
+        <h2>Timeline View</h2>
+        <!-- cards will be rendered here -->
+      </main>
+
+      <aside id="calendar">
+        <h2>Calendar View</h2>
+        <div class="calendar-header">
+          <div class="calendar-nav">
+            <button onclick="calendar.prevMonth()">&larr;</button>
+            <button onclick="calendar.nextMonth()">&rarr;</button>
+          </div>
+          <div class="calendar-title"></div>
+        </div>
+        <div class="calendar-grid">
+          <!-- calendar will be rendered here -->
+        </div>
+      </aside>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="calendar.js"></script>
+  </body>
+</html>
