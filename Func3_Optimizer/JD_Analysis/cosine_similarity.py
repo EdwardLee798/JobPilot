@@ -33,26 +33,30 @@ from openai import OpenAI
 
 # 放简历 JSON；脚本会把所有 experience 合并计算
 RESUME_JSON_PATHS = [
-    "/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/中文简历1.json",
+    #"/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/中文简历1.json",
     #/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/中文简历2.json",
-    #"/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/英文简历1.json",
+    "/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/英文简历1.json",
     #"/home/zhenghong/hku_semester1/NLP/nlp_project/json_document/英文简历2.json"
 
 ]
 
 # JD 文本
-JD_TEXT = """职位描述
-1、为企业服务团队（如房产、物理安全和行政）建立业务指标系统，分析长期趋势和短期异常，产出有价值的报表；
-2、基于指标系统搭建数据看板，并建立每日追踪和监控系统，及时辨别趋势或识别潜在风险；
-3、根据业务需求进行各类数据分析，借助定性和定量分析、建模，快速识别内部问题或发现机会；
-4、与运营、数仓、产品、研发和算法等团队合作，实现数据分析报表的持续优化，构建用户友好的数据系统和数据产品，以更好支持业务。
+JD_TEXT = """
+职位描述
+团队介绍：IT部门面向字节跳动员工提供全球IT技术支持。我们既负责企业内部IT基础架构的设计和优化，也肩负着保护企业信息安全，降低企业运营风险的使命；同时，IT团队还会直接面向字节各业务线，承接企业级的网络、系统、终端、资产、服务台、多媒体、办公管理等多业务场景的研发需求，打造符合业界标准的商业化企业解决方案和产品，运用大数据和AI技术，提供更加自动化和智能化的企业技术服务。
+
+1、负责资产服务管理系统后端服务的需求设计和开发；
+2、负责Copilot、Agent等AI能力在资产服务管理业务场景的系统架构设计、优化和演进；
+3、参与系统基础设施建设，完成跨团队技术推动与落地，提升用户满意度；
+4、参与系统稳定性建设，分析和解决系统性能瓶颈，提高系统可用性；
+5、参与AI领域新技术的调研和落地。
 职位要求
-1、本科及以上学历；五年以上数据分析相关经验；
-2、精通SQL和Tableau、PowerBI或类似可视化工具；可运用Python或R进行数据分析；了解算法（ML、因果推断，动态规划）优先；
-3、丰富的数据挖掘、信息收集、分析能力，较强的将业务问题转化为数据建模的能力；
-4、具有较强的学习能力和好奇心，能够快速学习和理解新领域、新知识；
-5、有良好的沟通表达能力和团队合作意识，能够带领项目团队支持业务；
-6、英文可作为工作语言。"""
+1、2026届获得本科及以上学历，计算机、软件工程等相关专业；
+2、掌握扎实的计算机基础知识，深入理解数据结构、算法和操作系统知识，熟悉Redis、MySQL、NoSQL等消息队列等常用组件；
+3、掌握Web后端开发技术：协议、架构、存储、缓存、安全等；
+4、有良好的设计能力，对代码有追求，精通至少一门开发语言（Golang、Python、Java、C/C++等），对语言特性有较好的理解；
+5、较好的产品意识，愿意将产品效果作为工作最重要的驱动因素；
+6、具备良好的沟通能力、责任心及团队合作精神，有较强的分析和解决问题能力"""
 
 # 结果写入路径
 OUTPUT_JSON_PATH = "/home/zhenghong/hku_semester1/NLP/nlp_project/json_output/exp_cosine_rank_result.json"
@@ -142,10 +146,11 @@ def build_block_title_text(item: Dict[str, Any], section: str) -> Tuple[str, str
 def embed_texts(client: OpenAI, texts: List[str], model: str) -> np.ndarray:
     if not texts:
         return np.zeros((0, 1), dtype="float32")
-    resp = client.embeddings.create(model=model, input=texts)
+    resp = client.embeddings.create(model=model, input=texts, dimensions=512) # embedding dim
     vecs = [d.embedding for d in resp.data]
     arr = np.array(vecs, dtype="float32")
     norms = np.linalg.norm(arr, axis=1, keepdims=True) + 1e-12
+    print("Embedding shape:", arr.shape)
     return arr / norms
 
 def cosine_scores(q: np.ndarray, M: np.ndarray) -> np.ndarray:
