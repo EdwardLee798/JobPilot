@@ -2,12 +2,41 @@
   "results": [
     {
       "sorted_blocks": [
-        "exp-1 score=0.552096",
-        "exp-6 score=0.519995",
-        "exp-3 score=0.518515",
-        "exp-5 score=0.480862",
-        "exp-2 score=0.437187",
-        "exp-4 score=0.372735"
+        {
+          "block_id": "exp-1",
+          "name": "Backend Development Intern",
+          "score": 0.639626
+        },
+        {
+          "block_id": "exp-6",
+          "name": "Weibo Short URL System",
+          "score": 0.596094
+        },
+        {
+          "block_id": "exp-3",
+          "name": "Rail Ticketing System",
+          "score": 0.575812
+        },
+        {
+          "block_id": "exp-5",
+          "name": "Multiplayer Online Minesweeper Game",
+          "score": 0.559058
+        },
+        {
+          "block_id": "exp-2",
+          "name": "Path Explosion Mitigation in Software Model Checking via Large Block Encoding (LBE)",
+          "score": 0.463008
+        },
+        {
+          "block_id": "act-1",
+          "name": "Mental Health Representative",
+          "score": 0.456403
+        },
+        {
+          "block_id": "exp-4",
+          "name": "Smart Home Desk Lamp Based on STM32",
+          "score": 0.448554
+        }
       ],
       "reordered_resume": {
         "user_id": "",
