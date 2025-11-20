@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobPilot - 智能求职助手</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JobPilot</h1>
+            <p class="subtitle">智能求职助手 - 简历解析 | 智能优化 | 自动投递 | 进度管理</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="resume-parser">简历解析</button>
+            <button class="tab-btn" data-tab="resume-optimizer">简历优化</button>
+            <button class="tab-btn" data-tab="auto-apply">自动投递</button>
+            <button class="tab-btn" data-tab="status-tracking">进度管理</button>
+        </nav>
+
+        <!-- 简历解析Tab -->
+        <div id="resume-parser" class="tab-content active">
+            <h2>简历解析</h2>
+            <div class="section">
+                <h3>上传简历</h3>
+                <div class="upload-area">
+                    <input type="file" id="resumeFile" accept=".pdf,.docx,.txt">
+                    <button id="uploadBtn" class="btn btn-primary">上传并解析</button>
+                </div>
+                <div id="uploadStatus" class="status-message"></div>
+            </div>
+
+            <div class="section">
+                <h3>已解析的简历</h3>
+                <div id="resumeList" class="resume-list"></div>
+            </div>
+
+            <div class="section" id="resumeDetailSection" style="display: none;">
+                <h3>简历详情</h3>
+                <div id="resumeDetail" class="resume-detail"></div>
+            </div>
+        </div>
+
+        <!-- 简历优化Tab -->
+        <div id="resume-optimizer" class="tab-content">
+            <h2>简历优化</h2>
+            <div class="section">
+                <h3>选择简历</h3>
+                <select id="optimizeResumeSelect" class="form-control">
+                    <option value="">-- 请先上传简历 --</option>
+                </select>
+            </div>
+
+            <div class="section">
+                <h3>输入职位描述（JD）</h3>
+                <textarea id="jdText" class="form-control" rows="8"
+                    placeholder="请粘贴目标职位的职位描述..."></textarea>
+            </div>
+
+            <div class="section">
+                <button id="analyzeBtn" class="btn btn-primary">分析匹配度</button>
+                <button id="generateBtn" class="btn btn-success">生成优化简历</button>
+            </div>
+
+            <div id="optimizeStatus" class="status-message"></div>
+
+            <div class="section" id="matchResultSection" style="display: none;">
+                <h3>匹配分析结果</h3>
+                <div id="matchResult"></div>
+            </div>
+
+            <div class="section" id="generatedSection" style="display: none;">
+                <h3>生成的简历</h3>
+                <div id="generatedResume">
+                    <p>简历已生成！</p>
+                    <button id="downloadBtn" class="btn btn-success">下载PDF简历</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 自动投递Tab -->
+        <div id="auto-apply" class="tab-content">
+            <h2>自动投递</h2>
+
+            <div class="section warning-box" style="background: #fff3cd; border-color: #ffc107;">
+                <h3>⚠️ 功能说明</h3>
+                <p style="margin-bottom: 10px; color: #856404; font-weight: bold;">
+                    该功能需要额外配置，目前暂未启用。其他功能（简历解析、简历优化、进度管理）均可正常使用。
+                </p>
+                <p style="color: #856404; margin-bottom: 10px;"><strong>如需使用自动投递功能，需要：</strong></p>
+                <ul>
+                    <li>安装 Java 21+ 运行环境</li>
+                    <li>配置并启动 Func2_AutoApplication 服务</li>
+                    <li>详细配置方法请参考项目根目录的文档</li>
+                </ul>
+                <p style="margin-top: 10px; color: #856404;">
+                    <strong>建议：</strong>在没有自动投递的情况下，您可以：
+                    1) 使用"简历优化"生成针对性简历
+                    2) 手动投递到招聘平台
+                    3) 使用"进度管理"记录投递状态
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>投递配置</h3>
+                <div class="form-group">
+                    <label>选择简历：</label>
+                    <select id="applyResumeSelect" class="form-control">
+                        <option value="">-- 请选择 --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>投递平台：</label>
+                    <select id="platformSelect" class="form-control">
+                        <option value="boss">Boss直聘</option>
+                        <option value="liepin">猎聘</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>搜索关键词：</label>
+                    <input type="text" id="keywords" class="form-control"
+                        placeholder="如：Java开发, Python工程师（逗号分隔）">
+                </div>
+
+                <div class="form-group">
+                    <label>目标城市：</label>
+                    <input type="text" id="cities" class="form-control"
+                        placeholder="如：北京, 上海, 深圳（逗号分隔）">
+                </div>
+            </div>
+
+            <div class="section">
+                <button id="startApplyBtn" class="btn btn-primary">启动投递</button>
+                <button id="stopApplyBtn" class="btn btn-danger" disabled>停止投递</button>
+            </div>
+
+            <div id="applyStatus" class="status-message"></div>
+
+            <div class="section" id="applyProgressSection" style="display: none;">
+                <h3>投递进度</h3>
+                <div id="applyProgress">
+                    <p>已投递：<span id="completedCount">0</span></p>
+                    <p>失败：<span id="failedCount">0</span></p>
+                    <p>当前：<span id="currentJob">-</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 进度管理Tab -->
+        <div id="status-tracking" class="tab-content">
+            <h2>投递进度管理</h2>
+
+            <div class="section">
+                <button id="addJobBtn" class="btn btn-primary">+ 添加新投递</button>
+                <button id="refreshBtn" class="btn btn-secondary">刷新</button>
+            </div>
+
+            <div class="section">
+                <h3>统计信息</h3>
+                <div id="statsPanel" class="stats-panel">
+                    <div class="stat-item">
+                        <span class="stat-label">总投递数</span>
+                        <span class="stat-value" id="totalJobs">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>投递记录</h3>
+                <div id="jobList" class="job-list"></div>
+            </div>
+        </div>
+
+        <!-- 添加投递模态框 -->
+        <div id="addJobModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>添加新投递记录</h3>
+                <form id="addJobForm">
+                    <div class="form-group">
+                        <label>公司名称：</label>
+                        <input type="text" id="modalCompany" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>职位名称：</label>
+                        <input type="text" id="modalJobTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>职位描述：</label>
+                        <textarea id="modalJobDesc" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>跟进方式：</label>
+                        <input type="text" id="modalTracking" class="form-control"
+                            placeholder="如：邮箱、手机号等">
+                    </div>
+                    <button type="submit" class="btn btn-success">添加</button>
+                    <button type="button" class="btn btn-secondary" id="modalCancelBtn">取消</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

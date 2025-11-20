@@ -1,0 +1,109 @@
+{
+  "user_id": "",
+  "name": "李承泽",
+  "headline": "Data Scientist & Algorithm Engineer | E-commerce & Healthcare AI",
+  "contacts": {
+    "email": "chengze.li@example.com",
+    "phone": "138-0000-1212",
+    "wechat": "",
+    "github": "github.com/lcz-datasci"
+  },
+  "summary": "生物医学工程专业本科生，具备扎实的数据科学与算法工程能力，专注于电商智能选品、多模态内容理解及医疗风险预测等场景。在阿里巴巴和字节跳动拥有数据科学与分析实习经验，主导多个ETL、指标体系搭建、AI建模与AB实验项目。具备全流程项目经验，涵盖特征工程、模型开发、系统部署与可视化。熟练掌握Python、SQL、机器学习与多模态分析技术，擅长从复杂数据中提取业务洞察。",
+  "education": [
+    {
+      "school": "四川大学 华西医学院",
+      "degree": "Bachelor of Engineering",
+      "major": "生物医学工程",
+      "start": "2021.09",
+      "end": "2025.06",
+      "note": "GPA：3.72/4.0（专业前 10%）"
+    }
+  ],
+  "experience": [
+    {
+      "type": "internship",
+      "name": "数据基建与选品指标体系搭建",
+      "location": "阿里巴巴国际数字商业集团, 数字零售技术部",
+      "title": "数据科学实习生",
+      "role": "Data Scientist Intern",
+      "period": "2025.06~2025.09",
+      "description": "负责Aliexpress竞手电商数据的ETL处理，建立商品宽表与维表，并搭建竞争雷达仪表盘，累计调用次数超1000次。构建基于供给、需求波动与竞争维度的选品指标体系，包括动销商品数、高价率、MAC渗透率等核心指标。通过文本挖掘竞对商品详情页与用户评论，支持商品选款决策。设计并实现单Agent、MultiAgent与WebSearch Agent链路，自动化挖掘350+二级类目的种子KOL博主，准确率提升30%。利用Python与AI基模对Instagram视频、音频、评论进行多模态分析，完成商品实体、卖点提取与情感分类，独立部署AI Agent，成功提取4000+社媒帖子的电商标签，覆盖3个垂直赛道。"
+    },
+    {
+      "type": "internship",
+      "name": "活动监控与GMV预测建模",
+      "location": "字节跳动中国电商, 市场营销部",
+      "title": "数据分析实习生",
+      "role": "Data Analyst Intern",
+      "period": "2025.02~2025.06",
+      "description": "基于用户购买行为链路构建活动复盘与业绩监控指标体系，搭建日常及618大促期间的监控仪表盘，累计PV达5000+。完成抖音电商大盘GMV分布与商家经营复盘，拆解北极星指标增长贡献，制定9种增长策略并推动落地。使用Python清洗与处理数据，为1800+二级类目分别建立Prophet时间序列模型，预测618 GMV与内容PV增长，MAPE控制在20%-80%区间，结合可视化输出分阶段类目推荐。参与优惠券对人均GMV影响的AB实验，从商品与用户维度下钻分析，针对弱显著结果撰写复盘报告，提出迭代建议。"
+    },
+    {
+      "type": "research",
+      "name": "术中血压管理与PO-AKI相关性研究",
+      "location": "四川大学华西医学院, 医疗AI研究项目",
+      "title": "Research Assistant",
+      "role": "Research Assistant",
+      "period": "2024.08~2025.01",
+      "description": "使用SQL与Python处理亿级生命体征数据，完成数据清洗与管理。采用IV值与Lasso回归进行特征降维，筛选出42个关键输入特征。优化缺失值处理策略，通过调整分箱方式计算WOE值，提升模型可解释性。开发基于逻辑回归的术后急性肾损伤（PO-AKI）风险预测模型，独立完成标签定义、人群纳排、特征工程、风险分层、模型训练与评估全流程，最终模型AUC达到84%。"
+    },
+    {
+      "type": "project",
+      "name": "跨境电商智能选品决策平台",
+      "location": "Personal Project",
+      "title": "Developer",
+      "role": "Full-stack Data Developer",
+      "period": "2024.03~Present",
+      "description": "设计并实现端到端的智能选品系统，支持类目洞察、选品推荐与竞品监控自动化。构建包含文本、价格、属性、评论等80+维度的商品特征向量体系，基于LightGBM训练热销商品预测模型，AUC达0.89。设计选品雷达与类目竞争指数（CCI），融合供应链稳定性、需求波动度与竞品强度三大维度。实现‘竞品新爆品监控’自动化任务，每日更新5万SKU，识别增长异常商品并推送至运营团队，提升选品效率。"
+    },
+    {
+      "type": "project",
+      "name": "多模态社媒内容理解系统 2.0",
+      "location": "Personal Project",
+      "title": "Developer",
+      "role": "Multimodal AI Developer",
+      "period": "2025.01~Present",
+      "description": "在阿里实习项目基础上扩展，构建更完善的多模态内容理解框架。集成CLIP、Whisper与LLaMA模型，从视频帧、音频字幕与评论文本生成统一embedding，用于分类与标签生成。设计‘场景—商品—卖点’结构化图谱，使分析结果可用于广告投放、达人匹配与商家选款。引入SHAP可解释性模块，量化不同模态对标签生成的贡献度，增强业务方对模型的信任。"
+    },
+    {
+      "type": "project",
+      "name": "PO-AKI 医疗风险可解释性分析系统",
+      "location": "Personal Research Extension",
+      "title": "Developer",
+      "role": "Healthcare AI Developer",
+      "period": "2024.10~Present",
+      "description": "开发患者动态生命体征曲线的异常检测模块，结合LOF与Dynamic Time Warping算法识别异常模式。使用K-Means对术中状态聚类，发现3类高风险患者模式，供临床参考。基于Python Dash搭建交互式可视化原型系统，支持风险趋势、特征变化与术中事件的联动展示，提升医生理解与决策效率。"
+    }
+  ],
+  "skills": [
+    "Python",
+    "SQL",
+    "R",
+    "Airflow",
+    "ETL",
+    "特征工程",
+    "时间序列",
+    "逻辑回归",
+    "文本挖掘",
+    "多模态分析",
+    "Tableau",
+    "Power BI",
+    "Linux",
+    "Git"
+  ],
+  "activities": [
+    {
+      "org": "四川大学 数据科学协会",
+      "role": "副会长",
+      "period": "2023.09~2024.06",
+      "description": "管理协会180+成员，主导课程体系从基础技能培训升级为项目驱动模式。发起并组织‘Data Sprint’校级数据马拉松，吸引参赛者超800人，联合阿里巴巴与字节跳动提供真实业务赛题。指导成员完成6个行业实战项目，涵盖电商预测、评论情感分析与医疗诊断，培养出10名以上项目负责人。"
+    },
+    {
+      "org": "四川大学 创新创业中心",
+      "role": "技术负责人",
+      "period": "2022.09~2023.06",
+      "description": "带领团队开发医学影像语义分割Demo，构建U-Net模型处理CT与超声图像，Dice系数达0.86。协调校医院合作推进医学AI项目立项，并完成伦理审批流程。主持校级创新训练项目并通过验收，获二等奖，项目成果被纳入中心展示案例库。"
+    }
+  ],
+  "certifications": []
+}

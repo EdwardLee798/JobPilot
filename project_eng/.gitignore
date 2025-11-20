@@ -1,0 +1,46 @@
+# Python
+venv/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# 数据文件（简历和生成的文件可能很大）
+backend/data/resumes/*
+backend/data/generated/*
+backend/data/database/*.db
+backend/data/database/*.db-journal
+
+# 保留目录结构
+!backend/data/resumes/.gitkeep
+!backend/data/generated/.gitkeep
+!backend/data/database/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 日志
+*.log
+
+# 环境变量
+.env
+.env.local
+
+# Node（如果有前端构建）
+node_modules/
+npm-debug.log
+
+# 操作系统
+Thumbs.db
+.DS_Store
