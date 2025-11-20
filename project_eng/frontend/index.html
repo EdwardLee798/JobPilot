@@ -23,15 +23,66 @@
         <!-- 简历解析Tab -->
         <div id="resume-parser" class="tab-content active">
             <h2>简历解析</h2>
-            <div class="section">
-                <h3>上传简历</h3>
-                <div class="upload-area">
-                    <input type="file" id="resumeFile" accept=".pdf,.docx,.txt">
-                    <button id="uploadBtn" class="btn btn-primary">上传并解析</button>
+
+            <!-- 模式选择 -->
+            <div class="section mode-selection">
+                <div class="mode-buttons">
+                    <button id="uploadModeBtn" class="mode-btn active">
+                        <span class="mode-icon">📄</span>
+                        <div>
+                            <strong>上传简历</strong>
+                            <p>我已有简历文件</p>
+                        </div>
+                    </button>
+                    <button id="chatModeBtn" class="mode-btn">
+                        <span class="mode-icon">💬</span>
+                        <div>
+                            <strong>对话生成</strong>
+                            <p>通过对话创建简历</p>
+                        </div>
+                    </button>
                 </div>
-                <div id="uploadStatus" class="status-message"></div>
             </div>
 
+            <!-- 上传模式 -->
+            <div id="uploadMode" class="resume-mode">
+                <div class="section">
+                    <h3>上传简历</h3>
+                    <div class="upload-area">
+                        <input type="file" id="resumeFile" accept=".pdf,.docx,.txt">
+                        <button id="uploadBtn" class="btn btn-primary">上传并解析</button>
+                    </div>
+                    <div id="uploadStatus" class="status-message"></div>
+                </div>
+            </div>
+
+            <!-- 对话模式 -->
+            <div id="chatMode" class="resume-mode" style="display: none;">
+                <div class="section">
+                    <h3>智能简历助手</h3>
+                    <div class="chat-container">
+                        <div id="chatMessages" class="chat-messages"></div>
+                        <div class="chat-progress">
+                            <div class="progress-bar">
+                                <div id="chatProgressBar" class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span id="chatProgressText">完成度: 0%</span>
+                        </div>
+                        <div class="chat-input-area">
+                            <textarea id="chatInput" class="chat-input" rows="3"
+                                placeholder="在这里输入回答..."></textarea>
+                            <div class="chat-actions">
+                                <button id="chatSendBtn" class="btn btn-primary">发送</button>
+                                <button id="chatFinishBtn" class="btn btn-success" style="display: none;">完成生成</button>
+                                <button id="chatResetBtn" class="btn btn-secondary">重新开始</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chatStatus" class="status-message"></div>
+                </div>
+            </div>
+
+            <!-- 已解析的简历 -->
             <div class="section">
                 <h3>已解析的简历</h3>
                 <div id="resumeList" class="resume-list"></div>

@@ -587,3 +587,234 @@ document.getElementById('addJobForm').addEventListener('submit', async (e) => {
 
 // 初始化
 loadResumeList();
+
+// ========== 对话式简历生成 ==========
+
+let chatSessionId = null;
+let chatCompletionPercentage = 0;
+
+// 模式切换
+document.getElementById('uploadModeBtn').addEventListener('click', () => {
+    document.getElementById('uploadModeBtn').classList.add('active');
+    document.getElementById('chatModeBtn').classList.remove('active');
+    document.getElementById('uploadMode').style.display = 'block';
+    document.getElementById('chatMode').style.display = 'none';
+});
+
+document.getElementById('chatModeBtn').addEventListener('click', () => {
+    document.getElementById('chatModeBtn').classList.add('active');
+    document.getElementById('uploadModeBtn').classList.remove('active');
+    document.getElementById('chatMode').style.display = 'block';
+    document.getElementById('uploadMode').style.display = 'none';
+
+    // 如果还没有会话，自动启动
+    if (!chatSessionId) {
+        startChatSession();
+    }
+});
+
+// 启动对话会话
+async function startChatSession() {
+    try {
+        showMessage('chatStatus', '正在启动智能助手...', 'info');
+
+        const response = await fetch(`${API_BASE}/resume/interactive/start`, {
+            method: 'POST'
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            chatSessionId = result.session_id;
+            addChatMessage('assistant', result.question);
+            showMessage('chatStatus', '已启动对话，请开始回答问题', 'success');
+            document.getElementById('chatInput').focus();
+        } else {
+            showMessage('chatStatus', result.error || '启动失败', 'error');
+        }
+    } catch (error) {
+        showMessage('chatStatus', '启动失败: ' + error.message, 'error');
+    }
+}
+
+// 添加聊天消息
+function addChatMessage(role, text) {
+    const messagesEl = document.getElementById('chatMessages');
+    const messageEl = document.createElement('div');
+    messageEl.className = `chat-message ${role}`;
+
+    const avatarEl = document.createElement('div');
+    avatarEl.className = 'message-avatar';
+    avatarEl.textContent = role === 'assistant' ? '🤖' : '👤';
+
+    const bubbleEl = document.createElement('div');
+    bubbleEl.className = 'message-bubble';
+    bubbleEl.textContent = text;
+
+    messageEl.appendChild(avatarEl);
+    messageEl.appendChild(bubbleEl);
+
+    messagesEl.appendChild(messageEl);
+
+    // 滚动到底部
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+// 更新进度
+function updateChatProgress(percentage) {
+    chatCompletionPercentage = percentage;
+    document.getElementById('chatProgressBar').style.width = `${percentage}%`;
+    document.getElementById('chatProgressText').textContent = `完成度: ${percentage}%`;
+
+    // 如果完成度高，显示完成按钮
+    if (percentage >= 80) {
+        document.getElementById('chatFinishBtn').style.display = 'inline-block';
+    } else {
+        document.getElementById('chatFinishBtn').style.display = 'none';
+    }
+}
+
+// 发送消息
+document.getElementById('chatSendBtn').addEventListener('click', async () => {
+    await sendChatMessage();
+});
+
+// 回车发送（Shift+Enter换行）
+document.getElementById('chatInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendChatMessage();
+    }
+});
+
+async function sendChatMessage() {
+    const inputEl = document.getElementById('chatInput');
+    const text = inputEl.value.trim();
+
+    if (!text) {
+        showMessage('chatStatus', '请输入内容', 'error');
+        return;
+    }
+
+    if (!chatSessionId) {
+        showMessage('chatStatus', '会话未启动，请稍候...', 'error');
+        await startChatSession();
+        return;
+    }
+
+    try {
+        // 显示用户消息
+        addChatMessage('user', text);
+        inputEl.value = '';
+
+        // 显示加载状态
+        showMessage('chatStatus', '助手正在思考...', 'info');
+
+        const response = await fetch(`${API_BASE}/resume/interactive/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                session_id: chatSessionId,
+                text: text
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // 显示助手回复
+            addChatMessage('assistant', result.assistant_reply);
+
+            // 更新进度
+            updateChatProgress(result.completion_percentage || 0);
+
+            // 检查是否完成
+            if (result.is_complete) {
+                showMessage('chatStatus', '✅ 简历信息已收集完整！可以点击"完成生成"按钮。', 'success');
+            } else {
+                showMessage('chatStatus', '', 'info');
+            }
+        } else {
+            showMessage('chatStatus', result.error || '发送失败', 'error');
+        }
+    } catch (error) {
+        showMessage('chatStatus', '发送失败: ' + error.message, 'error');
+    }
+}
+
+// 完成生成
+document.getElementById('chatFinishBtn').addEventListener('click', async () => {
+    if (!chatSessionId) {
+        showMessage('chatStatus', '没有进行中的会话', 'error');
+        return;
+    }
+
+    if (!confirm('确定完成简历生成吗？')) {
+        return;
+    }
+
+    try {
+        showMessage('chatStatus', '正在生成简历...', 'info');
+
+        const response = await fetch(`${API_BASE}/resume/interactive/finalize`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                session_id: chatSessionId
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showMessage('chatStatus', '✅ ' + result.message, 'success');
+            addChatMessage('assistant', '简历已生成完毕！你可以在"已解析的简历"中查看。');
+
+            // 清理会话
+            chatSessionId = null;
+            updateChatProgress(100);
+
+            // 刷新简历列表
+            setTimeout(() => {
+                loadResumeList();
+            }, 500);
+        } else {
+            showMessage('chatStatus', result.error || '生成失败', 'error');
+        }
+    } catch (error) {
+        showMessage('chatStatus', '生成失败: ' + error.message, 'error');
+    }
+});
+
+// 重新开始
+document.getElementById('chatResetBtn').addEventListener('click', async () => {
+    if (!confirm('确定要重新开始吗？当前的对话内容将丢失。')) {
+        return;
+    }
+
+    try {
+        // 重置会话
+        if (chatSessionId) {
+            await fetch(`${API_BASE}/resume/interactive/reset`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: chatSessionId
+                })
+            });
+        }
+
+        // 清空UI
+        document.getElementById('chatMessages').innerHTML = '';
+        document.getElementById('chatInput').value = '';
+        updateChatProgress(0);
+
+        // 重新启动
+        chatSessionId = null;
+        await startChatSession();
+
+        showMessage('chatStatus', '已重新开始', 'success');
+    } catch (error) {
+        showMessage('chatStatus', '重置失败: ' + error.message, 'error');
+    }
+});

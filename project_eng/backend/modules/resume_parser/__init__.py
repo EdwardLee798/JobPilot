@@ -1,15 +1,21 @@
 """
 简历解析模块 - 整合 Func1 功能
-提供简历上传、解析和信息提取API
+提供简历上传、解析和信息提取API，以及对话式简历生成
 """
 
-from flask import Blueprint, request, jsonify, send_file
+from flask import Blueprint, request, jsonify, send_file, session
 from werkzeug.utils import secure_filename
 import os
 import json
 import uuid
 from datetime import datetime
 from .parser import parse_resume, extract_resume_info, save_resume_json
+from .interactive_builder import (
+    get_initial_question,
+    process_user_input,
+    finalize_resume,
+    reset_session
+)
 
 resume_parser_bp = Blueprint('resume_parser', __name__)
 
@@ -131,3 +137,115 @@ def delete_resume(resume_id):
         return jsonify({'success': True, 'message': '删除成功'})
     except Exception as e:
         return jsonify({'error': f'删除失败: {str(e)}'}), 500
+
+
+# ========== 对话式简历生成 ==========
+
+@resume_parser_bp.route('/interactive/start', methods=['POST'])
+def start_interactive_session():
+    """启动对话式简历生成会话"""
+    try:
+        # 生成会话ID
+        session_id = str(uuid.uuid4())
+
+        # 获取初始问题
+        initial_question = get_initial_question()
+
+        return jsonify({
+            'success': True,
+            'session_id': session_id,
+            'question': initial_question
+        })
+    except Exception as e:
+        return jsonify({'error': f'启动会话失败: {str(e)}'}), 500
+
+
+@resume_parser_bp.route('/interactive/chat', methods=['POST'])
+def interactive_chat():
+    """处理对话式简历生成的用户输入"""
+    try:
+        data = request.get_json()
+        session_id = data.get('session_id')
+        user_text = data.get('text', '')
+
+        if not session_id:
+            return jsonify({'error': '缺少session_id'}), 400
+
+        # 处理文件上传（可选）
+        file_content = ""
+        if 'file' in request.files:
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                # 临时保存文件并解析
+                temp_path = os.path.join(RESUME_DIR, f"temp_{session_id}.{file.filename.rsplit('.', 1)[1]}")
+                file.save(temp_path)
+                file_content = parse_resume(temp_path)
+                os.remove(temp_path)  # 删除临时文件
+
+        # 处理用户输入
+        result = process_user_input(session_id, user_text, file_content)
+
+        return jsonify({
+            'success': True,
+            'assistant_reply': result['assistant_reply'],
+            'is_complete': result['is_complete'],
+            'completion_percentage': result['completion_percentage'],
+            'missing_fields': result['missing_fields']
+        })
+    except Exception as e:
+        return jsonify({'error': f'处理输入失败: {str(e)}'}), 500
+
+
+@resume_parser_bp.route('/interactive/finalize', methods=['POST'])
+def finalize_interactive_resume():
+    """完成对话式简历生成并保存"""
+    try:
+        data = request.get_json()
+        session_id = data.get('session_id')
+
+        if not session_id:
+            return jsonify({'error': '缺少session_id'}), 400
+
+        # 获取最终简历
+        profile = finalize_resume(session_id)
+
+        if not profile:
+            return jsonify({'error': '会话不存在或已过期'}), 404
+
+        # 生成简历ID并保存
+        resume_id = str(uuid.uuid4())
+        timestamp = datetime.now().isoformat()
+
+        resume_data = {
+            'resume_id': resume_id,
+            'timestamp': timestamp,
+            'source': 'interactive',
+            **profile
+        }
+
+        # 保存JSON
+        json_path = os.path.join(RESUME_DIR, f"{resume_id}.json")
+        save_resume_json(resume_data, json_path)
+
+        return jsonify({
+            'success': True,
+            'resume_id': resume_id,
+            'message': '简历生成成功！'
+        })
+    except Exception as e:
+        return jsonify({'error': f'保存简历失败: {str(e)}'}), 500
+
+
+@resume_parser_bp.route('/interactive/reset', methods=['POST'])
+def reset_interactive_session():
+    """重置对话式简历生成会话"""
+    try:
+        data = request.get_json()
+        session_id = data.get('session_id')
+
+        if session_id:
+            reset_session(session_id)
+
+        return jsonify({'success': True, 'message': '会话已重置'})
+    except Exception as e:
+        return jsonify({'error': f'重置失败: {str(e)}'}), 500

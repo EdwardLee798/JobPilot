@@ -1,6 +1,7 @@
 """
 Func2 Java服务管理器
 负责启动、停止和检查Java自动投递服务
+跨平台支持：Windows/macOS/Linux
 """
 
 import subprocess
@@ -10,15 +11,29 @@ import os
 import json
 import signal
 import sqlite3
+import sys
+import platform
 from pathlib import Path
 
-# Func2项目路径
-FUNC2_DIR = Path("/Users/zijiancai/Desktop/hkucsfiles/comp7607/JobPilot/Func2_AutoApplication")
+# 检测操作系统
+IS_WINDOWS = platform.system() == 'Windows'
+
+# Func2项目路径 - 使用相对路径（跨平台）
+# 从当前文件位置向上4层，然后进入Func2_AutoApplication
+CURRENT_FILE = Path(__file__).resolve()
+PROJECT_ROOT = CURRENT_FILE.parent.parent.parent.parent.parent
+FUNC2_DIR = PROJECT_ROOT / "Func2_AutoApplication"
+
 FUNC2_DB = FUNC2_DIR / "db" / "getjobs.db"
 CONFIG_SCRIPT = FUNC2_DIR / "config_from_json.py"
 JAVA_SERVICE_PORT = 8888
 JAVA_SERVICE_URL = f"http://localhost:{JAVA_SERVICE_PORT}"
-PID_FILE = "/tmp/jobpilot_java_service.pid"
+
+# PID文件路径 - 跨平台
+if IS_WINDOWS:
+    PID_FILE = Path(os.getenv('TEMP', 'C:\\Temp')) / "jobpilot_java_service.pid"
+else:
+    PID_FILE = Path("/tmp/jobpilot_java_service.pid")
 
 
 def check_service_status():
@@ -32,22 +47,44 @@ def check_service_status():
 
 
 def start_service():
-    """启动Java服务"""
+    """启动Java服务 - 跨平台实现"""
     if check_service_status():
         return {"success": True, "message": "服务已在运行"}
 
     try:
-        # 使用job-app.sh启动服务
-        job_app_script = FUNC2_DIR / "job-app.sh"
-
-        # 后台启动服务
-        process = subprocess.Popen(
-            [str(job_app_script), "start"],
-            cwd=str(FUNC2_DIR),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            start_new_session=True
-        )
+        # 根据操作系统选择启动命令
+        if IS_WINDOWS:
+            # Windows: 使用gradlew.bat
+            gradlew_cmd = str(FUNC2_DIR / "gradlew.bat")
+            # Windows下需要使用shell=True或完整路径
+            process = subprocess.Popen(
+                [gradlew_cmd, "bootRun"],
+                cwd=str(FUNC2_DIR),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if IS_WINDOWS else 0,
+                shell=False
+            )
+        else:
+            # Unix: 使用job-app.sh或gradlew
+            job_app_script = FUNC2_DIR / "job-app.sh"
+            if job_app_script.exists():
+                process = subprocess.Popen(
+                    [str(job_app_script), "start"],
+                    cwd=str(FUNC2_DIR),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    start_new_session=True
+                )
+            else:
+                # 备用方案：直接使用gradlew
+                process = subprocess.Popen(
+                    ["./gradlew", "bootRun"],
+                    cwd=str(FUNC2_DIR),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    start_new_session=True
+                )
 
         # 保存PID
         with open(PID_FILE, 'w') as f:
@@ -69,8 +106,53 @@ def start_service():
         return {"success": False, "error": f"启动失败: {str(e)}"}
 
 
+def find_process_by_port(port):
+    """跨平台查找占用指定端口的进程PID"""
+    try:
+        import psutil
+        for proc in psutil.process_iter(['pid', 'name', 'connections']):
+            try:
+                connections = proc.connections()
+                for conn in connections:
+                    if hasattr(conn, 'laddr') and conn.laddr.port == port:
+                        return proc.pid
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+    except ImportError:
+        # 如果没有psutil，尝试使用系统命令
+        if IS_WINDOWS:
+            # Windows: 使用netstat
+            try:
+                result = subprocess.run(
+                    ["netstat", "-ano"],
+                    capture_output=True,
+                    text=True,
+                    timeout=5
+                )
+                for line in result.stdout.split('\n'):
+                    if f':{port}' in line and 'LISTENING' in line:
+                        parts = line.split()
+                        return int(parts[-1])
+            except:
+                pass
+        else:
+            # Unix: 使用lsof
+            try:
+                result = subprocess.run(
+                    ["lsof", "-ti", f":{port}"],
+                    capture_output=True,
+                    text=True,
+                    timeout=5
+                )
+                if result.stdout.strip():
+                    return int(result.stdout.strip())
+            except:
+                pass
+    return None
+
+
 def stop_service():
-    """停止Java服务"""
+    """停止Java服务 - 跨平台实现"""
     try:
         # 先停止所有投递任务（这会关闭浏览器窗口）
         if check_service_status():
@@ -86,25 +168,29 @@ def stop_service():
             except Exception as e:
                 print(f"停止投递任务出错: {e}")
 
-        # 找到并kill Java进程
+        # 找到并停止Java进程 - 跨平台方式
         try:
-            result = subprocess.run(
-                ["lsof", "-ti", f":{JAVA_SERVICE_PORT}"],
-                capture_output=True,
-                text=True,
-                timeout=5
-            )
+            pid = find_process_by_port(JAVA_SERVICE_PORT)
 
-            if result.stdout.strip():
-                pid = result.stdout.strip()
+            if pid:
                 print(f"正在停止Java服务 (PID: {pid})...")
-                subprocess.run(["kill", pid], timeout=5)
-                time.sleep(1)  # 等待进程退出
+                try:
+                    import psutil
+                    proc = psutil.Process(pid)
+                    proc.terminate()  # 优雅停止
+                    proc.wait(timeout=5)  # 等待进程退出
+                except ImportError:
+                    # 没有psutil，使用系统命令
+                    if IS_WINDOWS:
+                        subprocess.run(["taskkill", "/F", "/PID", str(pid)], timeout=5)
+                    else:
+                        subprocess.run(["kill", str(pid)], timeout=5)
+                    time.sleep(1)
             else:
                 print("未找到运行中的Java服务")
 
         except Exception as e:
-            print(f"Kill进程失败: {e}")
+            print(f"停止进程失败: {e}")
 
         # 删除PID文件
         if os.path.exists(PID_FILE):
