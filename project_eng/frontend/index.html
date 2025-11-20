@@ -84,23 +84,30 @@
         <div id="auto-apply" class="tab-content">
             <h2>自动投递</h2>
 
-            <div class="section warning-box" style="background: #fff3cd; border-color: #ffc107;">
-                <h3>⚠️ 功能说明</h3>
-                <p style="margin-bottom: 10px; color: #856404; font-weight: bold;">
-                    该功能需要额外配置，目前暂未启用。其他功能（简历解析、简历优化、进度管理）均可正常使用。
+            <div class="section">
+                <h3>服务状态</h3>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span id="serviceStatus" style="padding: 8px 16px; border-radius: 4px; background: #e0e0e0;">
+                        检查中...
+                    </span>
+                    <button id="startServiceBtn" class="btn btn-success">启动服务</button>
+                    <button id="stopServiceBtn" class="btn btn-danger" disabled>停止服务</button>
+                    <button id="checkServiceBtn" class="btn btn-secondary">检查状态</button>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                    首次使用需要启动Java服务（约需15-30秒）
                 </p>
-                <p style="color: #856404; margin-bottom: 10px;"><strong>如需使用自动投递功能，需要：</strong></p>
+            </div>
+
+            <div class="section warning-box">
+                <h3>⚠️ 使用须知</h3>
                 <ul>
-                    <li>安装 Java 21+ 运行环境</li>
-                    <li>配置并启动 Func2_AutoApplication 服务</li>
-                    <li>详细配置方法请参考项目根目录的文档</li>
+                    <li>自动投递功能需要Java运行环境（已检测到 Java 21）</li>
+                    <li>首次使用需要手动登录招聘平台</li>
+                    <li>遇到验证码时需要手动处理</li>
+                    <li>建议先优化简历后再进行投递</li>
+                    <li>投递过程中会自动打开浏览器窗口，请勿关闭</li>
                 </ul>
-                <p style="margin-top: 10px; color: #856404;">
-                    <strong>建议：</strong>在没有自动投递的情况下，您可以：
-                    1) 使用"简历优化"生成针对性简历
-                    2) 手动投递到招聘平台
-                    3) 使用"进度管理"记录投递状态
-                </p>
             </div>
 
             <div class="section">

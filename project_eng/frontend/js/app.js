@@ -273,9 +273,96 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
 
 // ========== 自动投递 ==========
 
+// 检查服务状态
+async function checkServiceStatus() {
+    try {
+        const response = await fetch(`${API_BASE}/apply/status`);
+        const result = await response.json();
+
+        const statusEl = document.getElementById('serviceStatus');
+        if (result.status === 'running') {
+            statusEl.textContent = '✅ 服务运行中';
+            statusEl.style.background = '#d4edda';
+            statusEl.style.color = '#155724';
+            document.getElementById('startServiceBtn').disabled = true;
+            document.getElementById('stopServiceBtn').disabled = false;
+        } else {
+            statusEl.textContent = '⚠️ 服务未启动';
+            statusEl.style.background = '#fff3cd';
+            statusEl.style.color = '#856404';
+            document.getElementById('startServiceBtn').disabled = false;
+            document.getElementById('stopServiceBtn').disabled = true;
+        }
+    } catch (error) {
+        console.error('检查服务状态失败:', error);
+    }
+}
+
+// 启动服务
+document.getElementById('startServiceBtn').addEventListener('click', async () => {
+    try {
+        showMessage('applyStatus', '正在启动Java服务，请稍候（约15-30秒）...', 'info');
+        document.getElementById('startServiceBtn').disabled = true;
+
+        const response = await fetch(`${API_BASE}/apply/start-service`, {
+            method: 'POST'
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showMessage('applyStatus', '服务启动成功！', 'success');
+            checkServiceStatus();
+        } else {
+            showMessage('applyStatus', result.error || '启动失败', 'error');
+            document.getElementById('startServiceBtn').disabled = false;
+        }
+    } catch (error) {
+        showMessage('applyStatus', '启动失败: ' + error.message, 'error');
+        document.getElementById('startServiceBtn').disabled = false;
+    }
+});
+
+// 停止服务（停止Java服务并关闭浏览器）
+document.getElementById('stopServiceBtn').addEventListener('click', async () => {
+    if (!confirm('确定要停止服务吗？这将停止投递任务、关闭浏览器窗口并停止Java服务（需要约10秒，请耐心等待）。')) {
+        return;
+    }
+
+    try {
+        showMessage('applyStatus', '正在停止服务（约需10秒）...', 'info');
+
+        const response = await fetch(`${API_BASE}/apply/stop-service`, {
+            method: 'POST'
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            showMessage('applyStatus', '服务已停止', 'success');
+            document.getElementById('startServiceBtn').disabled = false;
+            document.getElementById('stopServiceBtn').disabled = true;
+            stopProgressPolling();
+            checkServiceStatus();
+        } else {
+            showMessage('applyStatus', result.error || '停止失败', 'error');
+        }
+    } catch (error) {
+        showMessage('applyStatus', '停止失败: ' + error.message, 'error');
+    }
+});
+
+// 检查状态按钮
+document.getElementById('checkServiceBtn').addEventListener('click', () => {
+    checkServiceStatus();
+});
+
+// 启动投递
 document.getElementById('startApplyBtn').addEventListener('click', async () => {
     const resumeId = document.getElementById('applyResumeSelect').value;
     const platform = document.getElementById('platformSelect').value;
+    const keywords = document.getElementById('keywords').value;
+    const cities = document.getElementById('cities').value;
 
     if (!resumeId) {
         showMessage('applyStatus', '请选择简历', 'error');
@@ -283,43 +370,106 @@ document.getElementById('startApplyBtn').addEventListener('click', async () => {
     }
 
     try {
-        showMessage('applyStatus', '正在启动自动投递...', 'info');
+        showMessage('applyStatus', '正在配置并启动自动投递...', 'info');
 
         const response = await fetch(`${API_BASE}/apply/start`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ resume_id: resumeId, platform: platform })
+            body: JSON.stringify({
+                resume_id: resumeId,
+                platform: platform,
+                keywords: keywords,
+                cities: cities,
+                max_count: 50
+            })
         });
 
         const result = await response.json();
 
         if (result.success) {
-            showMessage('applyStatus', result.message, 'success');
+            showMessage('applyStatus', result.message + '（浏览器窗口将自动打开）', 'success');
             document.getElementById('startApplyBtn').disabled = true;
             document.getElementById('stopApplyBtn').disabled = false;
             document.getElementById('applyProgressSection').style.display = 'block';
+            startProgressPolling();
         } else {
             showMessage('applyStatus', result.error || '启动失败', 'error');
+            if (result.help) {
+                showMessage('applyStatus', result.help, 'info');
+            }
         }
     } catch (error) {
         showMessage('applyStatus', '启动失败: ' + error.message, 'error');
     }
 });
 
+// 停止投递
 document.getElementById('stopApplyBtn').addEventListener('click', async () => {
+    if (!confirm('确定要停止当前投递任务吗？')) {
+        return;
+    }
+
     try {
-        const response = await fetch(`${API_BASE}/apply/stop`, { method: 'POST' });
+        showMessage('applyStatus', '正在停止投递...', 'info');
+
+        const platform = document.getElementById('platformSelect').value;
+        const response = await fetch(`${API_BASE}/apply/stop`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ platform: platform })
+        });
+
         const result = await response.json();
 
         if (result.success) {
-            showMessage('applyStatus', '已停止投递', 'info');
+            showMessage('applyStatus', '投递已停止', 'success');
             document.getElementById('startApplyBtn').disabled = false;
             document.getElementById('stopApplyBtn').disabled = true;
+            stopProgressPolling();
+        } else {
+            showMessage('applyStatus', result.error || '停止失败', 'error');
         }
     } catch (error) {
         showMessage('applyStatus', '停止失败: ' + error.message, 'error');
     }
 });
+
+// 进度轮询
+let progressInterval = null;
+
+async function updateProgress() {
+    try {
+        const response = await fetch(`${API_BASE}/apply/progress`);
+        const result = await response.json();
+
+        if (result.success && result.progress) {
+            const p = result.progress;
+            document.getElementById('completedCount').textContent = p.completed || 0;
+            document.getElementById('failedCount').textContent = p.failed || 0;
+            document.getElementById('currentJob').textContent = p.current || '-';
+        }
+    } catch (error) {
+        console.error('获取进度失败:', error);
+    }
+}
+
+function startProgressPolling() {
+    if (progressInterval) return;
+    progressInterval = setInterval(updateProgress, 3000); // 每3秒更新一次
+    updateProgress(); // 立即更新一次
+}
+
+function stopProgressPolling() {
+    if (progressInterval) {
+        clearInterval(progressInterval);
+        progressInterval = null;
+    }
+}
+
+// 页面加载时检查服务状态
+if (document.getElementById('serviceStatus')) {
+    checkServiceStatus();
+}
 
 // ========== 进度管理 ==========
 
