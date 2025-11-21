@@ -1,4 +1,5 @@
 # from langchain.chat_models import init_chat_model
+from langchain_openai import ChatOpenAI
 from langchain_community.chat_models.tongyi import ChatTongyi
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import MemorySaver
@@ -17,6 +18,8 @@ from pathlib import Path
 import os
 print(os.path.abspath('.env'))
 load_dotenv(dotenv_path=os.path.abspath('.env'), override=True)
+current_dir = os.path.dirname(__file__)
+FILE_ROOT = Path(current_dir).joinpath("../tables")
 username = "Student"
 
 # 1. define relevant schema and tools
@@ -38,9 +41,8 @@ def app_process_creater(job_title: str, company_name: str, job_description: str,
     :return: CSV保存结果。
     """
     try:
-        file_root = Path("./tables")
         summary_file_name = f"{username}_job_tracking_summary.csv"
-        summary_file = list(file_root.glob(summary_file_name))
+        summary_file = list(FILE_ROOT.glob(summary_file_name))
         if summary_file:
             assert len(summary_file) == 1
             summary_file_path = str(summary_file[0])
@@ -48,20 +50,20 @@ def app_process_creater(job_title: str, company_name: str, job_description: str,
             last_line = summary.iloc[-1]
             job_id = last_line.job_id + 1
         else:
-            summary_file_path = file_root.joinpath(summary_file_name)
+            summary_file_path = FILE_ROOT.joinpath(summary_file_name)
             summary = pd.DataFrame(columns=["job_id", "job_title", "company_name", "job_desc", "tracking_method", "timestamp"])
             job_id = 1
         new_summary = pd.concat([summary, pd.DataFrame([[job_id, job_title, company_name, job_description, tracking_method, time.time()]], columns=summary.columns)], ignore_index=True)
         new_summary.to_csv(summary_file_path, index=False, encoding="utf-8")
 
         app_status_file_name = f"{username}_application_status.csv"
-        app_status_file = list(file_root.glob(app_status_file_name))
+        app_status_file = list(FILE_ROOT.glob(app_status_file_name))
         if app_status_file:
             assert len(app_status_file) == 1
             app_status_file_path = str(app_status_file[0])
             app_status = pd.read_csv(app_status_file_path, encoding="utf-8")
         else:
-            app_status_file_path = file_root.joinpath(app_status_file_name)
+            app_status_file_path = FILE_ROOT.joinpath(app_status_file_name)
             app_status = pd.DataFrame(columns=["job_id", "status_update", "event_time", "timestamp"])
         new_app_status = pd.concat([app_status, pd.DataFrame([[job_id, "已申请", time.time(), time.time()]], columns=app_status.columns)])
         new_app_status.to_csv(app_status_file_path, index=False, encoding="utf-8")
@@ -71,11 +73,10 @@ def app_process_creater(job_title: str, company_name: str, job_description: str,
         return f"网申信息未正确保存：{e}"
 
 def app_process_query(job_title: str | None = None, company_name: str | None = None, return_jd: bool = False) -> list:
-    file_root = Path("./tables")
     app_status_file_name = f"{username}_application_status.csv"
     summary_file_name = f"{username}_job_tracking_summary.csv"
-    app_status_file = list(file_root.glob(app_status_file_name))
-    summary_file = list(file_root.glob(summary_file_name))
+    app_status_file = list(FILE_ROOT.glob(app_status_file_name))
+    summary_file = list(FILE_ROOT.glob(summary_file_name))
     if app_status_file and summary_file:
         summary_file_path = str(summary_file[0])
         app_status_file_path = str(app_status_file[0])
@@ -83,33 +84,35 @@ def app_process_query(job_title: str | None = None, company_name: str | None = N
         app_status = pd.read_csv(app_status_file_path, encoding="utf-8")
         join = pd.merge(summary, app_status, on=["job_id"])
         if return_jd:
-            return_columns = ["company_name", "job_title", "status_update", "job_desc"]
+            return_columns = ["company_name", "job_title", "status_update", "event_time", "job_desc"]
         else:
-            return_columns = ["company_name", "job_title", "status_update"]
+            return_columns = ["company_name", "job_title", "status_update", "event_time"]
         if job_title is None and company_name is None:
-            return join[return_columns].values.tolist()
+            ret = join[return_columns]
         elif job_title is None:
-            return join[join.company_name == company_name][return_columns].values.tolist()
+            ret = join[join.company_name == company_name][return_columns]
         elif company_name is None:
             join = pd.merge(summary, app_status, on=["job_id"])
-            return join[join.job_title == job_title][return_columns].values.tolist()
+            ret = join[join.job_title == job_title][return_columns]
         else:
-            return join[(join.job_title == job_title) & (join.company_name == company_name)][return_columns].values.tolist()
+            ret = join[(join.job_title == job_title) & (join.company_name == company_name)][return_columns]
+        ret.event_time = ret.event_time.apply(lambda x: time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(x)) if x > 0 else "N/A")
+        return ret.values.tolist()
     else:
         return []
 
 class AppProcessReaderSchema(BaseModel):
-    job_title: Optional[str] = Field(None, description="求职岗位的职位名称。")
-    company_name: Optional[str] = Field(None, description="求职岗位的公司名称。")
+    job_title: Optional[str] = Field(None, description="求职岗位的职位名称，可以为空。")
+    company_name: Optional[str] = Field(None, description="求职岗位的公司名称，可以为空。")
     return_jd: bool = Field(False, description="是否查询职位描述。")
 
 @tool(args_schema=AppProcessReaderSchema)
 def app_process_reader(job_title: str | None = None, company_name: str | None = None, return_jd: bool = False) -> list:
     """
-    当用户需要查询某个职位的申请流程时，请调用该函数。
+    当需要查询某个公司的某个职位、或某个公司的、或所有的申请流程时，请调用该函数。
     该函数可以从求职流程信息记录文件中获取该职位的。
-    :param job_title: 求职岗位的职位名称。
-    :param company_name: 求职岗位的公司名称。
+    :param job_title: 求职岗位的职位名称，可以为空。
+    :param company_name: 求职岗位的公司名称，可以为空。
     :param return_jd: 是否查询职位描述。
     :return: 返回查询结果，若 job_title 为 None，返回所有 company_name 的查询结果，若 company_name 为 None，返回所有 job_title 的查询结果，若都为 None，返回所有结果。
     """
@@ -134,36 +137,60 @@ class AppProcessUpdaterSchema(BaseModel):
     job_title: str = Field(description="求职岗位的职位名称。")
     company_name: str = Field(description="求职岗位的公司名称。")
     event: str = Field(description="求职岗位的申请进度事件，如笔试、面试、一面、二面、三面、hr面、主管面等。")
-    event_time: Optional[float] = Field(None, description=f"求职岗位进行笔试或面试的时间戳，若流程终止则为None")
+    not_end: bool = Field(True, description=f"求职岗位的申请进度事件是否是流程终止，若是流程终止则为False")
+    event_time_year: Optional[float] = Field(current_year, description=f"求职岗位进行笔试或面试的年份，若流程终止则为None")
+    event_time_month: Optional[float] = Field(1, description=f"求职岗位进行笔试或面试的月份，若流程终止则为None")
+    event_time_day: Optional[float] = Field(1, description=f"求职岗位进行笔试或面试的日期，若流程终止则为None")
+    event_time_hour: Optional[float] = Field(8, description=f"求职岗位进行笔试或面试的时间，具体到小时，若流程终止则为None")
+    event_time_minute: Optional[float] = Field(0, description=f"求职岗位进行笔试或面试的时间，具体到分钟，若流程终止则为None")
 
 @tool(args_schema=AppProcessUpdaterSchema)
-def app_process_updater(job_title: str, company_name: str, event: str, event_time: float | None = None) -> str:
+def app_process_updater(job_title: str, 
+                        company_name: str, 
+                        event: str, 
+                        not_end: bool = True,
+                        event_time_year: float | None = current_year,
+                        event_time_month: float | None = 1,
+                        event_time_day: float | None = 1,
+                        event_time_hour: float | None = 8,
+                        event_time_minute: float | None = 0) -> str:
     """
     当用户输入某个职位申请的后续流程时，请先调用调用`is_app_new`工具判断用户需要记录的职位是新申请的还是后续更新的，若`is_app_new`返回 True 则调用`app_process_creater`函数，若`is_app_new`返回 False 则调用该函数。
     该函数可以在求职流程信息记录文件中新增该职位当前的申请进度。
     :param job_title: 求职岗位的职位名称。
     :param company_name: 求职岗位的公司名称。
     :param event: 求职岗位的申请进度事件，如笔试、面试、一面、二面、三面、hr面、主管面等。
-    :param event_time: 求职岗位进行笔试或面试的时间戳，若 `event` 解析的含义是流程终止则为None。
+    :param not_end: 求职岗位的申请进度事件是否是流程终止，若 `event` 解析的含义是流程终止则为False。
+    :param event_time_year: 求职岗位进行笔试或面试的年份，若 `event` 解析的含义是流程终止则为None。
+    :param event_time_month: 求职岗位进行笔试或面试的月份，若 `event` 解析的含义是流程终止则为None。
+    :param event_time_day: 求职岗位进行笔试或面试的时日期，若 `event` 解析的含义是流程终止则为None。
+    :param event_time_hour: 求职岗位进行笔试或面试的时间，具体到小时，若 `event` 解析的含义是流程终止则为None。
+    :param event_time_minute: 求职岗位进行笔试或面试的时间，具体到分钟，若 `event` 解析的含义是流程终止则为None。
     :return: 返回记录结果。
     """
-    if event_time is not None:
+    if not_end:
         # print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(event_time)))
-        if event_time < time.time():
-            event_time = datetime.fromtimestamp(event_time) + timedelta(days=365 * (current_year - 2024))
-            event_time = event_time.timestamp()
-        # print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(event_time)))
+        # if event_time < time.time():
+        #     event_time = datetime.fromtimestamp(event_time) + timedelta(days=365 * (current_year - 2024))
+        #     event_time = event_time.timestamp()
+        event_time = datetime(
+            year=int(event_time_year) if event_time_year >= current_year else current_year,
+            month=int(event_time_month),
+            day=int(event_time_day),
+            hour=int(event_time_hour),
+            minute=int(event_time_minute),
+        ).timestamp()
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(event_time)))
     else:
         event_time = -100.0
     
     if event_time == -100.0:
         event = "流程终止"
 
-    file_root = Path("./tables")
     app_status_file_name = f"{username}_application_status.csv"
     summary_file_name = f"{username}_job_tracking_summary.csv"
-    app_status_file = list(file_root.glob(app_status_file_name))
-    summary_file = list(file_root.glob(summary_file_name))
+    app_status_file = list(FILE_ROOT.glob(app_status_file_name))
+    summary_file = list(FILE_ROOT.glob(summary_file_name))
     if app_status_file and summary_file:
         summary_file_path = str(summary_file[0])
         app_status_file_path = str(app_status_file[0])
@@ -207,6 +234,9 @@ prompt = """
 4. **根据网申查询到的网申状态为用户生成排期规划：**
    - 当用户需要规划某个岗位（或某个公司的所有岗位或所有已记录岗位）后续的笔面试流程时，请调用`app_process_reader`工具，注意在调用时将:param return_jd:参数设为True，根据返回的笔面试日期和岗位描述生成详细合理的日程规划。
 
+5. **为用户进行排期规划：**
+   - 当用户需要进行排期规划时，请调用`app_process_reader`工具，查看未来申请流程的时间安排，根据用户需要规划的时间段生成合理的规划。
+   
 **回答要求：**
 - 所有回答均使用**简体中文**，清晰、礼貌、简洁。
 - 如果调用工具返回结构化JSON数据，你应提取其中的关键信息简要说明，并展示主要结果。
@@ -221,8 +251,19 @@ prompt = """
 
 # init model
 # model = init_chat_model(model="deepseek-chat", model_provider="deepseek")
-model = ChatTongyi(
+# model = ChatTongyi(
+#     model="qwen-plus",
+# )
+
+model = ChatOpenAI(
+    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
     model="qwen-plus",
+    max_retries=5,
+    api_key=os.environ["DASHSCOPE_API_KEY"],
+    extra_body={
+        "enable_search": True,
+        "enable_thinking": True,
+    }
 )
 
 # create tool list

@@ -1,3 +1,21 @@
+.calendar-grid.flip-next {
+  animation: calendar-flip-next 0.4s cubic-bezier(.77,0,.18,1) both;
+  z-index: 100;
+}
+.calendar-grid.flip-prev {
+  animation: calendar-flip-prev 0.4s cubic-bezier(.77,0,.18,1) both;
+  z-index: 100;
+}
+@keyframes calendar-flip-next {
+  0% { transform: perspective(600px) rotateY(0deg); opacity: 1; }
+  60% { transform: perspective(600px) rotateY(-60deg) scale(0.98); opacity: 0.7; }
+  100% { transform: perspective(600px) rotateY(-90deg) scale(0.96); opacity: 0; }
+}
+@keyframes calendar-flip-prev {
+  0% { transform: perspective(600px) rotateY(0deg); opacity: 1; }
+  60% { transform: perspective(600px) rotateY(60deg) scale(0.98); opacity: 0.7; }
+  100% { transform: perspective(600px) rotateY(90deg) scale(0.96); opacity: 0; }
+}
 /* Calendar styles */
 #calendar {
   flex: 0 0 400px;
@@ -44,6 +62,14 @@
   position: relative;
   padding: 8px;
   aspect-ratio: 1; /* Force square shape */
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.calendar-day:hover {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0effe 100%);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.15);
+  z-index: 10;
 }
 .calendar-day.has-events::after {
   content: '';

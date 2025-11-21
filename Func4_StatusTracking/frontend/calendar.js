@@ -1,5 +1,39 @@
 // Calendar view for application events
 class Calendar {
+    // 支持滚轮切换月份并加翻页动画
+    bindWheelMonthSwitch() {
+      const calendarGrid = this.grid;
+      calendarGrid.addEventListener('wheel', (e) => {
+        if (e.deltaY < 0) {
+          this.animateMonthSwitch('prev');
+        } else if (e.deltaY > 0) {
+          this.animateMonthSwitch('next');
+        }
+        e.preventDefault();
+      }, { passive: false });
+    }
+
+    animateMonthSwitch(direction) {
+      const calendarGrid = this.grid;
+      // 移除现有动画类
+      calendarGrid.classList.remove('flip-prev', 'flip-next');
+      // 强制重绘
+      void calendarGrid.offsetWidth;
+      // 添加动画类
+      const duration = 400;
+      if (direction === 'prev') {
+        calendarGrid.classList.add('flip-prev');
+        setTimeout(() => { this.prevMonth(); }, duration);
+      } else {
+        calendarGrid.classList.add('flip-next');
+        setTimeout(() => { this.nextMonth(); }, duration);
+      }
+      // 动画结束后移除类
+      calendarGrid.addEventListener('animationend', function handler() {
+        calendarGrid.classList.remove('flip-prev', 'flip-next');
+        calendarGrid.removeEventListener('animationend', handler);
+      });
+    }
   constructor() {
     this.currentDate = new Date();
     this.events = [];
@@ -7,6 +41,7 @@ class Calendar {
     this.title = document.querySelector('.calendar-title');
     this.setupCalendar();
     this.setupSSE();
+    this.bindWheelMonthSwitch();
   }
 
   setupSSE() {
@@ -114,6 +149,26 @@ class Calendar {
         if (dayEvents.length > 0) {
           cell.classList.add('has-events');
           
+          // Add click event to scroll to the job card
+          cell.addEventListener('click', () => {
+            // Get the first event's job_id for this day
+            const firstEvent = dayEvents[0];
+            if (firstEvent && firstEvent.jobId) {
+              // Switch to timeline view if not already there
+              const timelineView = document.getElementById('timeline-view');
+              if (timelineView.style.display === 'none') {
+                // Trigger timeline button click to switch views
+                document.getElementById('btn-timeline').click();
+                // Wait for view switch animation before scrolling
+                setTimeout(() => {
+                  this.scrollToCard(firstEvent.jobId);
+                }, 150);
+              } else {
+                this.scrollToCard(firstEvent.jobId);
+              }
+            }
+          });
+          
           // Create hover popup for events
           const eventsHover = document.createElement('div');
           eventsHover.className = 'calendar-events-hover';
@@ -187,16 +242,47 @@ class Calendar {
     }
   }
 
-  prevMonth() {
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-    this.renderCalendar();
+  prevMonth(withAnim = false) {
+    if (withAnim) {
+      this.animateMonthSwitch('prev');
+    } else {
+      this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+      this.renderCalendar();
+    }
   }
 
-  nextMonth() {
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
-    this.renderCalendar();
+  nextMonth(withAnim = false) {
+    if (withAnim) {
+      this.animateMonthSwitch('next');
+    } else {
+      this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+      this.renderCalendar();
+    }
+  }
+
+  scrollToCard(jobId) {
+    const targetCard = document.getElementById(`job-card-${jobId}`);
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Add a brief highlight effect
+      targetCard.style.transition = 'background-color 0.5s';
+      const originalBg = targetCard.style.backgroundColor;
+      targetCard.style.backgroundColor = '#e0effe';
+      setTimeout(() => {
+        targetCard.style.backgroundColor = originalBg;
+      }, 1000);
+    }
   }
 }
 
 // Initialize calendar
 const calendar = new Calendar();
+
+// 覆盖按钮点击事件，带动画
+window.addEventListener('DOMContentLoaded', () => {
+  const navBtns = document.querySelectorAll('.calendar-nav button');
+  if (navBtns.length >= 2) {
+    navBtns[0].onclick = () => calendar.prevMonth(true);
+    navBtns[1].onclick = () => calendar.nextMonth(true);
+  }
+});

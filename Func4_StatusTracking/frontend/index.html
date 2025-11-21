@@ -10,13 +10,32 @@
   <body>
     <header>
       <h1>Application Process Flow (Live)</h1>
-      <div id="status" class="muted">Connecting…</div>
+      <div class="header-controls">
+        <div id="status" class="muted">Connecting…</div>
+        <div class="view-toggle">
+          <button id="btn-chat">Chat</button>
+          <button id="btn-timeline" class="active">Timeline</button>
+        </div>
+      </div>
     </header>
 
     <div class="layout">
-      <main id="container">
-        <h2>Timeline View</h2>
-        <!-- cards will be rendered here -->
+      <main>
+        <div id="timeline-view">
+          <h2>Timeline View</h2>
+          <div id="container"><!-- cards will be rendered here --></div>
+        </div>
+
+        <div id="chat-view" style="display:none;">
+          <h2>Chat with Assistant</h2>
+          <div id="chat-panel">
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input">
+              <input id="chat-input" type="text" placeholder="向助手提问，例如：帮我安排接下来的面试日程" />
+              <button id="chat-send">Send</button>
+            </div>
+          </div>
+        </div>
       </main>
 
       <aside id="calendar">
