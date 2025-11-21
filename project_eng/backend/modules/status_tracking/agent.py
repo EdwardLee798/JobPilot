@@ -9,7 +9,7 @@ from langchain_core.runnables.config import RunnableConfig
 from langchain_core.tools import tool
 from pydantic import BaseModel, Field
 from typing import Optional
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import pandas as pd
 import time
 from datetime import datetime, timedelta
@@ -17,7 +17,7 @@ import os
 import sqlite3
 
 # 加载环境变量
-load_dotenv()
+# load_dotenv()
 
 # 配置路径
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -287,7 +287,7 @@ try:
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
         model="qwen-plus",
         max_retries=3,
-        api_key=os.environ.get("DASHSCOPE_API_KEY", ""),
+        api_key="sk-f25e9dbbe22d4c53afc2d5da4a7ad7ca",
         extra_body={"enable_search": True}
     )
     
