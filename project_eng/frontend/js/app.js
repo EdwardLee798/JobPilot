@@ -10,6 +10,17 @@ function showMessage(elementId, message, type = 'info') {
     const el = document.getElementById(elementId);
     el.textContent = message;
     el.className = `status-message show ${type}`;
+    
+    // 如果是简历聊天的状态消息且显示“思考中”，为助手头像添加闪烁动画
+    if (elementId === 'chatStatus' && message.includes('思考')) {
+        const assistantAvatars = document.querySelectorAll('.msg-assistant .chat-avatar');
+        assistantAvatars.forEach(avatar => avatar.classList.add('avatar-thinking'));
+    } else if (elementId === 'chatStatus') {
+        // 其他情况移除闪烁动画
+        const assistantAvatars = document.querySelectorAll('.msg-assistant .chat-avatar');
+        assistantAvatars.forEach(avatar => avatar.classList.remove('avatar-thinking'));
+    }
+    
     setTimeout(() => {
         el.classList.remove('show');
     }, 5000);
@@ -50,39 +61,42 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // ========== 简历解析 ==========
 
-document.getElementById('uploadBtn').addEventListener('click', async () => {
-    const fileInput = document.getElementById('resumeFile');
-    const file = fileInput.files[0];
+const uploadBtn = document.getElementById('uploadBtn');
+if (uploadBtn) {
+    uploadBtn.addEventListener('click', async () => {
+        const fileInput = document.getElementById('resumeFile');
+        const file = fileInput.files[0];
 
-    if (!file) {
-        showMessage('uploadStatus', '请选择文件', 'error');
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-        showMessage('uploadStatus', '正在上传和解析...', 'info');
-        const response = await fetch(`${API_BASE}/resume/upload`, {
-            method: 'POST',
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            showMessage('uploadStatus', '解析成功！', 'success');
-            currentResumeId = result.resume_id;
-            loadResumeList();
-            displayResumeDetail(result.data);
-        } else {
-            showMessage('uploadStatus', result.error || '解析失败', 'error');
+        if (!file) {
+            showMessage('uploadStatus', '请选择文件', 'error');
+            return;
         }
-    } catch (error) {
-        showMessage('uploadStatus', '上传失败: ' + error.message, 'error');
-    }
-});
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            showMessage('uploadStatus', '正在上传和解析...', 'info');
+            const response = await fetch(`${API_BASE}/resume/upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('uploadStatus', '解析成功！', 'success');
+                currentResumeId = result.resume_id;
+                loadResumeList();
+                displayResumeDetail(result.data);
+            } else {
+                showMessage('uploadStatus', result.error || '解析失败', 'error');
+            }
+        } catch (error) {
+            showMessage('uploadStatus', '上传失败: ' + error.message, 'error');
+        }
+    });
+}
 
 async function loadResumeList() {
     try {
@@ -183,36 +197,39 @@ async function loadResumeOptions() {
     }
 }
 
-document.getElementById('analyzeBtn').addEventListener('click', async () => {
-    const resumeId = document.getElementById('optimizeResumeSelect').value;
-    const jdText = document.getElementById('jdText').value.trim();
+const analyzeBtn = document.getElementById('analyzeBtn');
+if (analyzeBtn) {
+    analyzeBtn.addEventListener('click', async () => {
+        const resumeId = document.getElementById('optimizeResumeSelect').value;
+        const jdText = document.getElementById('jdText').value.trim();
 
-    if (!resumeId || !jdText) {
-        showMessage('optimizeStatus', '请选择简历并输入JD', 'error');
-        return;
-    }
-
-    try {
-        showMessage('optimizeStatus', '正在分析匹配度...', 'info');
-
-        const response = await fetch(`${API_BASE}/optimize/analyze`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ resume_id: resumeId, jd_text: jdText })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            showMessage('optimizeStatus', '分析完成！', 'success');
-            displayMatchResult(result.data);
-        } else {
-            showMessage('optimizeStatus', result.error || '分析失败', 'error');
+        if (!resumeId || !jdText) {
+            showMessage('optimizeStatus', '请选择简历并输入JD', 'error');
+            return;
         }
-    } catch (error) {
-        showMessage('optimizeStatus', '分析失败: ' + error.message, 'error');
-    }
-});
+
+        try {
+            showMessage('optimizeStatus', '正在分析匹配度...', 'info');
+
+            const response = await fetch(`${API_BASE}/optimize/analyze`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ resume_id: resumeId, jd_text: jdText })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('optimizeStatus', '分析完成！', 'success');
+                displayMatchResult(result.data);
+            } else {
+                showMessage('optimizeStatus', result.error || '分析失败', 'error');
+            }
+        } catch (error) {
+            showMessage('optimizeStatus', '分析失败: ' + error.message, 'error');
+        }
+    });
+}
 
 function displayMatchResult(data) {
     const resultEl = document.getElementById('matchResult');
@@ -233,43 +250,49 @@ function displayMatchResult(data) {
     `;
 }
 
-document.getElementById('generateBtn').addEventListener('click', async () => {
-    const resumeId = document.getElementById('optimizeResumeSelect').value;
-    const jdText = document.getElementById('jdText').value.trim();
+const generateBtn = document.getElementById('generateBtn');
+if (generateBtn) {
+    generateBtn.addEventListener('click', async () => {
+        const resumeId = document.getElementById('optimizeResumeSelect').value;
+        const jdText = document.getElementById('jdText').value.trim();
 
-    if (!resumeId || !jdText) {
-        showMessage('optimizeStatus', '请选择简历并输入JD', 'error');
-        return;
-    }
-
-    try {
-        showMessage('optimizeStatus', '正在生成优化简历，请稍候...', 'info');
-
-        const response = await fetch(`${API_BASE}/optimize/generate`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ resume_id: resumeId, jd_text: jdText, language: 'zh' })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            showMessage('optimizeStatus', '简历生成成功！', 'success');
-            generatedResumeId = result.generated_id;
-            document.getElementById('generatedSection').style.display = 'block';
-        } else {
-            showMessage('optimizeStatus', result.error || '生成失败', 'error');
+        if (!resumeId || !jdText) {
+            showMessage('optimizeStatus', '请选择简历并输入JD', 'error');
+            return;
         }
-    } catch (error) {
-        showMessage('optimizeStatus', '生成失败: ' + error.message, 'error');
-    }
-});
 
-document.getElementById('downloadBtn').addEventListener('click', () => {
-    if (generatedResumeId) {
-        window.open(`${API_BASE}/optimize/download/${generatedResumeId}`, '_blank');
-    }
-});
+        try {
+            showMessage('optimizeStatus', '正在生成优化简历，请稍候...', 'info');
+
+            const response = await fetch(`${API_BASE}/optimize/generate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ resume_id: resumeId, jd_text: jdText, language: 'zh' })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('optimizeStatus', '简历生成成功！', 'success');
+                generatedResumeId = result.generated_id;
+                document.getElementById('generatedSection').style.display = 'block';
+            } else {
+                showMessage('optimizeStatus', result.error || '生成失败', 'error');
+            }
+        } catch (error) {
+            showMessage('optimizeStatus', '生成失败: ' + error.message, 'error');
+        }
+    });
+}
+
+const downloadBtn = document.getElementById('downloadBtn');
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+        if (generatedResumeId) {
+            window.open(`${API_BASE}/optimize/download/${generatedResumeId}`, '_blank');
+        }
+    });
+}
 
 // ========== 自动投递 ==========
 
@@ -299,112 +322,126 @@ async function checkServiceStatus() {
 }
 
 // 启动服务
-document.getElementById('startServiceBtn').addEventListener('click', async () => {
-    try {
-        showMessage('applyStatus', '正在启动Java服务，请稍候（约15-30秒）...', 'info');
-        document.getElementById('startServiceBtn').disabled = true;
+const startServiceBtn = document.getElementById('startServiceBtn');
+if (startServiceBtn) {
+    startServiceBtn.addEventListener('click', async () => {
+        try {
+            showMessage('applyStatus', '正在启动Java服务，请稍候（约15-30秒）...', 'info');
+            document.getElementById('startServiceBtn').disabled = true;
 
-        const response = await fetch(`${API_BASE}/apply/start-service`, {
-            method: 'POST'
-        });
+            const response = await fetch(`${API_BASE}/apply/start-service`, {
+                method: 'POST'
+            });
 
-        const result = await response.json();
+            const result = await response.json();
 
-        if (result.success) {
-            showMessage('applyStatus', '服务启动成功！', 'success');
-            checkServiceStatus();
-        } else {
-            showMessage('applyStatus', result.error || '启动失败', 'error');
+            if (result.success) {
+                showMessage('applyStatus', '服务启动成功！', 'success');
+                checkServiceStatus();
+            } else {
+                showMessage('applyStatus', result.error || '启动失败', 'error');
+                document.getElementById('startServiceBtn').disabled = false;
+            }
+        } catch (error) {
+            showMessage('applyStatus', '启动失败: ' + error.message, 'error');
             document.getElementById('startServiceBtn').disabled = false;
         }
-    } catch (error) {
-        showMessage('applyStatus', '启动失败: ' + error.message, 'error');
-        document.getElementById('startServiceBtn').disabled = false;
-    }
-});
+    });
+}
 
 // 停止服务（停止Java服务并关闭浏览器）
-document.getElementById('stopServiceBtn').addEventListener('click', async () => {
-    if (!confirm('确定要停止服务吗？这将停止投递任务、关闭浏览器窗口并停止Java服务（需要约10秒，请耐心等待）。')) {
-        return;
-    }
-
-    try {
-        showMessage('applyStatus', '正在停止服务（约需10秒）...', 'info');
-
-        const response = await fetch(`${API_BASE}/apply/stop-service`, {
-            method: 'POST'
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            showMessage('applyStatus', '服务已停止', 'success');
-            document.getElementById('startServiceBtn').disabled = false;
-            document.getElementById('stopServiceBtn').disabled = true;
-            stopProgressPolling();
-            checkServiceStatus();
-        } else {
-            showMessage('applyStatus', result.error || '停止失败', 'error');
+const stopServiceBtn = document.getElementById('stopServiceBtn');
+if (stopServiceBtn) {
+    stopServiceBtn.addEventListener('click', async () => {
+        if (!confirm('确定要停止服务吗？这将停止投递任务、关闭浏览器窗口并停止Java服务（需要约10秒，请耐心等待）。')) {
+            return;
         }
-    } catch (error) {
-        showMessage('applyStatus', '停止失败: ' + error.message, 'error');
-    }
-});
+
+        try {
+            showMessage('applyStatus', '正在停止服务（约需10秒）...', 'info');
+
+            const response = await fetch(`${API_BASE}/apply/stop-service`, {
+                method: 'POST'
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('applyStatus', '服务已停止', 'success');
+                document.getElementById('startServiceBtn').disabled = false;
+                document.getElementById('stopServiceBtn').disabled = true;
+                stopProgressPolling();
+                checkServiceStatus();
+            } else {
+                showMessage('applyStatus', result.error || '停止失败', 'error');
+            }
+        } catch (error) {
+            showMessage('applyStatus', '停止失败: ' + error.message, 'error');
+        }
+    });
+}
 
 // 检查状态按钮
-document.getElementById('checkServiceBtn').addEventListener('click', () => {
-    checkServiceStatus();
-});
+const checkServiceBtn = document.getElementById('checkServiceBtn');
+if (checkServiceBtn) {
+    checkServiceBtn.addEventListener('click', () => {
+        checkServiceStatus();
+    });
+}
 
 // 启动投递
-document.getElementById('startApplyBtn').addEventListener('click', async () => {
-    const resumeId = document.getElementById('applyResumeSelect').value;
-    const platform = document.getElementById('platformSelect').value;
-    const keywords = document.getElementById('keywords').value;
-    const cities = document.getElementById('cities').value;
+const startApplyBtn = document.getElementById('startApplyBtn');
+if (startApplyBtn) {
+    startApplyBtn.addEventListener('click', async () => {
+        const resumeId = document.getElementById('applyResumeSelect').value;
+        const platform = document.getElementById('platformSelect').value;
+        const keywords = document.getElementById('keywords').value;
+        const cities = document.getElementById('cities').value;
 
-    if (!resumeId) {
-        showMessage('applyStatus', '请选择简历', 'error');
-        return;
-    }
-
-    try {
-        showMessage('applyStatus', '正在配置并启动自动投递...', 'info');
-
-        const response = await fetch(`${API_BASE}/apply/start`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                resume_id: resumeId,
-                platform: platform,
-                keywords: keywords,
-                cities: cities,
-                max_count: 50
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            showMessage('applyStatus', result.message + '（浏览器窗口将自动打开）', 'success');
-            document.getElementById('startApplyBtn').disabled = true;
-            document.getElementById('stopApplyBtn').disabled = false;
-            document.getElementById('applyProgressSection').style.display = 'block';
-            startProgressPolling();
-        } else {
-            showMessage('applyStatus', result.error || '启动失败', 'error');
-            if (result.help) {
-                showMessage('applyStatus', result.help, 'info');
-            }
+        if (!resumeId) {
+            showMessage('applyStatus', '请选择简历', 'error');
+            return;
         }
-    } catch (error) {
-        showMessage('applyStatus', '启动失败: ' + error.message, 'error');
-    }
-});
+
+        try {
+            showMessage('applyStatus', '正在配置并启动自动投递...', 'info');
+
+            const response = await fetch(`${API_BASE}/apply/start`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    resume_id: resumeId,
+                    platform: platform,
+                    keywords: keywords,
+                    cities: cities,
+                    max_count: 50
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('applyStatus', result.message + '（浏览器窗口将自动打开）', 'success');
+                document.getElementById('startApplyBtn').disabled = true;
+                document.getElementById('stopApplyBtn').disabled = false;
+                document.getElementById('applyProgressSection').style.display = 'block';
+                startProgressPolling();
+            } else {
+                showMessage('applyStatus', result.error || '启动失败', 'error');
+                if (result.help) {
+                    showMessage('applyStatus', result.help, 'info');
+                }
+            }
+        } catch (error) {
+            showMessage('applyStatus', '启动失败: ' + error.message, 'error');
+        }
+    });
+}
 
 // 停止投递
-document.getElementById('stopApplyBtn').addEventListener('click', async () => {
+const stopApplyBtn = document.getElementById('stopApplyBtn');
+if (stopApplyBtn) {
+    stopApplyBtn.addEventListener('click', async () => {
     if (!confirm('确定要停止当前投递任务吗？')) {
         return;
     }
@@ -432,7 +469,8 @@ document.getElementById('stopApplyBtn').addEventListener('click', async () => {
     } catch (error) {
         showMessage('applyStatus', '停止失败: ' + error.message, 'error');
     }
-});
+    });
+}
 
 // 进度轮询
 let progressInterval = null;
@@ -532,9 +570,12 @@ async function loadStats() {
     }
 }
 
-document.getElementById('refreshBtn').addEventListener('click', () => {
-    loadJobList();
-});
+const refreshBtn = document.getElementById('refreshBtn');
+if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+        loadJobList();
+    });
+}
 
 // 添加投递模态框
 const modal = document.getElementById('addJobModal');
@@ -542,48 +583,57 @@ const addJobBtn = document.getElementById('addJobBtn');
 const modalCancelBtn = document.getElementById('modalCancelBtn');
 const closeBtn = document.querySelector('.close');
 
-addJobBtn.addEventListener('click', () => {
-    modal.classList.add('show');
-});
+if (addJobBtn && modal) {
+    addJobBtn.addEventListener('click', () => {
+        modal.classList.add('show');
+    });
+}
 
-modalCancelBtn.addEventListener('click', () => {
-    modal.classList.remove('show');
-});
+if (modalCancelBtn && modal) {
+    modalCancelBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+}
 
-closeBtn.addEventListener('click', () => {
-    modal.classList.remove('show');
-});
+if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+}
 
-document.getElementById('addJobForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+const addJobForm = document.getElementById('addJobForm');
+if (addJobForm) {
+    addJobForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    const data = {
-        job_title: document.getElementById('modalJobTitle').value,
-        company_name: document.getElementById('modalCompany').value,
-        job_desc: document.getElementById('modalJobDesc').value,
-        tracking_method: document.getElementById('modalTracking').value
-    };
+        const data = {
+            job_title: document.getElementById('modalJobTitle').value,
+            company_name: document.getElementById('modalCompany').value,
+            job_desc: document.getElementById('modalJobDesc').value,
+            tracking_method: document.getElementById('modalTracking').value
+        };
 
-    try {
-        const response = await fetch(`${API_BASE}/tracking/job`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
+        try {
+            const response = await fetch(`${API_BASE}/tracking/job`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
 
-        const result = await response.json();
+            const result = await response.json();
 
-        if (result.success) {
-            modal.classList.remove('show');
-            document.getElementById('addJobForm').reset();
-            loadJobList();
-        } else {
-            alert(result.error || '添加失败');
+            if (result.success) {
+                modal.classList.remove('show');
+                document.getElementById('addJobForm').reset();
+                loadJobList();
+            } else {
+                alert(result.error || '添加失败');
+            }
+        } catch (error) {
+            alert('添加失败: ' + error.message);
         }
-    } catch (error) {
-        alert('添加失败: ' + error.message);
-    }
-});
+    });
+}
 
 // 初始化
 loadResumeList();
@@ -594,24 +644,29 @@ let chatSessionId = null;
 let chatCompletionPercentage = 0;
 
 // 模式切换
-document.getElementById('uploadModeBtn').addEventListener('click', () => {
-    document.getElementById('uploadModeBtn').classList.add('active');
-    document.getElementById('chatModeBtn').classList.remove('active');
-    document.getElementById('uploadMode').style.display = 'block';
-    document.getElementById('chatMode').style.display = 'none';
-});
+const uploadModeBtn = document.getElementById('uploadModeBtn');
+const chatModeBtn = document.getElementById('chatModeBtn');
 
-document.getElementById('chatModeBtn').addEventListener('click', () => {
-    document.getElementById('chatModeBtn').classList.add('active');
-    document.getElementById('uploadModeBtn').classList.remove('active');
-    document.getElementById('chatMode').style.display = 'block';
-    document.getElementById('uploadMode').style.display = 'none';
+if (uploadModeBtn && chatModeBtn) {
+    uploadModeBtn.addEventListener('click', () => {
+        uploadModeBtn.classList.add('active');
+        chatModeBtn.classList.remove('active');
+        document.getElementById('uploadMode').style.display = 'block';
+        document.getElementById('chatMode').style.display = 'none';
+    });
 
-    // 如果还没有会话，自动启动
-    if (!chatSessionId) {
-        startChatSession();
-    }
-});
+    chatModeBtn.addEventListener('click', () => {
+        chatModeBtn.classList.add('active');
+        uploadModeBtn.classList.remove('active');
+        document.getElementById('chatMode').style.display = 'block';
+        document.getElementById('uploadMode').style.display = 'none';
+
+        // 如果还没有会话，自动启动
+        if (!chatSessionId) {
+            startChatSession();
+        }
+    });
+}
 
 // 启动对话会话
 async function startChatSession() {
@@ -638,7 +693,7 @@ async function startChatSession() {
 }
 
 // 添加聊天消息
-function addChatMessage(role, text) {
+function addChatMessage(role, text, typewriter = false) {
     const messagesEl = document.getElementById('chatMessages');
     const messageEl = document.createElement('div');
     messageEl.className = `chat-message ${role}`;
@@ -649,15 +704,39 @@ function addChatMessage(role, text) {
 
     const bubbleEl = document.createElement('div');
     bubbleEl.className = 'message-bubble';
-    bubbleEl.textContent = text;
-
-    messageEl.appendChild(avatarEl);
-    messageEl.appendChild(bubbleEl);
-
-    messagesEl.appendChild(messageEl);
-
-    // 滚动到底部
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    
+    if (typewriter && role === 'assistant') {
+        // 打字机效果
+        bubbleEl.textContent = '';
+        messageEl.appendChild(avatarEl);
+        messageEl.appendChild(bubbleEl);
+        messagesEl.appendChild(messageEl);
+        
+        // 滚动到底部
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        
+        // 逐字显示
+        let index = 0;
+        const interval = setInterval(() => {
+            if (index < text.length) {
+                bubbleEl.textContent += text[index];
+                index++;
+                // 持续滚动到底部
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+            } else {
+                clearInterval(interval);
+            }
+        }, 30); // 每30ms显示一个字符
+    } else {
+        // 直接显示
+        bubbleEl.textContent = text;
+        messageEl.appendChild(avatarEl);
+        messageEl.appendChild(bubbleEl);
+        messagesEl.appendChild(messageEl);
+        
+        // 滚动到底部
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
 }
 
 // 更新进度
@@ -675,17 +754,23 @@ function updateChatProgress(percentage) {
 }
 
 // 发送消息
-document.getElementById('chatSendBtn').addEventListener('click', async () => {
-    await sendChatMessage();
-});
+const chatSendBtn = document.getElementById('chatSendBtn');
+if (chatSendBtn) {
+    chatSendBtn.addEventListener('click', async () => {
+        await sendChatMessage();
+    });
+}
 
 // 回车发送（Shift+Enter换行）
-document.getElementById('chatInput').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendChatMessage();
-    }
-});
+const chatInput = document.getElementById('chatInput');
+if (chatInput) {
+    chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendChatMessage();
+        }
+    });
+}
 
 async function sendChatMessage() {
     const inputEl = document.getElementById('chatInput');
@@ -722,8 +807,8 @@ async function sendChatMessage() {
         const result = await response.json();
 
         if (result.success) {
-            // 显示助手回复
-            addChatMessage('assistant', result.assistant_reply);
+            // 显示助手回复（带打字机效果）
+            addChatMessage('assistant', result.assistant_reply, true);
 
             // 更新进度
             updateChatProgress(result.completion_percentage || 0);
@@ -743,78 +828,96 @@ async function sendChatMessage() {
 }
 
 // 完成生成
-document.getElementById('chatFinishBtn').addEventListener('click', async () => {
-    if (!chatSessionId) {
-        showMessage('chatStatus', '没有进行中的会话', 'error');
-        return;
-    }
-
-    if (!confirm('确定完成简历生成吗？')) {
-        return;
-    }
-
-    try {
-        showMessage('chatStatus', '正在生成简历...', 'info');
-
-        const response = await fetch(`${API_BASE}/resume/interactive/finalize`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                session_id: chatSessionId
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            showMessage('chatStatus', '✅ ' + result.message, 'success');
-            addChatMessage('assistant', '简历已生成完毕！你可以在"已解析的简历"中查看。');
-
-            // 清理会话
-            chatSessionId = null;
-            updateChatProgress(100);
-
-            // 刷新简历列表
-            setTimeout(() => {
-                loadResumeList();
-            }, 500);
-        } else {
-            showMessage('chatStatus', result.error || '生成失败', 'error');
+const chatFinishBtn = document.getElementById('chatFinishBtn');
+if (chatFinishBtn) {
+    chatFinishBtn.addEventListener('click', async () => {
+        if (!chatSessionId) {
+            showMessage('chatStatus', '没有进行中的会话', 'error');
+            return;
         }
-    } catch (error) {
-        showMessage('chatStatus', '生成失败: ' + error.message, 'error');
-    }
-});
 
-// 重新开始
-document.getElementById('chatResetBtn').addEventListener('click', async () => {
-    if (!confirm('确定要重新开始吗？当前的对话内容将丢失。')) {
-        return;
-    }
+        if (!confirm('确定完成简历生成吗？')) {
+            return;
+        }
 
-    try {
-        // 重置会话
-        if (chatSessionId) {
-            await fetch(`${API_BASE}/resume/interactive/reset`, {
+        try {
+            showMessage('chatStatus', '正在生成简历...', 'info');
+
+            const response = await fetch(`${API_BASE}/resume/interactive/finalize`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     session_id: chatSessionId
                 })
             });
+
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('chatStatus', '✅ ' + result.message, 'success');
+                addChatMessage('assistant', '简历已生成完毕！你可以在"已解析的简历"中查看。');
+
+                // 清理会话
+                chatSessionId = null;
+                updateChatProgress(100);
+
+                // 刷新简历列表
+                setTimeout(() => {
+                    loadResumeList();
+                }, 500);
+            } else {
+                showMessage('chatStatus', result.error || '生成失败', 'error');
+            }
+        } catch (error) {
+            showMessage('chatStatus', '生成失败: ' + error.message, 'error');
+        }
+    });
+}
+
+// 重新开始
+const chatResetBtn = document.getElementById('chatResetBtn');
+if (chatResetBtn) {
+    chatResetBtn.addEventListener('click', async () => {
+        if (!confirm('确定要重新开始吗？当前的对话内容将丢失。')) {
+            return;
         }
 
-        // 清空UI
-        document.getElementById('chatMessages').innerHTML = '';
-        document.getElementById('chatInput').value = '';
-        updateChatProgress(0);
+        try {
+            // 重置会话
+            if (chatSessionId) {
+                await fetch(`${API_BASE}/resume/interactive/reset`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        session_id: chatSessionId
+                    })
+                });
+            }
 
-        // 重新启动
-        chatSessionId = null;
-        await startChatSession();
+            // 清空UI
+            document.getElementById('chatMessages').innerHTML = '';
+            document.getElementById('chatInput').value = '';
+            updateChatProgress(0);
 
-        showMessage('chatStatus', '已重新开始', 'success');
-    } catch (error) {
-        showMessage('chatStatus', '重置失败: ' + error.message, 'error');
-    }
-});
+            // 重新启动
+            chatSessionId = null;
+            await startChatSession();
+
+            showMessage('chatStatus', '已重新开始', 'success');
+        } catch (error) {
+            showMessage('chatStatus', '重置失败: ' + error.message, 'error');
+        }
+    });
+}
+
+// 确保DOM完全加载后再初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
+
+function initializeApp() {
+    // 触发初始tab的数据加载
+    loadResumeList();
+}

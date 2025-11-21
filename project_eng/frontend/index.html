@@ -212,24 +212,71 @@
         <div id="status-tracking" class="tab-content">
             <h2>投递进度管理</h2>
 
-            <div class="section">
-                <button id="addJobBtn" class="btn btn-primary">+ 添加新投递</button>
-                <button id="refreshBtn" class="btn btn-secondary">刷新</button>
+            <!-- 视图切换 -->
+            <div class="section tracking-header">
+                <div class="view-controls">
+                    <button id="chatViewBtn" class="view-btn">💬 智能助手</button>
+                    <button id="timelineViewBtn" class="view-btn active">📊 时间线</button>
+                </div>
+                <div class="action-btns">
+                    <button id="addJobBtn" class="btn btn-primary">+ 添加新投递</button>
+                    <!-- <button id="refreshBtn" class="btn btn-secondary">刷新</button> -->
+                </div>
             </div>
 
+            <!-- 统计面板 -->
             <div class="section">
-                <h3>统计信息</h3>
                 <div id="statsPanel" class="stats-panel">
                     <div class="stat-item">
                         <span class="stat-label">总投递数</span>
                         <span class="stat-value" id="totalJobs">0</span>
                     </div>
+                    <div class="stat-item">
+                        <span class="stat-label">进行中</span>
+                        <span class="stat-value" id="activeJobs">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">已终止</span>
+                        <span class="stat-value" id="terminatedJobs">0</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="section">
-                <h3>投递记录</h3>
-                <div id="jobList" class="job-list"></div>
+            <!-- 布局容器 -->
+            <div class="tracking-layout">
+                <!-- 时间线视图 -->
+                <div id="timelineViewPanel" class="tracking-main active">
+                    <h3>投递时间线</h3>
+                    <div id="jobCardsContainer" class="job-cards-container"></div>
+                </div>
+
+                <!-- 聊天视图 -->
+                <div id="chatViewPanel" class="tracking-main" style="display: none;">
+                    <h3>智能助手对话</h3>
+                    <div id="trackingChatStatus" class="status-message"></div>
+                    <div class="chat-panel">
+                        <div id="trackingChatMessages" class="tracking-chat-messages"></div>
+                        <div class="tracking-chat-input">
+                            <textarea id="trackingChatInput" class="chat-input" rows="3"
+                                placeholder="向助手提问..."></textarea>
+                            <div class="chat-actions">
+                                <button id="trackingChatSend" class="btn btn-primary">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 日历侧边栏 -->
+                <aside id="trackingCalendar" class="tracking-sidebar">
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button id="calendarPrev" class="btn btn-sm">&larr;</button>
+                            <button id="calendarNext" class="btn btn-sm">&rarr;</button>
+                        </div>
+                        <div id="calendarTitle" class="calendar-title"></div>
+                    </div>
+                    <div id="calendarGrid" class="calendar-grid"></div>
+                </aside>
             </div>
         </div>
 
@@ -264,5 +311,6 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script src="js/tracking.js"></script>
 </body>
 </html>

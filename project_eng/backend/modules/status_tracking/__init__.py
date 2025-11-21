@@ -12,6 +12,14 @@ from datetime import datetime
 
 status_tracking_bp = Blueprint('status_tracking', __name__)
 
+# 导入agent
+try:
+    from .agent import invoke_agent, stream_agent
+    agent_available = True
+except Exception as e:
+    print(f"Warning: Agent not available: {e}")
+    agent_available = False
+
 # 配置路径
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -49,11 +57,29 @@ def init_database():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             job_id INTEGER NOT NULL,
             status_update TEXT NOT NULL,
-            event_time TIMESTAMP,
+            event_time REAL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (job_id) REFERENCES job_summary (job_id)
         )
     ''')
+    
+    # 检查并添加 updated_at 字段（用于旧数据库迁移）
+    cursor.execute("PRAGMA table_info(application_status)")
+    columns = [column[1] for column in cursor.fetchall()]
+    if 'updated_at' not in columns:
+        # SQLite不支持ALTER TABLE ADD COLUMN with non-constant default
+        # 先添加字段，然后更新现有记录
+        cursor.execute('''
+            ALTER TABLE application_status 
+            ADD COLUMN updated_at TIMESTAMP
+        ''')
+        # 为现有记录设置updated_at为created_at
+        cursor.execute('''
+            UPDATE application_status 
+            SET updated_at = created_at 
+            WHERE updated_at IS NULL
+        ''')
 
     conn.commit()
     conn.close()
@@ -78,6 +104,7 @@ def get_jobs():
                 js.job_desc,
                 js.tracking_method,
                 js.created_at,
+                ast.id,
                 ast.status_update,
                 ast.event_time,
                 ast.created_at as status_timestamp
@@ -107,6 +134,7 @@ def get_jobs():
 
             if row['status_update']:
                 jobs_dict[job_id]['statuses'].append({
+                    'id': row['id'],
                     'status': row['status_update'],
                     'event_time': row['event_time'],
                     'timestamp': row['status_timestamp']
@@ -147,7 +175,7 @@ def create_job():
         cursor.execute('''
             INSERT INTO application_status (job_id, status_update, event_time)
             VALUES (?, ?, ?)
-        ''', (job_id, '已申请', datetime.now().isoformat()))
+        ''', (job_id, '已申请', time.time()))
 
         conn.commit()
         conn.close()
@@ -267,6 +295,44 @@ def delete_job(job_id):
         return jsonify({'error': f'删除失败: {str(e)}'}), 500
 
 
+@status_tracking_bp.route('/event/<int:event_id>', methods=['DELETE'])
+def delete_event(event_id):
+    """删除单个事件记录"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # 检查是否是首个事件（防止删除"开始流程跟踪"记录）
+        cursor.execute('''
+            SELECT job_id, 
+                   (SELECT COUNT(*) FROM application_status WHERE job_id = a.job_id) as total_count
+            FROM application_status a
+            WHERE id = ?
+        ''', (event_id,))
+        
+        result = cursor.fetchone()
+        if not result:
+            conn.close()
+            return jsonify({'success': False, 'error': '事件不存在'}), 404
+        
+        job_id, total_count = result
+        
+        # 如果该职位只有一条记录，不允许删除
+        if total_count <= 1:
+            conn.close()
+            return jsonify({'success': False, 'error': '不能删除初始记录'}), 400
+        
+        # 删除事件
+        cursor.execute('DELETE FROM application_status WHERE id = ?', (event_id,))
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({'success': True, 'message': '事件已删除'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+
 @status_tracking_bp.route('/stats', methods=['GET'])
 def get_stats():
     """获取统计信息"""
@@ -304,3 +370,128 @@ def get_stats():
 
     except Exception as e:
         return jsonify({'error': f'获取统计失败: {str(e)}'}), 500
+
+
+@status_tracking_bp.route('/chat_stream', methods=['GET', 'POST'])
+def chat_stream():
+    """SSE流式对话接口"""
+    if not agent_available:
+        return jsonify({'error': 'Agent未初始化'}), 503
+    
+    try:
+        if request.method == 'POST':
+            data = request.get_json()
+            message = data.get('message', '')
+        else:
+            message = request.args.get('message', '')
+        
+        if not message:
+            return jsonify({'error': '消息不能为空'}), 400
+        
+        def generate():
+            try:
+                final_content = ""
+                
+                for event in stream_agent(message, thread_id="user_session"):
+                    event_type = event.get('type')
+                    
+                    if event_type == 'tool_call':
+                        # 发送工具调用信息
+                        tool_name = event.get('tool_name', '未知工具')
+                        tool_args = event.get('tool_args', {})
+                        
+                        # 构建友好的工具调用描述
+                        tool_desc = f"🔧 调用工具: {tool_name}"
+                        if tool_args:
+                            # 简化参数显示
+                            args_str = ", ".join([f"{k}={v}" for k, v in list(tool_args.items())[:2]])
+                            if len(tool_args) > 2:
+                                args_str += "..."
+                            tool_desc += f" ({args_str})"
+                        
+                        yield f"data: {json.dumps({'type': 'tool', 'message': tool_desc}, ensure_ascii=False)}\n\n"
+                        time.sleep(0.1)
+                    
+                    elif event_type == 'content':
+                        # 累积最终内容
+                        content = event.get('content', '')
+                        if content and content != final_content:
+                            final_content = content
+                    
+                    elif event_type == 'error':
+                        yield f"data: {json.dumps({'type': 'error', 'message': event.get('message')}, ensure_ascii=False)}\n\n"
+                        return
+                    
+                    elif event_type == 'done':
+                        # 按字符发送最终内容，实现打字机效果
+                        if final_content:
+                            for char in final_content:
+                                yield f"data: {json.dumps({'type': 'char', 'char': char}, ensure_ascii=False)}\n\n"
+                                time.sleep(0.02)  # 每个字符延迟20ms
+                        
+                        # 发送完成标记
+                        yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
+            
+            except Exception as e:
+                yield f"data: {json.dumps({'type': 'error', 'message': str(e)}, ensure_ascii=False)}\n\n"
+        
+        return Response(generate(), mimetype='text/event-stream')
+    
+    except Exception as e:
+        return jsonify({'error': f'处理失败: {str(e)}'}), 500
+
+
+@status_tracking_bp.route('/merged_data', methods=['GET'])
+def get_merged_data():
+    """SSE流式推送合并后的投递数据（用于时间线展示）"""
+    def generate():
+        last_check = 0
+        while True:
+            try:
+                conn = get_db_connection()
+                cursor = conn.cursor()
+
+                query = '''
+                    SELECT
+                        js.job_id,
+                        js.job_title,
+                        js.company_name,
+                        js.job_desc,
+                        ast.id,
+                        ast.status_update,
+                        ast.event_time,
+                        ast.created_at as timestamp
+                    FROM job_summary js
+                    LEFT JOIN application_status ast ON js.job_id = ast.job_id
+                    ORDER BY js.job_id, ast.created_at ASC
+                '''
+
+                cursor.execute(query)
+                rows = cursor.fetchall()
+                conn.close()
+
+                records = []
+                for row in rows:
+                    records.append({
+                        'job_id': row['job_id'],
+                        'job_title': row['job_title'],
+                        'company_name': row['company_name'],
+                        'job_desc': row['job_desc'],
+                        'id': row['id'],
+                        'status_update': row['status_update'],
+                        'event_time': row['event_time'] if row['event_time'] else -100.0,
+                        'timestamp': row['timestamp']
+                    })
+
+                payload = json.dumps(records, ensure_ascii=False)
+                yield f"data: {payload}\n\n"
+
+                time.sleep(2)  # 每2秒推送一次
+
+            except GeneratorExit:
+                break
+            except Exception as e:
+                yield f"data: {json.dumps({'error': str(e)})}\n\n"
+                time.sleep(2)
+
+    return Response(generate(), mimetype='text/event-stream')

@@ -222,6 +222,22 @@ header h1 {
     border: 1px solid #bee5eb;
 }
 
+/* 头像闪烁动画 */
+@keyframes avatarPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.95);
+    }
+}
+
+.avatar-thinking {
+    animation: avatarPulse 1.5s ease-in-out infinite;
+}
+
 /* 简历列表 */
 .resume-list {
     display: grid;
@@ -395,17 +411,6 @@ header h1 {
     position: relative;
 }
 
-.timeline-item:before {
-    content: '';
-    position: absolute;
-    left: -26px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    background: #667eea;
-    border-radius: 50%;
-}
-
 .timeline-item p {
     margin: 0;
     color: #555;
@@ -461,6 +466,42 @@ header h1 {
 
 .close:hover {
     color: #000;
+}
+
+/* 状态消息提示 */
+.status-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    z-index: 10001;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+}
+
+.status-message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.status-message.success {
+    border-left: 4px solid #52c41a;
+    color: #52c41a;
+}
+
+.status-message.error {
+    border-left: 4px solid #ff4d4f;
+    color: #ff4d4f;
+}
+
+.status-message.info {
+    border-left: 4px solid #1890ff;
+    color: #1890ff;
 }
 
 /* 响应式 */
@@ -707,5 +748,781 @@ header h1 {
 
     .chat-actions {
         flex-wrap: wrap;
+    }
+}
+
+/* ============================================
+   进度管理 - 时间线、日历、聊天整合样式
+   ============================================ */
+
+/* 头部控制区 */
+.tracking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.view-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.view-btn:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.view-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+.action-btns {
+    display: flex;
+    gap: 10px;
+}
+
+/* 统计面板优化 */
+.stats-panel {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 150px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.stat-item:hover {
+    border-color: #667eea;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 布局容器 */
+.tracking-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.tracking-main {
+    flex: 1;
+    min-width: 0;
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* 聊天视图不需要外部滚动 */
+#chatViewPanel {
+    overflow-y: visible;
+    padding-right: 0;
+}
+
+.tracking-sidebar {
+    flex: 0 0 320px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 20px;
+    overflow: visible;
+}
+
+/* 时间线卡片容器 */
+.job-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* 职位卡片 */
+.job-card {
+    background: white;
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: visible;
+}
+
+.job-card:hover {
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.15);
+    transform: translateY(-3px);
+    border-color: #667eea;
+    z-index: 10;
+}
+
+.job-card.terminated {
+    background: #f9fafb;
+    opacity: 0.7;
+    cursor: default;
+    filter: grayscale(0.3);
+}
+
+.job-card.terminated:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-header-section {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.job-card-delete-btn {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 20px;
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+}
+
+.job-card:hover .job-card-delete-btn {
+    opacity: 1;
+}
+
+.job-card-delete-btn:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6a3f91 100%);
+    transform: scale(1.15);
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.6);
+}
+
+.card-header-section h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.job-desc-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 12px;
+    padding: 16px;
+    background: white;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+    z-index: 9999;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.card-header-section.has-desc:hover .job-desc-tooltip {
+    display: block;
+}
+
+/* 横向时间线 */
+.job-timeline {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 8px 0;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.timeline-delete-btn {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.timeline-item:hover .timeline-delete-btn {
+    opacity: 1;
+}
+
+.timeline-delete-btn:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6a3f91 100%);
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(102, 126, 234, 0.5);
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: calc(50% + 8px);
+    top: 8px;
+    width: calc(100% + 4px);
+    height: 2px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    z-index: -1;
+}
+
+.timeline-item:last-child::after {
+    content: '';
+    position: absolute;
+    left: calc(50% + 8px);
+    top: 8px;
+    width: 80px;
+    height: 2px;
+    background: repeating-linear-gradient(
+        to right,
+        #e0e0e0 0,
+        #e0e0e0 6px,
+        transparent 6px,
+        transparent 12px
+    );
+    z-index: -1;
+}
+
+.timeline-item:last-child.terminated::after {
+    display: none;
+}
+
+.timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 2.5px solid #667eea;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+.timeline-item.terminated .timeline-dot {
+    border-radius: 2px;
+    border-color: #ccc;
+    box-shadow: none;
+}
+
+.timeline-content {
+    text-align: center;
+    min-width: 0;
+}
+
+.timeline-date {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+
+.timeline-status {
+    font-size: 0.88em;
+    color: #333;
+    font-weight: 500;
+}
+
+.job-card.terminated .timeline-date,
+.job-card.terminated .timeline-status {
+    color: #bbb;
+}
+
+/* 聊天面板 */
+.chat-panel {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    height: calc(100vh - 300px);
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tracking-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f9fafb;
+}
+
+.chat-message-tracking {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    max-width: 100%;
+    animation: fadeIn 0.3s;
+}
+
+.chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.msg-user-tracking {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.msg-user-tracking .chat-avatar {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.msg-assistant-tracking .chat-avatar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.chat-text-tracking {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.95em;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: 6px;
+    max-width: 85%;
+}
+
+.msg-user-tracking .chat-text-tracking {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.msg-assistant-tracking .chat-text-tracking {
+    background: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+/* 工具调用信息样式 */
+.tool-call-info {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 4px 0;
+    background: linear-gradient(135deg, #e8f0fe 0%, #e1e8ff 100%);
+    border-left: 3px solid #667eea;
+    border-radius: 6px;
+    font-size: 0.9em;
+    color: #5568d3;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.tool-separator {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #e0e0e0 50%, transparent 100%);
+    margin: 12px 0;
+}
+
+.tool-result {
+    color: #333;
+    line-height: 1.6;
+}
+
+.tracking-chat-input {
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* 日历 */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.calendar-nav .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-nav .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.calendar-nav .btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.calendar-nav .btn:hover::before {
+    left: 100%;
+}
+
+.calendar-nav .btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+.calendar-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 1px;
+    background: #e8ecf1;
+    border: 1px solid #e8ecf1;
+    border-radius: 10px;
+    overflow: visible;
+    height: auto;
+    min-height: 280px;
+    position: relative;
+}
+
+.calendar-weekday {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.calendar-day {
+    background: white;
+    padding: 8px;
+    aspect-ratio: 1;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+}
+
+.calendar-day:hover {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e5ebff 100%);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    z-index: 10;
+}
+
+.calendar-day.has-events:hover {
+    background: linear-gradient(135deg, #e5ebff 0%, #d5dff8 100%);
+    transform: scale(1.08);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+    cursor: pointer;
+}
+
+.calendar-day.other-month {
+    opacity: 0.3;
+}
+
+.calendar-day.today {
+    background: linear-gradient(135deg, #fff0f0 0%, #ffe5e5 100%);
+    font-weight: bold;
+}
+
+.calendar-day.has-events::after {
+    content: '';
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #667eea;
+}
+
+.calendar-date {
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* 日历事件悬浮提示 */
+.calendar-event-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1.5px solid #667eea;
+    border-radius: 4px;
+    padding: 6px 8px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: normal;
+    margin-bottom: 4px;
+    font-size: 0.75em;
+    max-width: 220px;
+    min-width: 150px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.calendar-day.has-events:hover .calendar-event-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+    pointer-events: auto;
+}
+
+.tooltip-event-item {
+    padding: 3px 0;
+    border-bottom: 1px solid #f5f5f5;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: 3px;
+    padding: 4px 6px;
+    margin: -2px -4px;
+}
+
+.tooltip-event-item:hover {
+    background-color: #f0f4ff;
+}
+
+.tooltip-event-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.tooltip-event-item:first-child {
+    padding-top: 0;
+}
+
+.tooltip-event-item strong {
+    color: #667eea;
+    font-size: 1em;
+}
+
+.tooltip-event-status {
+    color: #666;
+    font-size: 0.95em;
+    display: block;
+    margin-top: 1px;
+}
+
+/* 日历滚动动画 */
+.calendar-grid.flip-next {
+    animation: calendar-slide-up 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) both;
+    z-index: 100;
+}
+
+.calendar-grid.flip-prev {
+    animation: calendar-slide-down 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) both;
+    z-index: 100;
+}
+
+@keyframes calendar-slide-up {
+    0% { 
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    30% {
+        transform: translateY(-10px) scale(0.98);
+        opacity: 0.8;
+        filter: blur(1px);
+    }
+    70% {
+        transform: translateY(-40px) scale(0.95);
+        opacity: 0.3;
+        filter: blur(3px);
+    }
+    100% { 
+        transform: translateY(-60px) scale(0.92);
+        opacity: 0;
+        filter: blur(5px);
+    }
+}
+
+@keyframes calendar-slide-down {
+    0% { 
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    30% {
+        transform: translateY(10px) scale(0.98);
+        opacity: 0.8;
+        filter: blur(1px);
+    }
+    70% {
+        transform: translateY(40px) scale(0.95);
+        opacity: 0.3;
+        filter: blur(3px);
+    }
+    100% { 
+        transform: translateY(60px) scale(0.92);
+        opacity: 0;
+        filter: blur(5px);
+    }
+}
+
+/* 自定义滚动条 */
+.tracking-chat-messages::-webkit-scrollbar,
+.job-timeline::-webkit-scrollbar,
+.job-desc-tooltip::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.tracking-chat-messages::-webkit-scrollbar-track,
+.job-timeline::-webkit-scrollbar-track,
+.job-desc-tooltip::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.tracking-chat-messages::-webkit-scrollbar-thumb,
+.job-timeline::-webkit-scrollbar-thumb,
+.job-desc-tooltip::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #94a3b8, #64748b);
+    border-radius: 4px;
+}
+
+.tracking-chat-messages::-webkit-scrollbar-thumb:hover,
+.job-timeline::-webkit-scrollbar-thumb:hover,
+.job-desc-tooltip::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #64748b, #475569);
+}
+
+/* 响应式优化 */
+@media (max-width: 1024px) {
+    .tracking-layout {
+        flex-direction: column;
+    }
+
+    .tracking-sidebar {
+        flex: 1;
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .tracking-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .view-controls,
+    .action-btns {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .view-btn,
+    .action-btns .btn {
+        flex: 1;
+    }
+
+    .job-timeline {
+        gap: 12px;
+    }
+
+    .timeline-item {
+        min-width: 100px;
+    }
+
+    .chat-panel {
+        height: 500px;
     }
 }
