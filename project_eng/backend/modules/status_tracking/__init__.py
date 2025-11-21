@@ -26,6 +26,11 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 DB_DIR = os.path.join(DATA_DIR, 'database')
 DB_PATH = os.path.join(DB_DIR, 'tracking.db')
 
+# Func2自动投递数据库路径
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).parent.parent.parent.parent.parent
+FUNC2_DB_PATH = PROJECT_ROOT / "Func2_AutoApplication" / "db" / "getjobs.db"
+
 
 def get_db_connection():
     """获取数据库连接"""
@@ -495,3 +500,170 @@ def get_merged_data():
                 time.sleep(2)
 
     return Response(generate(), mimetype='text/event-stream')
+
+def get_func2_connection():
+    """获取Func2数据库连接"""
+    conn = sqlite3.connect(str(FUNC2_DB_PATH))
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+@status_tracking_bp.route('/delivery/stats', methods=['GET'])
+def get_delivery_stats():
+    """获取Func2自动投递的统计信息"""
+    try:
+        if not FUNC2_DB_PATH.exists():
+            return jsonify({
+                'success': True,
+                'stats': {
+                    'total': 0,
+                    'delivered': 0,
+                    'filtered': 0,
+                    'pending': 0,
+                    'boss': {'total': 0, 'delivered': 0},
+                    'liepin': {'total': 0, 'delivered': 0}
+                }
+            })
+
+        conn = get_func2_connection()
+        cursor = conn.cursor()
+
+        # Boss直聘统计
+        cursor.execute("""
+            SELECT
+                COUNT(*) as total,
+                SUM(CASE WHEN delivery_status = '已投递' THEN 1 ELSE 0 END) as delivered,
+                SUM(CASE WHEN delivery_status = '已过滤' THEN 1 ELSE 0 END) as filtered,
+                SUM(CASE WHEN delivery_status = '未投递' THEN 1 ELSE 0 END) as pending
+            FROM boss_data
+        """)
+        boss_stats = cursor.fetchone()
+
+        # 猎聘统计
+        cursor.execute("""
+            SELECT
+                COUNT(*) as total,
+                SUM(CASE WHEN delivery_status = '已投递' THEN 1 ELSE 0 END) as delivered,
+                SUM(CASE WHEN delivery_status = '已过滤' THEN 1 ELSE 0 END) as filtered,
+                SUM(CASE WHEN delivery_status = '未投递' THEN 1 ELSE 0 END) as pending
+            FROM liepin_data
+        """)
+        liepin_stats = cursor.fetchone()
+
+        conn.close()
+
+        # 合计
+        total_count = (boss_stats['total'] or 0) + (liepin_stats['total'] or 0)
+        delivered_count = (boss_stats['delivered'] or 0) + (liepin_stats['delivered'] or 0)
+        filtered_count = (boss_stats['filtered'] or 0) + (liepin_stats['filtered'] or 0)
+        pending_count = (boss_stats['pending'] or 0) + (liepin_stats['pending'] or 0)
+
+        return jsonify({
+            'success': True,
+            'stats': {
+                'total': total_count,
+                'delivered': delivered_count,
+                'filtered': filtered_count,
+                'pending': pending_count,
+                'boss': {
+                    'total': boss_stats['total'] or 0,
+                    'delivered': boss_stats['delivered'] or 0,
+                    'filtered': boss_stats['filtered'] or 0,
+                    'pending': boss_stats['pending'] or 0
+                },
+                'liepin': {
+                    'total': liepin_stats['total'] or 0,
+                    'delivered': liepin_stats['delivered'] or 0,
+                    'filtered': liepin_stats['filtered'] or 0,
+                    'pending': liepin_stats['pending'] or 0
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'获取统计失败: {str(e)}'}), 500
+
+
+@status_tracking_bp.route('/delivery/records', methods=['GET'])
+def get_delivery_records():
+    """获取详细投递记录"""
+    try:
+        if not FUNC2_DB_PATH.exists():
+            return jsonify({'success': True, 'records': []})
+
+        # 获取过滤参数
+        platform = request.args.get('platform', 'all')  # all, boss, liepin
+        status = request.args.get('status', 'all')  # all, 已投递, 已过滤, 未投递
+        limit = int(request.args.get('limit', 100))
+
+        conn = get_func2_connection()
+        cursor = conn.cursor()
+
+        records = []
+
+        # Boss直聘记录
+        if platform in ['all', 'boss']:
+            query = """
+                SELECT
+                    'boss' as platform,
+                    company_name,
+                    job_name,
+                    salary,
+                    location,
+                    experience,
+                    degree,
+                    hr_name,
+                    delivery_status,
+                    job_url,
+                    created_at,
+                    updated_at
+                FROM boss_data
+            """
+            if status != 'all':
+                query += f" WHERE delivery_status = '{status}'"
+            query += " ORDER BY updated_at DESC"
+
+            cursor.execute(query)
+            for row in cursor.fetchall():
+                records.append(dict(row))
+
+        # 猎聘记录
+        if platform in ['all', 'liepin']:
+            query = """
+                SELECT
+                    'liepin' as platform,
+                    company_name,
+                    job_name,
+                    salary,
+                    location,
+                    experience,
+                    degree,
+                    hr_name,
+                    delivery_status,
+                    job_url,
+                    created_at,
+                    updated_at
+                FROM liepin_data
+            """
+            if status != 'all':
+                query += f" WHERE delivery_status = '{status}'"
+            query += " ORDER BY updated_at DESC"
+
+            cursor.execute(query)
+            for row in cursor.fetchall():
+                records.append(dict(row))
+
+        conn.close()
+
+        # 按更新时间排序并限制数量
+        records.sort(key=lambda x: x.get('updated_at', ''), reverse=True)
+        records = records[:limit]
+
+        return jsonify({
+            'success': True,
+            'records': records,
+            'count': len(records)
+        })
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'获取记录失败: {str(e)}'}), 500

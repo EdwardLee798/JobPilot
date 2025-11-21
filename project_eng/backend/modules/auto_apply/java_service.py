@@ -110,13 +110,13 @@ def find_process_by_port(port):
     """跨平台查找占用指定端口的进程PID"""
     try:
         import psutil
-        for proc in psutil.process_iter(['pid', 'name', 'connections']):
+        for proc in psutil.process_iter(['pid', 'name']):
             try:
-                connections = proc.connections()
+                connections = proc.net_connections()
                 for conn in connections:
                     if hasattr(conn, 'laddr') and conn.laddr.port == port:
                         return proc.pid
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 continue
     except ImportError:
         # 如果没有psutil，尝试使用系统命令

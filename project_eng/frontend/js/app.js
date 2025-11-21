@@ -53,6 +53,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
             loadResumeOptions();
         } else if (tabId === 'auto-apply') {
             loadResumeOptions();
+            loadDeliveryStats(); // 加载投递统计
         } else if (tabId === 'status-tracking') {
             loadJobList();
         }
@@ -504,9 +505,32 @@ function stopProgressPolling() {
     }
 }
 
+// 加载投递统计（从Func2数据库）
+async function loadDeliveryStats() {
+    try {
+        const response = await fetch(`${API_BASE}/tracking/delivery/stats`);
+        const result = await response.json();
+
+        if (result.success && result.stats) {
+            const stats = result.stats;
+            // 更新界面显示
+            const completedEl = document.getElementById('completedCount');
+            if (completedEl) {
+                completedEl.textContent = stats.delivered || 0;
+                completedEl.title = `Boss直聘: ${stats.boss.delivered}, 猎聘: ${stats.liepin.delivered}`;
+            }
+
+            console.log('投递统计:', stats);
+        }
+    } catch (error) {
+        console.error('加载投递统计失败:', error);
+    }
+}
+
 // 页面加载时检查服务状态
 if (document.getElementById('serviceStatus')) {
     checkServiceStatus();
+    loadDeliveryStats(); // 加载投递统计
 }
 
 // ========== 进度管理 ==========
