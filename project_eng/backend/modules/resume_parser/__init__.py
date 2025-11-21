@@ -177,7 +177,10 @@ def interactive_chat():
             file = request.files['file']
             if file and allowed_file(file.filename):
                 # 临时保存文件并解析
-                temp_path = os.path.join(RESUME_DIR, f"temp_{session_id}.{file.filename.rsplit('.', 1)[1]}")
+                temp_path = os.path.join(
+                    RESUME_DIR,
+                    f"temp_{session_id}.{file.filename.rsplit('.', 1)[1]}"
+                )
                 file.save(temp_path)
                 file_content = parse_resume(temp_path)
                 os.remove(temp_path)  # 删除临时文件
@@ -190,7 +193,10 @@ def interactive_chat():
             'assistant_reply': result['assistant_reply'],
             'is_complete': result['is_complete'],
             'completion_percentage': result['completion_percentage'],
-            'missing_fields': result['missing_fields']
+            'missing_fields': result['missing_fields'],
+            # 新增：透传 LLM 的分析结果和当前聚合档案，方便前端展示
+            'analysis': result.get('analysis', {}),
+            'current_profile': result.get('current_profile', {})
         })
     except Exception as e:
         return jsonify({'error': f'处理输入失败: {str(e)}'}), 500

@@ -1,77 +1,104 @@
 {
-  "user_id": "528fd4f8-1ce2-4c9a-b9c2-bdcbca7e7f04",
-  "name": "周亦航",
-  "headline": "数据分析岗位简历",
+  "user_id": "a10b44e1-42fc-463f-ad6d-016dd05ddceb",
+  "name": "Siyi Liu",
+  "headline": "",
   "contacts": {
-    "email": "zhouyihang666@gmail.com",
-    "phone": "138-5520-5520",
+    "email": "siyi.liu@example.com",
+    "phone": "+86 188-0000-0000",
     "wechat": "",
-    "github": "github.com/zhouyihang-data"
+    "github": "github.com/siyi-liu"
   },
-  "summary": "具备扎实的统计学基础及强执行力，能快速理解业务并产出数据洞察。熟练使用 SQL/Python/R 处理结构化数据，具备良好的模型构建能力。形成稳定的分析框架（指标体系、增长模型、A/B 测试）。对复杂业务具备拆解能力，偏好结构化问题与可量化决策。",
+  "summary": "",
   "education": [
     {
-      "school": "中国人民大学",
-      "degree": "本科",
-      "major": "统计学",
-      "start": "2021.09",
-      "end": "2025.06",
-      "note": "GPA：3.78/4.0（专业前 10%）"
+      "school": "Northeastern University",
+      "degree": "Bachelor of Engineering",
+      "major": "Software Engineering",
+      "start": "2022.09",
+      "end": "2026.07",
+      "note": "Average Score: 88.9/100; Major Courses: Operating Systems (95), Computer Networks (95), Database (97), C++ Programming (100), Python for Data Analysis (98), Microservice Architecture (92), Web Development Technology (90)"
     }
   ],
   "experience": [
     {
-      "type": "实习",
-      "name": "滴滴",
-      "location": "北京",
-      "title": "数据分析实习生",
-      "role": "网约车财务与经营管理部-下沉经管",
-      "period": "2025.05~2025.08",
-      "description": "日常取数、看板制作及周报支持：使用SQL取业务（呼叫/应答/成交等）及财务（gmv/补贴/TR/毛利）等指标，并支持品类周报的制作（包括各品类的经营情况分析及未来发展下钻）及看板搭建。AB实验评估：支持低密度场景补贴策略、分区县表单场景策略及十框营销策略等AB实验评估，通过分别分析AA期与AB期对照组与实验组核心指标的提升率及显著性等，量化策略对关键业务指标的影响；结合业务背景与用户特征评估策略效果，为策略迭代提供数据驱动的决策建议。专题分析：补贴策略价值评估：协助构建多维度（用户类型、渠道、地域）分析框架，量化评估发券在CAC、LTV、用户贡献、ROI等关键指标上的业务效果及钱效；运用PSM模型精准衡量补贴对整体及特定区域老客留存与频次提升的价值。低价品类增长潜力预测：基于供需两侧数据（乘客呼叫/应答、司机TSH/应答/取消、补贴/毛利/CPM），结合里程、品类、区域特征，诊断低价品类瓶颈；通过拟合供需比下的成交数据，构建模型预测低价运力TSH占比提升空间，评估其对整体交易效率的潜在增益。区县分框：对缺需求的区县进行深度归因分析，结合产品力（如价格竞争力分析）与营销效能（渠道获客、用户价值/LTV、留存），定位核心短板，输出区域差异化增长策略建议。目标指定：通过分析该区县及相似区县呼叫/完单/成交率表现，预测该区县今年成交率水位及达成目标；拟合建立呼叫量与首五单完成数的回归模型，量化两者关系，并据此为每个区县制定首五单分档目标。"
+      "type": "internship",
+      "name": "Neusoft Education Technology Group",
+      "location": "",
+      "title": "",
+      "role": "",
+      "period": "2025.05~2025.07",
+      "description": "Developed backend services (Spring Boot + MySQL) for appointment scheduling and payment processing. Built AI medical imaging subsystem (nnUNetV2, Flask microservice) for CT segmentation and visualization. Participated in agile sprints, reviews, and integration testing."
     },
     {
-      "type": "实习",
-      "name": "百度",
-      "location": "上海",
-      "title": "数据运营实习生",
-      "role": "HCG医疗业务部",
-      "period": "2024.03~2024.06",
-      "description": "监控归因并优化数据看板：主要负责“百度健康”在线问诊平台的业务支持，尤其在私域表现的运营数据分析。利用Sql从数据库提取数据，从平台、诊室、患者等方面对平台运营情况监测分析，并使用下钻法和结构方程法等对异常数据进行贡献度拆解和归因分析；使用Tableau优化现有业务数据看板，包括流失看板、拆解接诊情况等；建模分析：利用Python和R从平台、医生、患者等多角度对不同渠道及不同业务类型下接诊成交量、购药GMV、成单评价情况等核心指标进行回归分析、方差分析、线性规划及机器学习分析，找到最影响GMV的核心因素及其波动影响关系，为优化“百度健康”在线问诊平台的服务提供支持。流程体系化与指标规范化建设：基于对问诊链路的常态化监控需求，搭建标准化的数据分析流程，包括指标口径梳理、数据产出周期化、异常检测规则等。推动对“接诊—购药—复诊”全链路关键指标重新定义与分层，使运营、产品、医生侧的数据口径统一，提高跨团队沟通效率。创建可复用的数据处理脚本与监控模板，使复杂分析场景（如节假日流量扰动、渠道波动等）形成可快速复现的诊断框架，缩短定位问题的平均耗时。"
+      "type": "project",
+      "name": "Path Explosion Mitigation in Software Model Checking via Large Block Encoding (LBE)",
+      "location": "",
+      "title": "",
+      "role": "",
+      "period": "",
+      "description": "Integrated LBE method into CPAchecker to reduce path explosion in software verification. Improved verification speed and resource efficiency compared to SBE."
+    },
+    {
+      "type": "project",
+      "name": "Rail Ticketing System",
+      "location": "",
+      "title": "",
+      "role": "",
+      "period": "",
+      "description": "Designed multi-service validation with Chain of Responsibility and delayed message queues. Implemented cache-penetration prevention using Bloom Filter and RocketMQ."
+    },
+    {
+      "type": "project",
+      "name": "Smart Home Desk Lamp Based on STM32",
+      "location": "",
+      "title": "",
+      "role": "",
+      "period": "",
+      "description": "Integrated sensors, voice control, and IoT cloud connection with STM32 and ESP8266. Designed PCB and developed firmware modules supporting UART/I2C/GPIO."
+    },
+    {
+      "type": "project",
+      "name": "Multiplayer Online Minesweeper Game (Linux)",
+      "location": "",
+      "title": "",
+      "role": "",
+      "period": "",
+      "description": "Built multithreaded TCP socket server with synchronization and stress testing."
+    },
+    {
+      "type": "project",
+      "name": "Weibo Short URL System",
+      "location": "",
+      "title": "",
+      "role": "",
+      "period": "",
+      "description": "Developed high-concurrency short URL service with Redis, RocketMQ, and distributed locks."
     }
   ],
   "skills": [
-    "SQL",
+    "C++",
+    "C",
     "Python",
-    "R",
-    "SAS",
-    "Tableau",
-    "PowerBI",
-    "Excel",
-    "统计建模",
-    "回归分析",
-    "实验评估",
-    "机器学习基础"
+    "Java",
+    "SQL",
+    "JavaScript",
+    "Spring Boot",
+    "Flask",
+    "Vue",
+    "MySQL",
+    "Redis",
+    "RocketMQ",
+    "MATLAB",
+    "PyTorch",
+    "Mandarin (native)",
+    "English (IELTS 6.5)"
   ],
-  "activities": [
-    {
-      "org": "城市智慧健身服务平台",
-      "role": "负责人",
-      "period": "2022.02~2022.06",
-      "description": "需求调研：通过问卷调研与实地走访福州区域10+公共健身场所与周边居民，发现用户对健身场馆位置分布感知不足、路径规划复杂、天气对出行决策影响大等问题，基于此整理出9项高频需求。竞品分析：分析 Keep、咕咚、高德地图运动路线的功能模型、用户体验与技术方案，形成10项竞品分析报告，并提出以“可达性分析 + 三维路径导航 + 天气适配”为核心的差异化定位策略，支撑产品方案规划。功能设计：围绕健身出行决策链路设计核心功能，梳理完整使用流程，输出交互原型，并协同推进开发测试。智能查询与可视化功能：为提升用户对场馆的查找效率，设计以出行方式与可达时间为输入的查询模块，系统自动绘制可达缓冲区并推荐场馆，可视化展示可达区域与场馆分布，点击率达83%，显著优化用户决策路径。路径推荐与三维导航功能：为提升用户健身路线决策效率与空间感知体验，基于高德底图输出最短与舒适双路径方案，结合热量计算与WebGL路线预览功能，支持三维轨迹显示与热量消耗标注，用户使用率72%。天气运动指数模块：为降低恶劣天气对活跃度的影响，引入天气与运动指数数据，嵌入导航入口提供出行建议，使用留存提升19%。"
-    },
-    {
-      "org": "低碳可视化互动平台",
-      "role": "负责人",
-      "period": "2021.10~2021.12",
-      "description": "需求调研：基于“碳达峰碳中和”国家战略，调研用户对碳排放与碳足迹兴趣点，通过问卷收集80+份用户反馈，提炼5项关键需求。功能设计：为提升用户对宏观碳排放结构和对自身减碳行为的认知，构建基于1997–2017年省/县级碳排放数据的交互地图，支持排放总量与排名的查看(交互完成86%)；同时设计基于出行、饮食等维度的碳足迹计算器，并以“种树数量”呈现结果(填写完成率92%）。产品迭代与优化：针对用户反馈中图表信息混乱与填写流程繁琐的问题，优化交互图表并突出Top省份，提升信息识别效率；同时优化用户输入流程，引入字段校验与默认值推荐，整体提交耗时下降约40%，显著提升使用体验。"
-    }
-  ],
+  "activities": [],
   "certifications": [
-    "全国大学生数据分析大赛｜二等奖（2024）",
-    "中国人民大学数学建模校赛｜一等奖（2023）",
-    "中国大学生统计建模大赛｜二等奖（2024）",
-    "美赛 MCM/ICM｜Honorable Mention（2024）",
-    "优秀学生干部（2023）",
-    "人民大学科技创新奖学金（2024）"
+    "H Prize, Mathematical Contest in Modeling, 2024",
+    "National Merit Scholarship, 2023-2024",
+    "Third Prize, Outstanding Student, 2022-2023",
+    "Third Prize, Outstanding Student, 2023-2024",
+    "Outstanding Mental Health Representative, 2022-2023"
   ]
 }

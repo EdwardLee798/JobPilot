@@ -539,13 +539,13 @@ def get_delivery_stats():
         """)
         boss_stats = cursor.fetchone()
 
-        # 猎聘统计
+        # 猎聘统计（使用 delivered 字段：1=已投递，0=未投递）
         cursor.execute("""
             SELECT
                 COUNT(*) as total,
-                SUM(CASE WHEN delivery_status = '已投递' THEN 1 ELSE 0 END) as delivered,
-                SUM(CASE WHEN delivery_status = '已过滤' THEN 1 ELSE 0 END) as filtered,
-                SUM(CASE WHEN delivery_status = '未投递' THEN 1 ELSE 0 END) as pending
+                SUM(CASE WHEN delivered = 1 THEN 1 ELSE 0 END) as delivered,
+                0 as filtered,
+                SUM(CASE WHEN delivered = 0 THEN 1 ELSE 0 END) as pending
             FROM liepin_data
         """)
         liepin_stats = cursor.fetchone()
@@ -627,27 +627,32 @@ def get_delivery_records():
             for row in cursor.fetchall():
                 records.append(dict(row))
 
-        # 猎聘记录
+        # 猎聘记录（字段映射不同）
         if platform in ['all', 'liepin']:
             query = """
                 SELECT
                     'liepin' as platform,
-                    company_name,
-                    job_name,
-                    salary,
-                    location,
-                    experience,
-                    degree,
+                    comp_name as company_name,
+                    job_title as job_name,
+                    job_salary_text as salary,
+                    job_area as location,
+                    job_exp_req as experience,
+                    job_edu_req as degree,
                     hr_name,
-                    delivery_status,
-                    job_url,
-                    created_at,
-                    updated_at
+                    CASE WHEN delivered = 1 THEN '已投递' ELSE '未投递' END as delivery_status,
+                    job_link as job_url,
+                    create_time as created_at,
+                    update_time as updated_at
                 FROM liepin_data
             """
             if status != 'all':
-                query += f" WHERE delivery_status = '{status}'"
-            query += " ORDER BY updated_at DESC"
+                if status == '已投递':
+                    query += " WHERE delivered = 1"
+                elif status == '未投递':
+                    query += " WHERE delivered = 0"
+                else:
+                    query += " WHERE 1=0"  # 猎聘没有'已过滤'状态
+            query += " ORDER BY update_time DESC"
 
             cursor.execute(query)
             for row in cursor.fetchall():
@@ -667,3 +672,80 @@ def get_delivery_records():
 
     except Exception as e:
         return jsonify({'success': False, 'error': f'获取记录失败: {str(e)}'}), 500
+
+
+@status_tracking_bp.route('/delivery/stats/stream')
+def stream_delivery_stats():
+    """SSE实时推送投递统计数据"""
+    def generate():
+        last_stats = None
+        while True:
+            try:
+                if not FUNC2_DB_PATH.exists():
+                    yield f"data: {json.dumps({'error': '数据库不存在'}, ensure_ascii=False)}\n\n"
+                    time.sleep(3)
+                    continue
+
+                conn = get_func2_connection()
+                cursor = conn.cursor()
+
+                # Boss直聘统计
+                cursor.execute("""
+                    SELECT
+                        COUNT(*) as total,
+                        SUM(CASE WHEN delivery_status = '已投递' THEN 1 ELSE 0 END) as delivered,
+                        SUM(CASE WHEN delivery_status = '已过滤' THEN 1 ELSE 0 END) as filtered,
+                        SUM(CASE WHEN delivery_status = '未投递' THEN 1 ELSE 0 END) as pending
+                    FROM boss_data
+                """)
+                boss_stats = cursor.fetchone()
+
+                # 猎聘统计
+                cursor.execute("""
+                    SELECT
+                        COUNT(*) as total,
+                        SUM(CASE WHEN delivered = 1 THEN 1 ELSE 0 END) as delivered,
+                        0 as filtered,
+                        SUM(CASE WHEN delivered = 0 THEN 1 ELSE 0 END) as pending
+                    FROM liepin_data
+                """)
+                liepin_stats = cursor.fetchone()
+
+                conn.close()
+
+                # 构建统计数据
+                stats = {
+                    'total': (boss_stats['total'] or 0) + (liepin_stats['total'] or 0),
+                    'delivered': (boss_stats['delivered'] or 0) + (liepin_stats['delivered'] or 0),
+                    'filtered': (boss_stats['filtered'] or 0) + (liepin_stats['filtered'] or 0),
+                    'pending': (boss_stats['pending'] or 0) + (liepin_stats['pending'] or 0),
+                    'boss': {
+                        'total': boss_stats['total'] or 0,
+                        'delivered': boss_stats['delivered'] or 0,
+                        'filtered': boss_stats['filtered'] or 0,
+                        'pending': boss_stats['pending'] or 0
+                    },
+                    'liepin': {
+                        'total': liepin_stats['total'] or 0,
+                        'delivered': liepin_stats['delivered'] or 0,
+                        'filtered': liepin_stats['filtered'] or 0,
+                        'pending': liepin_stats['pending'] or 0
+                    },
+                    'timestamp': time.time()
+                }
+
+                # 只有数据变化时才推送（避免重复推送）
+                if stats != last_stats:
+                    payload = json.dumps({'success': True, 'stats': stats}, ensure_ascii=False)
+                    yield f"data: {payload}\n\n"
+                    last_stats = stats
+
+                time.sleep(3)  # 每3秒检查一次
+
+            except GeneratorExit:
+                break
+            except Exception as e:
+                yield f"data: {json.dumps({'error': str(e)}, ensure_ascii=False)}\n\n"
+                time.sleep(3)
+
+    return Response(generate(), mimetype='text/event-stream')

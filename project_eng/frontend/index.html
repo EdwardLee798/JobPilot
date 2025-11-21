@@ -197,6 +197,37 @@
 
             <div id="applyStatus" class="status-message"></div>
 
+            <!-- 实时投递统计 -->
+            <div class="section">
+                <h3>📊 实时投递统计</h3>
+                <div id="realtimeStatsContainer" class="realtime-stats">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">总职位数</div>
+                            <div class="stat-value">0</div>
+                        </div>
+                        <div class="stat-card delivered">
+                            <div class="stat-label">已投递</div>
+                            <div class="stat-value">0</div>
+                            <div class="stat-detail">Boss: 0, 猎聘: 0</div>
+                        </div>
+                        <div class="stat-card pending">
+                            <div class="stat-label">待投递</div>
+                            <div class="stat-value">0</div>
+                            <div class="stat-detail">Boss: 0, 猎聘: 0</div>
+                        </div>
+                        <div class="stat-card filtered">
+                            <div class="stat-label">已过滤</div>
+                            <div class="stat-value">0</div>
+                            <div class="stat-detail">Boss: 0</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                    🔄 数据每3秒自动更新
+                </p>
+            </div>
+
             <div class="section" id="applyProgressSection" style="display: none;">
                 <h3>投递进度</h3>
                 <div id="applyProgress">

@@ -49,13 +49,17 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
         // 加载对应Tab的数据
         if (tabId === 'resume-parser') {
             loadResumeList();
+            disconnectDeliveryStatsStream(); // 离开自动投递tab，断开SSE
         } else if (tabId === 'resume-optimizer') {
             loadResumeOptions();
+            disconnectDeliveryStatsStream(); // 离开自动投递tab，断开SSE
         } else if (tabId === 'auto-apply') {
             loadResumeOptions();
             loadDeliveryStats(); // 加载投递统计
+            connectDeliveryStatsStream(); // 连接实时更新
         } else if (tabId === 'status-tracking') {
             loadJobList();
+            disconnectDeliveryStatsStream(); // 离开自动投递tab，断开SSE
         }
     });
 });
@@ -166,10 +170,15 @@ function displayResumeDetail(data) {
         `).join('') || '<p>无</p>'}
 
         <h4>工作经历</h4>
-        ${data.experience?.map(exp => `
-            <p><strong>${exp.name}</strong> (${exp.period})</p>
-            <p style="margin-left: 20px;">${exp.description || '-'}</p>
-        `).join('') || '<p>无</p>'}
+        ${data.experience?.map(exp => {
+            const title = exp.company ? `${exp.company} - ${exp.title || exp.position || ''}` : (exp.name || '');
+            const period = exp.period || (exp.start_date ? `${exp.start_date} - ${exp.end_date || '至今'}` : '');
+            const desc = exp.description || (exp.details ? exp.details.join('<br>') : '-');
+            return `
+                <p><strong>${title}</strong>${period ? ` (${period})` : ''}</p>
+                <p style="margin-left: 20px;">${desc}</p>
+            `;
+        }).join('') || '<p>无</p>'}
 
         <h4>技能</h4>
         <p>${data.skills?.join(', ') || '无'}</p>
@@ -296,6 +305,9 @@ if (downloadBtn) {
 }
 
 // ========== 自动投递 ==========
+
+// SSE连接用于实时更新投递统计
+let deliveryStatsEventSource = null;
 
 // 检查服务状态
 async function checkServiceStatus() {
@@ -475,6 +487,7 @@ if (stopApplyBtn) {
 
 // 进度轮询
 let progressInterval = null;
+let historyDelivered = 0; // 历史投递数（从数据库）
 
 async function updateProgress() {
     try {
@@ -483,7 +496,9 @@ async function updateProgress() {
 
         if (result.success && result.progress) {
             const p = result.progress;
-            document.getElementById('completedCount').textContent = p.completed || 0;
+            // 显示：历史已投递 + 本次已投递
+            const totalCompleted = historyDelivered + (p.completed || 0);
+            document.getElementById('completedCount').textContent = totalCompleted;
             document.getElementById('failedCount').textContent = p.failed || 0;
             document.getElementById('currentJob').textContent = p.current || '-';
         }
@@ -512,18 +527,100 @@ async function loadDeliveryStats() {
         const result = await response.json();
 
         if (result.success && result.stats) {
-            const stats = result.stats;
-            // 更新界面显示
-            const completedEl = document.getElementById('completedCount');
-            if (completedEl) {
-                completedEl.textContent = stats.delivered || 0;
-                completedEl.title = `Boss直聘: ${stats.boss.delivered}, 猎聘: ${stats.liepin.delivered}`;
-            }
-
-            console.log('投递统计:', stats);
+            updateDeliveryStatsUI(result.stats);
+            console.log('投递统计:', result.stats);
         }
     } catch (error) {
         console.error('加载投递统计失败:', error);
+    }
+}
+
+// 更新投递统计UI
+function updateDeliveryStatsUI(stats) {
+    // 保存历史投递数
+    historyDelivered = stats.delivered || 0;
+
+    // 更新已投递数量
+    const completedEl = document.getElementById('completedCount');
+    if (completedEl) {
+        completedEl.textContent = historyDelivered;
+        completedEl.title = `Boss直聘: ${stats.boss.delivered}, 猎聘: ${stats.liepin.delivered}`;
+    }
+
+    // 更新实时统计区域（如果存在）
+    const statsContainer = document.getElementById('realtimeStatsContainer');
+    if (statsContainer) {
+        statsContainer.innerHTML = `
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">总职位数</div>
+                    <div class="stat-value">${stats.total || 0}</div>
+                </div>
+                <div class="stat-card delivered">
+                    <div class="stat-label">已投递</div>
+                    <div class="stat-value">${stats.delivered || 0}</div>
+                    <div class="stat-detail">Boss: ${stats.boss.delivered}, 猎聘: ${stats.liepin.delivered}</div>
+                </div>
+                <div class="stat-card pending">
+                    <div class="stat-label">待投递</div>
+                    <div class="stat-value">${stats.pending || 0}</div>
+                    <div class="stat-detail">Boss: ${stats.boss.pending}, 猎聘: ${stats.liepin.pending}</div>
+                </div>
+                <div class="stat-card filtered">
+                    <div class="stat-label">已过滤</div>
+                    <div class="stat-value">${stats.filtered || 0}</div>
+                    <div class="stat-detail">Boss: ${stats.boss.filtered}</div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// 连接实时投递统计SSE
+function connectDeliveryStatsStream() {
+    // 如果已有连接，先关闭
+    if (deliveryStatsEventSource) {
+        deliveryStatsEventSource.close();
+    }
+
+    try {
+        deliveryStatsEventSource = new EventSource(`${API_BASE}/tracking/delivery/stats/stream`);
+
+        deliveryStatsEventSource.onmessage = (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                if (data.success && data.stats) {
+                    updateDeliveryStatsUI(data.stats);
+                } else if (data.error) {
+                    console.error('SSE错误:', data.error);
+                }
+            } catch (error) {
+                console.error('解析SSE数据失败:', error);
+            }
+        };
+
+        deliveryStatsEventSource.onerror = (error) => {
+            console.error('SSE连接错误:', error);
+            // 3秒后重连
+            setTimeout(() => {
+                if (document.getElementById('auto-apply').classList.contains('active')) {
+                    connectDeliveryStatsStream();
+                }
+            }, 3000);
+        };
+
+        console.log('已连接投递统计实时更新');
+    } catch (error) {
+        console.error('连接SSE失败:', error);
+    }
+}
+
+// 断开实时投递统计SSE
+function disconnectDeliveryStatsStream() {
+    if (deliveryStatsEventSource) {
+        deliveryStatsEventSource.close();
+        deliveryStatsEventSource = null;
+        console.log('已断开投递统计实时更新');
     }
 }
 
@@ -531,6 +628,11 @@ async function loadDeliveryStats() {
 if (document.getElementById('serviceStatus')) {
     checkServiceStatus();
     loadDeliveryStats(); // 加载投递统计
+
+    // 如果自动投递tab是激活的，连接SSE
+    if (document.getElementById('auto-apply').classList.contains('active')) {
+        connectDeliveryStatsStream();
+    }
 }
 
 // ========== 进度管理 ==========
