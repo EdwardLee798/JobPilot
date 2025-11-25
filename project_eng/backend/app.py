@@ -48,6 +48,12 @@ def index():
     return send_from_directory(app.static_folder, 'index.html')
 
 
+@app.route('/demo')
+def realtime_demo():
+    """实时监控演示页面"""
+    return send_file('realtime_demo.html')
+
+
 @app.route('/<path:path>')
 def static_files(path):
     """静态文件服务"""
@@ -86,5 +92,13 @@ if __name__ == '__main__':
     logger.info(f'Resume directory: {RESUME_DIR}')
     logger.info(f'Generated directory: {GENERATED_DIR}')
     logger.info(f'Database directory: {DB_DIR}')
+    logger.info('')
+    logger.info('=' * 60)
+    logger.info('实时监控功能已启用')
+    logger.info('  - 每5秒自动检测Boss投递的新记录')
+    logger.info('  - 自动同步到状态跟踪模块')
+    logger.info('  - 访问 http://localhost:5000/demo 查看实时演示')
+    logger.info('=' * 60)
+    logger.info('')
 
     app.run(host='0.0.0.0', port=5000, debug=True)

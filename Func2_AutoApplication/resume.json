@@ -1,104 +1,109 @@
 {
-  "user_id": "a10b44e1-42fc-463f-ad6d-016dd05ddceb",
-  "name": "Siyi Liu",
-  "headline": "",
+  "user_id": "2cb982df-8d40-43e8-a794-a47be42b779d",
+  "name": "李承泽",
+  "headline": "数据科学 / 算法工程 / 数据分析",
   "contacts": {
-    "email": "siyi.liu@example.com",
-    "phone": "+86 188-0000-0000",
+    "email": "chengze.li@example.com",
+    "phone": "138-0000-1212",
     "wechat": "",
-    "github": "github.com/siyi-liu"
+    "github": "github.com/lcz-datasci"
   },
   "summary": "",
   "education": [
     {
-      "school": "Northeastern University",
-      "degree": "Bachelor of Engineering",
-      "major": "Software Engineering",
-      "start": "2022.09",
-      "end": "2026.07",
-      "note": "Average Score: 88.9/100; Major Courses: Operating Systems (95), Computer Networks (95), Database (97), C++ Programming (100), Python for Data Analysis (98), Microservice Architecture (92), Web Development Technology (90)"
+      "school": "四川大学 华西医学院",
+      "degree": "本科",
+      "major": "生物医学工程",
+      "start": "2021.09",
+      "end": "2025.06",
+      "note": "GPA：3.72/4.0（专业前 10%）"
     }
   ],
   "experience": [
     {
-      "type": "internship",
-      "name": "Neusoft Education Technology Group",
+      "type": "实习",
+      "name": "阿里巴巴国际数字商业集团-数字零售技术部",
       "location": "",
-      "title": "",
+      "title": "数据科学实习生",
       "role": "",
-      "period": "2025.05~2025.07",
-      "description": "Developed backend services (Spring Boot + MySQL) for appointment scheduling and payment processing. Built AI medical imaging subsystem (nnUNetV2, Flask microservice) for CT segmentation and visualization. Participated in agile sprints, reviews, and integration testing."
+      "period": "2025.06~2025.09",
+      "description": "数据基建：对Aliexpress竞手电商数据进行ETL处理，建立竞手电商商品数据宽表与维表，搭建竞争雷达仪表盘，累计调用次数1000+。选品指标体系搭建：从供给、需求波动、竞对竞争维度出发，选取动销商品数、高价率、MAC渗透率等核心指标，构建品类选取指标体系。对竞对商品进行详情页与用户评论进行文本挖掘，进行商品选款。种子博主挖掘：搭建单Agent、MultiAgent、WebSearch Agent对350+个二级类目构建KOL博主挖掘链路，生成种子博主池，实现自动化种子博主挖掘，博主准确率提升30%。多模态电商标签提取：利用Python和AI基模，对Instagram平台的视频、音频、评论数据做商品实体与卖点提取、用户情感分类与置信度打分，完成自动化社媒帖子电商标签提取AI Agent，独立部署成功，已完成对3个垂直赛道，4000+个视频帖子的电商标签提取。"
     },
     {
-      "type": "project",
-      "name": "Path Explosion Mitigation in Software Model Checking via Large Block Encoding (LBE)",
+      "type": "实习",
+      "name": "字节跳动中国电商-市场营销",
+      "location": "",
+      "title": "数据分析实习生",
+      "role": "",
+      "period": "2025.02~2025.06",
+      "description": "数据基建：从用户购买行为链路出发，构建活动复盘与业绩监控指标体系，搭建日常与618大促期间的业绩监控仪表盘，累计PV5000+。店播策略分析报告：对2024年抖音电商大盘GMV分布情况与商家经营情况进行复盘，找出业务痛点。对北极星指标进行增长贡献拆解，确定策略侧重点。从三个维度制定9种业务增长策略，最终确定落地。Python建模：使用Python处理清洗数据，对1800+个二级类目，分别建立Prophet模型，预测618GMV与内容PV增长情况，MAPE 20%-80%。通过可视化分析，对大促进行分阶段的类目选取推荐。AB实验复盘：参与验证优惠券对于人均GMV提升效果的AB实验，从商品和用户两个方向做下钻分析。针对实验弱显著的场景，结合数据分析实验问题，撰写实验复盘报告，推动实验迭代。"
+    },
+    {
+      "type": "科研",
+      "name": "四川大学华西医学院",
+      "location": "",
+      "title": "术中血压管理与非心脏手术PO-AKI相关性研究",
+      "role": "",
+      "period": "2024.08~2025.01",
+      "description": "数据管理与特征工程：利用SQL和Python提取、清洗、管理亿级生命体征数据，利用IV值与Lasso进行特征降维得到最终模型输入特征42个。调整分箱方式，计算WOE值，避免暴力填补缺失值的影响，且保证了可解释性。风险建模：针对术前精准识别术后急性肾损伤发生的需求，开发基于逻辑回归的术后急性肾损伤风险的预测模型，独立完成包含标签计算、人群纳排、特征处理、人群风险分层、人群分群探索、模型开发和评估等环节，模型AUC84%。"
+    },
+    {
+      "type": "项目",
+      "name": "跨境电商智能选品决策平台",
       "location": "",
       "title": "",
       "role": "",
       "period": "",
-      "description": "Integrated LBE method into CPAchecker to reduce path explosion in software verification. Improved verification speed and resource efficiency compared to SBE."
+      "description": "该项目旨在构建一个端到端的智能选品决策系统，实现类目洞察、选品推荐与竞争对手监控的自动化。构建商品特征向量体系（文本、价格、属性、评论特征共80+维），并基于LightGBM建立热销商品预测模型（AUC 0.89）。搭建选品雷达与类目竞争指数（CCI），集成供应链稳定性、需求波动度、竞品强度三大维度指标。构建自动化“竞品新爆品监控”任务，每日更新近5万SKU，自动识别增长异常商品并推送给运营团队。"
     },
     {
-      "type": "project",
-      "name": "Rail Ticketing System",
+      "type": "项目",
+      "name": "多模态社媒内容理解系统 2.0",
       "location": "",
       "title": "",
       "role": "",
       "period": "",
-      "description": "Designed multi-service validation with Chain of Responsibility and delayed message queues. Implemented cache-penetration prevention using Bloom Filter and RocketMQ."
+      "description": "在阿里实习基础上二次延展，构建更完善的多模态内容理解框架。引入 CLIP + Whisper + LLaMA，根据视频帧、音频字幕、评论文本构建统一 embedding，用于分类与标签生成。设计“场景—商品—卖点”结构化图谱，使内容分析结果可用于广告投放、达人匹配与商家选款场景。构建可解释性模块，通过 SHAP 展示不同模态对标签生成的贡献度，提高业务对模型的信任度。"
     },
     {
-      "type": "project",
-      "name": "Smart Home Desk Lamp Based on STM32",
+      "type": "项目",
+      "name": "PO-AKI 医疗风险可解释性分析系统",
       "location": "",
       "title": "",
       "role": "",
       "period": "",
-      "description": "Integrated sensors, voice control, and IoT cloud connection with STM32 and ESP8266. Designed PCB and developed firmware modules supporting UART/I2C/GPIO."
-    },
-    {
-      "type": "project",
-      "name": "Multiplayer Online Minesweeper Game (Linux)",
-      "location": "",
-      "title": "",
-      "role": "",
-      "period": "",
-      "description": "Built multithreaded TCP socket server with synchronization and stress testing."
-    },
-    {
-      "type": "project",
-      "name": "Weibo Short URL System",
-      "location": "",
-      "title": "",
-      "role": "",
-      "period": "",
-      "description": "Developed high-concurrency short URL service with Redis, RocketMQ, and distributed locks."
+      "description": "构建患者动态生命体征曲线的异常检测模块（LOF + Dynamic Time Warping）。使用K-Means对患者进行术中状态聚类，识别出3类高风险特征模式，用于临床可视化参考。搭建原型可视化系统（Python Dash），实现患者风险趋势、特征变化与术中事件的交互式展示。"
     }
   ],
   "skills": [
-    "C++",
-    "C",
     "Python",
-    "Java",
     "SQL",
-    "JavaScript",
-    "Spring Boot",
-    "Flask",
-    "Vue",
-    "MySQL",
-    "Redis",
-    "RocketMQ",
-    "MATLAB",
-    "PyTorch",
-    "Mandarin (native)",
-    "English (IELTS 6.5)"
+    "R",
+    "Airflow",
+    "ETL",
+    "特征工程",
+    "时间序列",
+    "逻辑回归",
+    "文本挖掘",
+    "多模态分析",
+    "Tableau",
+    "Power BI",
+    "Linux",
+    "Git"
   ],
-  "activities": [],
-  "certifications": [
-    "H Prize, Mathematical Contest in Modeling, 2024",
-    "National Merit Scholarship, 2023-2024",
-    "Third Prize, Outstanding Student, 2022-2023",
-    "Third Prize, Outstanding Student, 2023-2024",
-    "Outstanding Mental Health Representative, 2022-2023"
-  ]
+  "activities": [
+    {
+      "org": "四川大学 数据科学协会",
+      "role": "副会长",
+      "period": "2023–2024",
+      "description": "负责管理协会180+名成员，主导课程体系从“基础技能”升级到“项目驱动”模式。发起“Data Sprint”校级数据马拉松，参赛人数超过800，联合阿里、字节提供真实业务赛题。指导协会成员完成6个行业项目（电商预测、评论情感、医疗诊断等），培养项目负责人10名以上。"
+    },
+    {
+      "org": "四川大学 创新创业中心",
+      "role": "技术负责人",
+      "period": "2022–2023",
+      "description": "带领团队开发医学影像语义分割 Demo，构建 U-Net 模型处理 CT/超声图像，Dice 达 0.86。协调校医院合作，推进医学AI项目立项并完成伦理审批。主持并通过校级创新训练项目，获二等奖，项目成果被纳入中心展示案例。"
+    }
+  ],
+  "certifications": []
 }
