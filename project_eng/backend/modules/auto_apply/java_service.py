@@ -334,3 +334,76 @@ def call_api(endpoint, method="GET", data=None):
 
     except Exception as e:
         return {"success": False, "error": f"API调用失败: {str(e)}"}
+
+
+def get_delivered_jobs():
+    """
+    从Func2数据库中获取已投递的岗位列表
+    返回格式：[{job_name, company_name, job_description, delivery_status, created_at}, ...]
+    """
+    try:
+        conn = sqlite3.connect(str(FUNC2_DB))
+        cursor = conn.cursor()
+
+        # 查询所有已投递的岗位
+        cursor.execute("""
+            SELECT job_name, company_name, job_description, delivery_status, created_at
+            FROM boss_data
+            WHERE delivery_status = '已投递'
+            ORDER BY created_at DESC
+        """)
+
+        rows = cursor.fetchall()
+        conn.close()
+
+        jobs = []
+        for row in rows:
+            jobs.append({
+                'job_name': row[0] or '',
+                'company_name': row[1] or '',
+                'job_description': row[2] or '',
+                'delivery_status': row[3] or '',
+                'created_at': row[4] or ''
+            })
+
+        return {"success": True, "jobs": jobs}
+
+    except Exception as e:
+        return {"success": False, "error": f"获取投递记录失败: {str(e)}"}
+
+
+def get_pending_jobs():
+    """
+    从Func2数据库中获取待投递的岗位列表
+    返回格式：[{job_name, company_name, job_description, salary, location, created_at}, ...]
+    """
+    try:
+        conn = sqlite3.connect(str(FUNC2_DB))
+        cursor = conn.cursor()
+
+        # 查询所有未投递的岗位
+        cursor.execute("""
+            SELECT job_name, company_name, job_description, salary, location, created_at
+            FROM boss_data
+            WHERE delivery_status = '未投递' OR delivery_status IS NULL OR delivery_status = ''
+            ORDER BY created_at DESC
+        """)
+
+        rows = cursor.fetchall()
+        conn.close()
+
+        jobs = []
+        for row in rows:
+            jobs.append({
+                'job_name': row[0] or '',
+                'company_name': row[1] or '',
+                'job_description': row[2] or '',
+                'salary': row[3] or '',
+                'location': row[4] or '',
+                'created_at': row[5] or ''
+            })
+
+        return {"success": True, "jobs": jobs}
+
+    except Exception as e:
+        return {"success": False, "error": f"获取待投递记录失败: {str(e)}"}

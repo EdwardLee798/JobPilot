@@ -6,6 +6,9 @@
 from flask import Blueprint, request, jsonify
 import os
 import json
+import sqlite3
+import time
+from pathlib import Path
 from .java_service import (
     check_service_status,
     start_service,
@@ -13,10 +16,16 @@ from .java_service import (
     configure_from_resume,
     get_boss_config,
     update_boss_config,
-    call_api
+    call_api,
+    get_delivered_jobs,
+    get_pending_jobs
 )
+from .monitor_service import start_monitor, stop_monitor, get_monitor_stats
 
 auto_apply_bp = Blueprint('auto_apply', __name__)
+
+# 在模块加载时自动启动监控服务
+start_monitor()
 
 # 配置路径
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -261,3 +270,218 @@ def get_guide():
             'note': '注意：自动投递功能需要Java运行环境，建议在投递前先优化简历'
         }
     })
+
+
+@auto_apply_bp.route('/sync-to-tracking', methods=['POST'])
+def sync_to_tracking():
+    """
+    将投递记录同步到状态跟踪模块
+    支持同步已投递和待投递的记录
+    """
+    try:
+        data = request.get_json() or {}
+        sync_pending = data.get('sync_pending', True)  # 默认同步待投递记录
+
+        # 获取状态跟踪数据库路径
+        tracking_db_path = os.path.join(BASE_DIR, 'data', 'database', 'tracking.db')
+
+        # 确保数据库目录存在
+        os.makedirs(os.path.dirname(tracking_db_path), exist_ok=True)
+
+        # 连接状态跟踪数据库
+        tracking_conn = sqlite3.connect(tracking_db_path)
+        tracking_cursor = tracking_conn.cursor()
+
+        delivered_synced = 0
+        pending_synced = 0
+        skipped_count = 0
+
+        # 1. 同步已投递的岗位
+        delivered_result = get_delivered_jobs()
+        if delivered_result.get('success'):
+            delivered_jobs = delivered_result.get('jobs', [])
+
+            for job in delivered_jobs:
+                job_title = job.get('job_name', '').strip()
+                company_name = job.get('company_name', '').strip()
+                job_description = job.get('job_description', '').strip()
+                created_at = job.get('created_at', '')
+
+                if not job_title or not company_name:
+                    skipped_count += 1
+                    continue
+
+                # 检查是否已存在
+                tracking_cursor.execute('''
+                    SELECT job_id FROM job_summary
+                    WHERE job_title = ? AND company_name = ?
+                ''', (job_title, company_name))
+
+                existing = tracking_cursor.fetchone()
+                if existing:
+                    skipped_count += 1
+                    continue
+
+                # 插入job_summary
+                tracking_cursor.execute('''
+                    INSERT INTO job_summary (job_title, company_name, job_desc, tracking_method)
+                    VALUES (?, ?, ?, ?)
+                ''', (job_title, company_name, job_description, 'Boss直聘'))
+
+                job_id = tracking_cursor.lastrowid
+
+                # 解析时间戳
+                event_time = parse_timestamp(created_at)
+
+                # 插入状态：已申请
+                tracking_cursor.execute('''
+                    INSERT INTO application_status (job_id, status_update, event_time)
+                    VALUES (?, ?, ?)
+                ''', (job_id, '已申请', event_time))
+
+                delivered_synced += 1
+
+        # 2. 同步待投递的岗位（如果启用）
+        if sync_pending:
+            pending_result = get_pending_jobs()
+            if pending_result.get('success'):
+                pending_jobs = pending_result.get('jobs', [])
+
+                for job in pending_jobs:
+                    job_title = job.get('job_name', '').strip()
+                    company_name = job.get('company_name', '').strip()
+                    job_description = job.get('job_description', '').strip()
+                    salary = job.get('salary', '').strip()
+                    location = job.get('location', '').strip()
+                    created_at = job.get('created_at', '')
+
+                    if not job_title or not company_name:
+                        skipped_count += 1
+                        continue
+
+                    # 检查是否已存在
+                    tracking_cursor.execute('''
+                        SELECT job_id FROM job_summary
+                        WHERE job_title = ? AND company_name = ?
+                    ''', (job_title, company_name))
+
+                    existing = tracking_cursor.fetchone()
+                    if existing:
+                        skipped_count += 1
+                        continue
+
+                    # 拼接更详细的描述
+                    full_description = f"薪资：{salary}\n地点：{location}\n\n{job_description}"
+
+                    # 插入job_summary
+                    tracking_cursor.execute('''
+                        INSERT INTO job_summary (job_title, company_name, job_desc, tracking_method)
+                        VALUES (?, ?, ?, ?)
+                    ''', (job_title, company_name, full_description, 'Boss直聘'))
+
+                    job_id = tracking_cursor.lastrowid
+
+                    # 解析时间戳
+                    event_time = parse_timestamp(created_at)
+
+                    # 插入状态：待投递
+                    tracking_cursor.execute('''
+                        INSERT INTO application_status (job_id, status_update, event_time)
+                        VALUES (?, ?, ?)
+                    ''', (job_id, '待投递', event_time))
+
+                    pending_synced += 1
+
+        tracking_conn.commit()
+        tracking_conn.close()
+
+        total_synced = delivered_synced + pending_synced
+        message_parts = []
+        if delivered_synced > 0:
+            message_parts.append(f'{delivered_synced}条已投递')
+        if pending_synced > 0:
+            message_parts.append(f'{pending_synced}条待投递')
+
+        message = f'同步完成：{"、".join(message_parts)}，跳过{skipped_count}条重复记录'
+
+        return jsonify({
+            'success': True,
+            'message': message,
+            'delivered_synced': delivered_synced,
+            'pending_synced': pending_synced,
+            'skipped_count': skipped_count,
+            'total_synced': total_synced
+        })
+
+    except Exception as e:
+        return jsonify({
+            'error': f'同步失败: {str(e)}'
+        }), 500
+
+
+def parse_timestamp(created_at):
+    """解析时间戳"""
+    try:
+        if created_at:
+            from datetime import datetime
+            if isinstance(created_at, str):
+                # 尝试解析多种时间格式
+                for fmt in ['%Y-%m-%dT%H:%M:%S.%f', '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d', '%Y/%m/%d %H:%M:%S']:
+                    try:
+                        dt = datetime.strptime(created_at, fmt)
+                        return dt.timestamp()
+                    except:
+                        continue
+            else:
+                return float(created_at) if created_at else time.time()
+        return time.time()
+    except:
+        return time.time()
+
+
+@auto_apply_bp.route('/monitor/status', methods=['GET'])
+def get_monitor_status():
+    """获取监控服务状态"""
+    try:
+        stats = get_monitor_stats()
+        return jsonify({
+            'success': True,
+            'monitor': stats
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': f'获取监控状态失败: {str(e)}'
+        }), 500
+
+
+@auto_apply_bp.route('/monitor/start', methods=['POST'])
+def start_monitor_service():
+    """启动监控服务"""
+    try:
+        start_monitor()
+        return jsonify({
+            'success': True,
+            'message': '监控服务已启动'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': f'启动监控服务失败: {str(e)}'
+        }), 500
+
+
+@auto_apply_bp.route('/monitor/stop', methods=['POST'])
+def stop_monitor_service():
+    """停止监控服务"""
+    try:
+        stop_monitor()
+        return jsonify({
+            'success': True,
+            'message': '监控服务已停止'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': f'停止监控服务失败: {str(e)}'
+        }), 500
